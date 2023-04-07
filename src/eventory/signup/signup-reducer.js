@@ -2,30 +2,27 @@ import { createSlice } from "@reduxjs/toolkit";
 import { userSignUpThunk } from "../../services/users-thunks";
 
 const initialState = {
-    user: null,
-    loading: false,
-    error: null
+    signUpData: null,
+    signUpStatus: 'idle',
 };
 
 const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {},
-    extraReducers: {
-        [userSignUpThunk.pending]:
-            (state) => {
-                state.loading = true;
-            },
-        [userSignUpThunk.fulfilled]:
-            (state, { payload }) => {
-                state.loading = false;
-                state.user = payload;
-            },
-        [userSignUpThunk.rejected]:
-            (state, action) => {
-                state.loading = false;
-                state.error = action.error;
-            }
+    extraReducers: (builder) => {
+        builder
+            .addCase(userSignUpThunk.pending, (state) => {
+                state.signUpStatus = 'pending';
+            })
+            .addCase(userSignUpThunk.fulfilled, (state, action) => {
+                state.signUpStatus = 'fulfilled';
+                state.signUpData = action.payload;
+            })
+            .addCase(userSignUpThunk.rejected, (state, action) => {
+                state.signUpStatus = 'rejected';
+                state.signUpData = action.payload;
+            })
     }
 });
 

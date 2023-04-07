@@ -5,7 +5,7 @@ const USERS_API = `${API_BASE}/users`;
 
 export const userSignUp = async (user) => {
     const response = await axios.post(USERS_API, user);
-    return response.data;
+    return response;
 };
 
 // export const userSignIn = async (user) => {

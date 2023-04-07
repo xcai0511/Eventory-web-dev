@@ -6,6 +6,7 @@ import Signin from "./signin";
 import Search from "./search";
 import userReducer from "./signup/signup-reducer";
 import { configureStore } from '@reduxjs/toolkit';
+import {Provider} from "react-redux";
 
 const store = configureStore({
     reducer: {
@@ -15,7 +16,7 @@ const store = configureStore({
 
 function Eventory() {
     return(
-        <div>
+        <Provider store={store}>
             <Nav/>
             <Routes>
                 <Route index
@@ -27,7 +28,7 @@ function Eventory() {
                 <Route path="search"
                        element={<Search/>}/>
             </Routes>
-        </div>
+        </Provider>
     );
 }
 export default Eventory;

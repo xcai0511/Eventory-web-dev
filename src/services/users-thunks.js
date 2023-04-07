@@ -8,7 +8,10 @@ export const userSignUpThunk =  createAsyncThunk(
             const newUser = await service.userSignUp(user);
             return newUser;
         } catch (error) {
-            return rejectWithValue(error);
+            if (!error.response) {
+                return rejectWithValue('Something went wrong.');
+            }
+            return rejectWithValue(error.response.data);
         }
     }
 );
