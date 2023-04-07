@@ -1,0 +1,76 @@
+/* General and Sitewide */
+.finalproj-text-align-center {
+    text-align: center;
+}
+
+/* Login and Signup Forms */
+.login-signup-wrapper {
+    background: lightgray;
+    padding: 0 20px 0 20px;
+}
+
+.login-signup-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-signup-eventory-logo {
+    width: 35px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.login-signup-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.login-signup-input-box {
+    width: 330px;
+    box-sizing: border-box;
+}
+
+.login-signup-input-field {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 0 10px 0 10px;
+}
+
+.login-signup-input {
+    height: 45px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    margin-bottom: 20px;
+}
+
+.login-signup-submit {
+    border: none;
+    outline: none;
+    height: 45px;
+    background: lightgray;
+    border-radius: 5px;
+}
+
+.login-signup-submit:hover {
+    background: rgba(37, 95, 156, 0.9);
+    color: white;
+}
+
+@media only screen and (max-width: 768px) {
+    .login-signup-image {
+        border-radius: 10px 10px 0 0;
+    }
+    .login-signup-row {
+        max-width: 420px;
+        width: 100%;
+    }
+}
