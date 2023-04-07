@@ -8,16 +8,7 @@ export const userSignUp = async (user) => {
     return response;
 };
 
-// export const userSignIn = async (user) => {
-//     const response = await axios.
-// }
-// export const deleteTuit = async (tid) => {
-//     const response = await axios
-//         .delete(`${TUITS_API}/${tid}`)
-//     return response.data
-// }
-// export const updateTuit = async (tuit) => {
-//     const response = await axios
-//         .put(`${TUITS_API}/${tuit._id}`, tuit);
-//     return tuit;
-// }
+export const userSignIn = async (user) => {
+    const response = await axios.post(USERS_API + '/login', user);
+    return response;
+}

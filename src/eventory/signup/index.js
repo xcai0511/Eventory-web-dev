@@ -5,8 +5,8 @@ import {userSignUpThunk} from "../../services/users-thunks";
 function Signup() {
     let [usernameInput, setUsernameInput] = useState('');
     let [passwordInput, setPasswordInput] = useState('');
-    const signUpStatus = useSelector(state => state.user.signUpStatus);
-    const signUpData = useSelector(state => state.user.signUpData);
+    const signUpStatus = useSelector(state => state.user.userStatus);
+    const signUpData = useSelector(state => state.user.userData);
     const dispatch = useDispatch();
     const signUpClickHandler = () => {
         const newUser = {
@@ -18,20 +18,20 @@ function Signup() {
     return (
         <div>
             <h2>This is sign up.</h2>
-            <form>
+            <form onSubmit={signUpClickHandler}>
                 <label>
                     <span>Username: </span>
-                    <input type="text" value={usernameInput} id="usernameInput"
-                           onChange={(event) => setUsernameInput(event.target.value)}/>
+                    <input type="email" value={usernameInput} id="usernameInput"
+                           onChange={(event) => setUsernameInput(event.target.value)} required/>
                 </label>
                 <br/><br/>
                 <label>
                     <span>Password: </span>
                     <input type="password" value={passwordInput} id="passwordInput"
-                           onChange={(event) => setPasswordInput(event.target.value)}/>
+                           onChange={(event) => setPasswordInput(event.target.value)} required/>
                 </label>
                 <br/><br/>
-                <button type="button" id="signUpButton" onClick={signUpClickHandler}>
+                <button type="submit" id="signUpButton">
                     Sign up
                 </button>
             </form>
