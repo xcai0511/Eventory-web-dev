@@ -74,3 +74,12 @@
         width: 100%;
     }
 }
+
+/* Login and Forgot Password Row Size */
+.login-row {
+    width: 900px;
+    height: 550px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
+}
