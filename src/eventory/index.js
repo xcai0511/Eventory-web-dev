@@ -2,7 +2,7 @@ import {Routes, Route} from "react-router";
 import Nav from "../nav";
 import Home from "./home";
 import Signup from "./signup";
-import Signin from "./signin";
+import Signin from "./signin/";
 import Search from "./search";
 import userReducer from "../reducers/user-reducer";
 import { configureStore } from '@reduxjs/toolkit';
