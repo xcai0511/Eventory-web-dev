@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 
 const SearchBar = () => {
     return(
-        <section className="wd-home g-0">
+        <section className="wd-home">
             <div className="wd-overlay"></div>
             <div className="wd-searchbar container d-none d-md-block">
                 <h2>Search Your Events</h2>
@@ -37,7 +37,7 @@ const SearchBar = () => {
                     </InputGroup.Text>
                     <input placeholder="Search for events, artists, and venues" className="d-inline form-control w-25"/>
                 </InputGroup>
-                <button className="btn d-inline btn-dark">Search</button>
+                <button className="btn d-inline btn-dark mt-2">Search</button>
             </div>
         </section>
     );
