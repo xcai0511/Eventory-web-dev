@@ -8,11 +8,12 @@ function Signin() {
     const signInStatus = useSelector(state => state.user.userStatus);
     const signInData = useSelector(state => state.user.userData);
     const dispatch = useDispatch();
-    const signInClickHandler = () => {
+    const signInClickHandler = (event) => {
+        event.preventDefault();
         const userCredentials = {
             username: usernameInput,
             password: passwordInput,
-        }
+        };
         dispatch(userSignInThunk(userCredentials));
     };
     return (
@@ -31,7 +32,7 @@ function Signin() {
                            onChange={(event) => setPasswordInput(event.target.value)} required/>
                 </label>
                 <br/><br/>
-                <button type="submit" id="signUpButton">
+                <button type="submit" id="signInButton">
                     Sign in
                 </button>
             </form>

@@ -5,7 +5,9 @@ export const userSignUpThunk =  createAsyncThunk(
     'users/signup',
     async (user, { rejectWithValue }) => {
         try {
+            console.log("here");
             const signUpResult = await service.userSignUp(user);
+            console.log(signUpResult);
             return signUpResult;
         } catch (error) {
             if (!error.response) {

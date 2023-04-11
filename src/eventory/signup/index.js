@@ -5,14 +5,19 @@ import {userSignUpThunk} from "../../services/users-thunks";
 function Signup() {
     let [usernameInput, setUsernameInput] = useState('');
     let [passwordInput, setPasswordInput] = useState('');
+    let [firstNameInput, setFirstNameInput] = useState('');
+    let [lastNameInput, setLastNameInput] = useState('');
     const signUpStatus = useSelector(state => state.user.userStatus);
     const signUpData = useSelector(state => state.user.userData);
     const dispatch = useDispatch();
-    const signUpClickHandler = () => {
+    const signUpClickHandler = (event) => {
+        event.preventDefault();
         const newUser = {
             username: usernameInput,
             password: passwordInput,
-        }
+            firstName: firstNameInput,
+            lastName: lastNameInput
+        };
         dispatch(userSignUpThunk(newUser));
     };
     return (
@@ -29,6 +34,18 @@ function Signup() {
                     <span>Password: </span>
                     <input type="password" value={passwordInput} id="passwordInput"
                            onChange={(event) => setPasswordInput(event.target.value)} required/>
+                </label>
+                <br/><br/>
+                <label>
+                    <span>First Name: </span>
+                    <input type="text" value={firstNameInput} id="firstNameInput"
+                           onChange={(event) => setFirstNameInput(event.target.value)} required/>
+                </label>
+                <br/><br/>
+                <label>
+                    <span>Last Name: </span>
+                    <input type="text" value={lastNameInput} id="lastNameInput"
+                           onChange={(event) => setLastNameInput(event.target.value)} required/>
                 </label>
                 <br/><br/>
                 <button type="submit" id="signUpButton">
