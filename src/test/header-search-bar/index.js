@@ -3,10 +3,9 @@ import "./header.css"
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 
-const SearchBar = () => {
+const HeaderSearchBar = () => {
     return(
-        <section className="wd-home">
-            <div className="wd-overlay"></div>
+        <section className="wd-header">
             <div className="wd-searchbar container d-none d-md-block">
                 <h2 className="ms-3">Search Your Events</h2>
                 <div className="row ms-1 me-1">
@@ -45,4 +44,4 @@ const SearchBar = () => {
         </section>
     );
 };
-export default SearchBar;
+export default HeaderSearchBar;
