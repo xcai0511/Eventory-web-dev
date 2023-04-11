@@ -7,15 +7,6 @@ const SearchBar = () => {
     const [isOpen, setOpen] = useState(false);
     const Filter = ["Exclusive Events", "General Events", "All Events"];
 
-    const filterRef = useRef();
-    const eventRef = useRef();
-
-    window.addEventListener('click', (e) => {
-        if (e.target !== eventRef.current && e.target !== filterRef.current) {
-            console.log(setOpen);
-        }
-    });
-
     return(
         <div className="wd-search-result">
             <div className="wd-header-sm mt-3">
@@ -30,7 +21,7 @@ const SearchBar = () => {
                                 <i className="bi bi-search-heart"></i>
                             </InputGroup.Text>
                             <input placeholder="Search for events, artists, and venues" className="d-inline form-control w-25"/>
-                            <button ref={filterRef} className="btn d-inline btn-dark">Search</button>
+                            <button className="btn d-inline btn-dark">Search</button>
                         </InputGroup>
                     </div>
                     <button className="btn wd-filter btn-dark" onClick={() => setOpen(true)}>
@@ -39,7 +30,7 @@ const SearchBar = () => {
                     </button>
                     {
                         isOpen &&
-                        <div ref={eventRef} className="shadow-lg position-absolute wd-filter-option">
+                        <div className="shadow-lg position-absolute wd-filter-option">
                             {
                                 Filter.map(
                                     (type) => (
@@ -74,7 +65,7 @@ const SearchBar = () => {
                     </button>
                     {
                         isOpen &&
-                        <div ref={eventRef} className="shadow-lg position-absolute wd-filter-option">
+                        <div className="shadow-lg position-absolute wd-filter-option">
                             {
                                 Filter.map(
                                     (type) => (
