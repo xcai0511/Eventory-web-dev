@@ -1,7 +1,6 @@
 import React from "react";
 import "./header.css"
 import InputGroup from 'react-bootstrap/InputGroup';
-import Form from 'react-bootstrap/Form';
 
 const HeaderSearchBar = () => {
     return(
@@ -39,7 +38,6 @@ const HeaderSearchBar = () => {
                     </InputGroup>
                 </div>
                 <button className="btn d-inline btn-dark mt-2 ms-2 me-2">Search</button>
-
             </div>
         </section>
     );

@@ -6,13 +6,16 @@ import {Provider} from "react-redux";
 import ResultList from "./search-result-list";
 import "./index.css";
 import HeaderSearchBar from "./header-search-bar";
+import SearchBar from "./search-bar";
 
 const store = configureStore(
     {reducer: {result: resultReducer}});
 function SearchResult() {
     return (
         <Provider store={store}>
-            <HeaderSearchBar/>
+            <div className="mt-2">
+                <SearchBar/>
+            </div>
             <div className="mt-2" style={{
                 display: "flex",
                 alignItems: "center",
