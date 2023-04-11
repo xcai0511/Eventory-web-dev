@@ -1,4 +1,4 @@
-import TestSearch from "./test";
+import SearchResult from "./test";
 import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router";
 
@@ -7,7 +7,7 @@ function App() {
       <BrowserRouter>
         <div className="container">
           <Routes>
-            <Route path="/*" element={<TestSearch/>}/>
+            <Route path="/*" element={<SearchResult/>}/>
           </Routes>
         </div>
       </BrowserRouter>

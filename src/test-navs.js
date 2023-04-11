@@ -3,9 +3,8 @@ import {Link} from "react-router-dom";
 function Nav() {
     return (
         <div>
-            <Link to="/">Test Search Result</Link> |
-            <Link to="/signup">Test Sign Up Page</Link> |
-            <Link to="/signin">Test Sign In Page</Link>
+            <Link to="/" className="text-decoration-none me-5">Search Result</Link>
+            <Link to="/detail" className="text-decoration-none me-2">Event Detail</Link>
         </div>
     )
 }

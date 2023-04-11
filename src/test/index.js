@@ -1,30 +1,28 @@
 import React from "react";
-import testReducer from "./test-search/test-result-reducer";
+import resultReducer from "./search-result-list/result-reducer";
 import { configureStore }
     from '@reduxjs/toolkit';
 import {Provider} from "react-redux";
-import TestResultList from "./test-search";
+import ResultList from "./search-result-list";
 import "./index.css";
-import Nav from "../test-navs";
+import SearchBar from "./search-bar";
 
 const store = configureStore(
-    {reducer: {result: testReducer}});
-function TestSearch() {
+    {reducer: {result: resultReducer}});
+function SearchResult() {
     return (
         <Provider store={store}>
-            <div>
-                <Nav/>
-            </div>
-            <div className="row mt-2 me-2">
-                <div className="col-10"
-                     style={{"position": "relative"}}>
-                    <TestResultList/>
-                </div>
-                <div className="col-2">
-                    <h1>Exclusive Events</h1>
-                </div>
+            <SearchBar/>
+            <div className="mt-2" style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                maxWidth: "800px",
+                margin: "auto"
+            }}>
+                <ResultList/>
             </div>
         </Provider>
     )
 }
-export default TestSearch;
+export default SearchResult;
