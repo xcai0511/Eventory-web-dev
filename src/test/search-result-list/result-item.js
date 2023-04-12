@@ -2,17 +2,28 @@ import React, {useEffect} from "react";
 import {useDispatch} from "react-redux";
 
 const ResultItem = ({result}) => {
+
+    // local time edge case
     const resultTime = result.time;
     const resultTimeArray = resultTime?.split(":");
-    const localTime = ("TBD") || (resultTimeArray[0] + ":" + resultTimeArray[1] + " EST");
-    console.log(localTime);
+    let localTime = "TBD";
+    if (resultTimeArray) {
+        localTime = resultTimeArray[0] + ":" + resultTimeArray[1] + " EST"
+    }
+
+    // poster edge case
+    let posterUrl = "event1.jpg";
+    if (result.image.url) {
+        posterUrl = result.image.url;
+    }
+
     const dispatch = useDispatch();
 
     return (
         <div className="card mb-2">
             <div className="row">
                 <div className="col-3">
-                    <img className="card-img" src={result.image.url} alt="poster"/>
+                    <img className="card-img" src={posterUrl} alt="poster"/>
                 </div>
                 <div className="col-9 mt-1 mb-0">
                     <div>
@@ -24,9 +35,18 @@ const ResultItem = ({result}) => {
                                 <i className="d-inline bi bi-star"></i>
                             </button>
                         </div>
-                        <div className="fw-bold">
-                            {result.date} {localTime}
-                        </div>
+                        {result.time ? (
+                                <div className="fw-bold">
+                                    {result.date} {localTime}
+                                </div>
+                            ) :
+                            (
+                                <div className="fw-bold">
+                                    {result.date} "TBD"
+                                </div>
+                            )
+                        }
+
                         <div className="fw-bold card-title">
                             {result.name}
                         </div>
