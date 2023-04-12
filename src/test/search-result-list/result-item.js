@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import "./result.css";
 
@@ -39,7 +39,7 @@ const ResultItem = ({result}) => {
         <div className="card mb-2">
             <div className="row">
                 <div className="col-3">
-                    <img className="card-img" src={posterUrl} alt="poster"/>
+                    <img className="card-img wd-poster" src={posterUrl} alt="poster"/>
                 </div>
                 <div className="col-9 mt-1 mb-0">
                     <div>
@@ -74,7 +74,7 @@ const ResultItem = ({result}) => {
                                 </div>
                             )
                         }
-                        <div className="fw-bold card-title">
+                        <div className="fw-bold card-title mb-1">
                             {result.name}
                         </div>
                         <i className="d-inline bi bi-geo-alt-fill me-1"></i>
