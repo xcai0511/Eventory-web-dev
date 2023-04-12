@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {userSignInThunk, userSignUpThunk} from "../../services/users-thunks";
+import {signInThunk} from "../../services/users-thunks";
 import "./index.css";
 import "../../projectIndex.css";
 
@@ -16,7 +16,7 @@ function Signin() {
             username: usernameInput,
             password: passwordInput,
         };
-        dispatch(userSignInThunk(userCredentials));
+        dispatch(signInThunk(userCredentials));
     };
     return (
         <form className="login-signup-wrapper" onSubmit={signInClickHandler}>

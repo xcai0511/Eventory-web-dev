@@ -11,7 +11,7 @@ export const userSignUp = async (user) => {
     return response;
 };
 
-export const userSignIn = async (user) => {
-    const response = await axios.post(USERS_API + '/login', user);
+export const everybodySignIn = async (user) => {
+    const response = await axios.post(API_BASE + '/login', user);
     return response;
 }

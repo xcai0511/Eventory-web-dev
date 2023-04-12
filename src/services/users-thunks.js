@@ -18,11 +18,11 @@ export const userSignUpThunk =  createAsyncThunk(
     }
 );
 
-export const userSignInThunk = createAsyncThunk(
-    'users/signin',
+export const signInThunk = createAsyncThunk(
+    'everybody/signin',
     async (user, { rejectWithValue }) => {
         try {
-            const signInResult = await service.userSignIn(user);
+            const signInResult = await service.everybodySignIn(user);
             return signInResult;
         } catch (error) {
             if (!error.response) {
