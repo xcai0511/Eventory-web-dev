@@ -1,5 +1,6 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
+import "./result.css";
 
 const ResultItem = ({result}) => {
 
@@ -17,6 +18,21 @@ const ResultItem = ({result}) => {
         posterUrl = result.image.url;
     }
 
+    // interested count
+    let intCount = 0;
+    if (result.interestedCount) {
+        intCount = result.interestCount;
+    }
+
+    // going count
+    let goingCount = 0;
+    if (result.goingCount) {
+        goingCount = result.goingCount;
+    }
+
+    // interested button
+    const [interested, setInterested] = useState(false);
+
     const dispatch = useDispatch();
 
     return (
@@ -28,11 +44,23 @@ const ResultItem = ({result}) => {
                 <div className="col-9 mt-1 mb-0">
                     <div>
                         <div className="float-end">
-                            <button className="btn btn-light">
-                                <div className="d-inline me-2">
-                                    Interested
-                                </div>
-                                <i className="d-inline bi bi-star"></i>
+                            <button className="btn btn-light" onClick={() => setInterested(!interested)}>
+                                {
+                                    interested ? (
+                                    <>
+                                        <div className="d-inline me-2">
+                                            Interested
+                                        </div>
+                                        <i className="d-inline bi bi-star-fill wd-yellow"></i>
+                                    </>) : (
+                                        <>
+                                            <div className="d-inline me-2">
+                                                Interest
+                                            </div>
+                                            <i className="d-inline bi bi-star"></i>
+                                        </>
+                                    )
+                                }
                             </button>
                         </div>
                         {result.time ? (
@@ -42,11 +70,10 @@ const ResultItem = ({result}) => {
                             ) :
                             (
                                 <div className="fw-bold">
-                                    {result.date} "TBD"
+                                    {result.date} {localTime}
                                 </div>
                             )
                         }
-
                         <div className="fw-bold card-title">
                             {result.name}
                         </div>
@@ -55,7 +82,7 @@ const ResultItem = ({result}) => {
                             {result.venueName}
                         </div>
                         <div className="text-muted">
-                            {result.interestedCount} interested · {result.goingCount} going
+                            {intCount} interested · {goingCount} going
                         </div>
                     </div>
                 </div>
