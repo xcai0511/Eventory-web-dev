@@ -3,6 +3,12 @@
     text-align: center;
 }
 
+.eventory-avatar {
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+}
+
 /* Login and Signup Forms */
 .login-signup-wrapper {
     background: lightgray;
