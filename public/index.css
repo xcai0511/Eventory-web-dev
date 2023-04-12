@@ -9,6 +9,11 @@
     height: 40px;
 }
 
+.active {
+    font-weight: 700;
+    border-bottom: 1px solid black;
+}
+
 /* Login and Signup Forms */
 .login-signup-wrapper {
     background: lightgray;
