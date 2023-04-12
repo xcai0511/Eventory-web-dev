@@ -1,15 +1,28 @@
-import React from "react";
+import React, {useEffect} from "react";
 import ResultItem from "./result-item";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {searchThunk} from "../../services/search-thunks";
 
 const ResultList = () => {
     const resultArray = useSelector(
         (state) => state.result);
 
+    const {result, loading} = useSelector(state => state.result)
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(searchThunk())
+    }, [])
+
     return(
         <ul className="list-group">
             {
-                resultArray.map(result =>
+                loading &&
+                <li className="list-group-item">
+                    Loading...
+                </li>
+            }
+            {
+                result.map(result =>
                     <ResultItem
                         key={result._id}
                         result={result}/>
