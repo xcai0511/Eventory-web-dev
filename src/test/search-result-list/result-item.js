@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 const ResultItem = ({result}) => {
     const resultTime = result.time;
     const resultTimeArray = resultTime?.split(":");
-    const localTime = resultTimeArray[0] + ":" + resultTimeArray[1] + " EST";
+    const localTime = ("TBD") || (resultTimeArray[0] + ":" + resultTimeArray[1] + " EST");
     console.log(localTime);
     const dispatch = useDispatch();
 

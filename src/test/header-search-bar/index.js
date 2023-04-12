@@ -4,7 +4,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 const HeaderSearchBar = () => {
     return(
-        <section className="wd-header">
+        <div className="wd-header wd-header-margin">
             <div className="wd-searchbar container d-none d-md-block">
                 <h2 className="ms-3">Search Your Events</h2>
                 <div className="row ms-1 me-1">
@@ -39,7 +39,7 @@ const HeaderSearchBar = () => {
                 </div>
                 <button className="btn d-inline btn-dark mt-2 ms-2 me-2">Search</button>
             </div>
-        </section>
+        </div>
     );
 };
 export default HeaderSearchBar;

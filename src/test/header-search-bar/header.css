@@ -4,19 +4,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: -150px;
-    margin-right: -150px;
+    min-width: 100px;
     background: url("event1.jpg");
     background-size:cover;
 }
-.wd-overlay {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    bottom: 0;
-    z-index: 1;
-    mix-blend-mode: hard-light;
+.wd-header-margin {
+    margin-left: -150px;
+    margin-right: -150px;
 }
 
 .wd-searchbar {
@@ -31,4 +25,11 @@
     background-color: white;
     opacity: 95%;
     border-radius: 25px;
+}
+
+@media (max-width: 580px) {
+    .wd-header-margin {
+        margin-left: -12px;
+        margin-right: -12px;
+    }
 }
