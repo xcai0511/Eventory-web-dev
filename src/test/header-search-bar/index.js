@@ -1,6 +1,7 @@
 import React from "react";
 import "./header.css"
 import InputGroup from 'react-bootstrap/InputGroup';
+import {Link} from "react-router-dom";
 
 const HeaderSearchBar = () => {
     return(
@@ -17,7 +18,9 @@ const HeaderSearchBar = () => {
                             <i className="bi bi-search-heart"></i>
                         </InputGroup.Text>
                         <input placeholder="Search for events, artists, and venues" className="d-inline form-control w-25"/>
-                        <button className="btn d-inline btn-dark">Search</button>
+                        <button className="btn d-inline btn-dark">
+                            <Link to="/results" className="text-decoration-none link-light">Search</Link>
+                        </button>
                     </InputGroup>
                 </div>
             </div>
@@ -37,7 +40,9 @@ const HeaderSearchBar = () => {
                         <input placeholder="Search for events, artists, and venues" className="d-inline form-control w-25"/>
                     </InputGroup>
                 </div>
-                <button className="btn d-inline btn-dark mt-2 ms-2 me-2">Search</button>
+                <button className="btn d-inline btn-dark mt-2 ms-2 me-2">
+                    <Link to="/results" className="text-decoration-none link-light">Search</Link>
+                </button>
             </div>
         </div>
     );
