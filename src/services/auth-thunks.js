@@ -1,13 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import * as service from "./users-service";
+import * as service from "./auth-service";
 
 export const userSignUpThunk =  createAsyncThunk(
     'users/signup',
     async (user, { rejectWithValue }) => {
         try {
-            console.log("here");
             const signUpResult = await service.userSignUp(user);
-            console.log(signUpResult);
             return signUpResult;
         } catch (error) {
             if (!error.response) {
@@ -30,5 +28,21 @@ export const signInThunk = createAsyncThunk(
             }
             return rejectWithValue(error.response.data);
         };
+    }
+);
+
+export const logOutThunk = createAsyncThunk(
+    'everybody/logout',
+    async () => {
+        const logOutResult = await service.everybodyLogOut();
+        return logOutResult;
+    }
+);
+
+export const profileThunk = createAsyncThunk(
+    'everybody/profile',
+    async () => {
+        const profileResult = await service.currentUserProfile();
+        return profileResult;
     }
 );

@@ -1,22 +1,34 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {signInThunk} from "../../services/users-thunks";
+import {signInThunk} from "../../services/auth-thunks";
 import "./index.css";
 import "../../projectIndex.css";
+import {useNavigate} from "react-router";
 
 function Signin() {
     let [usernameInput, setUsernameInput] = useState('');
     let [passwordInput, setPasswordInput] = useState('');
-    const signInStatus = useSelector(state => state.user.userStatus);
-    const signInData = useSelector(state => state.user.userData);
+    const signInStatus = useSelector(state => state.auth.userStatus);
+    const signInMessage = useSelector(state => state.auth.message);
+    const navigate = useNavigate();
     const dispatch = useDispatch();
+    // Automatically nagivate to the Home screen if signInStatus is 'fulfilled'.
+    useEffect(() => {
+        if (signInStatus === 'fulfilled') {
+            navigate("/home");
+        }
+    }, [signInStatus, navigate]);
     const signInClickHandler = (event) => {
         event.preventDefault();
         const userCredentials = {
             username: usernameInput,
             password: passwordInput,
         };
-        dispatch(signInThunk(userCredentials));
+        try {
+            dispatch(signInThunk(userCredentials));
+        } catch (error) {
+            alert(error.message);
+        };
     };
     return (
         <form className="login-signup-wrapper" onSubmit={signInClickHandler}>
@@ -26,11 +38,8 @@ function Signin() {
                     <div className="col-md-6 login-signup-form">
                         <div className="login-signup-input-box">
                             <h4 className="finalproj-text-align-center mb-3 fw-bold">Sign in to Eventory</h4>
-                            {(signInStatus === 'fulfilled') && (
-                                <div className="login-signup-input-field text-primary">{signInData.data.message}</div>
-                            )}
                             {(signInStatus === 'rejected') && (
-                                <div className="login-signup-input-field text-danger">{signInData.message}</div>
+                                <div className="login-signup-input-field text-danger">{signInMessage.message}</div>
                             )}
                             {signInStatus === 'pending' && (
                                 <div className="login-signup-input-field text-secondary">Loading...</div>

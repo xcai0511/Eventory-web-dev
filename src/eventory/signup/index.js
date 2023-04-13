@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {userSignUpThunk} from "../../services/users-thunks";
+import {userSignUpThunk} from "../../services/auth-thunks";
 import "./index.css";
 import "../../projectIndex.css";
 

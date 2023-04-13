@@ -4,13 +4,16 @@ import Home from "./home";
 import Signup from "./signup";
 import Signin from "./signin/";
 import Search from "./search";
-import userReducer from "../reducers/user-reducer";
+import Profile from "./profile";
+import userReducer from "../reducers/users-reducer";
+import authReducer from "../reducers/auth-reducer";
 import { configureStore } from '@reduxjs/toolkit';
 import {Provider} from "react-redux";
 
 const store = configureStore({
     reducer: {
         user: userReducer,
+        auth: authReducer,
     }
 });
 
@@ -21,12 +24,16 @@ function Eventory() {
             <Routes>
                 <Route index
                        element={<Home/>}/>
+                <Route path="home"
+                       element={<Home/>}/>
                 <Route path="signup"
                        element={<Signup/>}/>
                 <Route path="signin"
                        element={<Signin/>}/>
                 <Route path="search"
                        element={<Search/>}/>
+                <Route path="profile"
+                       element={<Profile/>}/>
             </Routes>
         </Provider>
     );
