@@ -1,26 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {searchThunk} from "../../services/search-thunks";
+import {eventThunk} from "../../services/event-thunks";
 
 const initialState = {
     result: [],
     loading: false
 }
 
-const resultSlice = createSlice({
-    name: "result",
+const eventSlice = createSlice({
+    name: "event",
     initialState,
     extraReducers: {
-        [searchThunk.pending]:
+        [eventThunk.pending]:
             (state) => {
                 state.loading = true
                 state.result = []
             },
-        [searchThunk.fulfilled]:
+        [eventThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
                 state.result = payload
             },
-        [searchThunk.rejected]:
+        [eventThunk.rejected]:
             (state, action) => {
                 state.loading = false
                 state.result = action.error
@@ -29,4 +29,4 @@ const resultSlice = createSlice({
 
 });
 
-export default resultSlice.reducer;
+export default eventSlice.reducer;

@@ -1,21 +1,34 @@
-import React, {useState} from "react";
+import {useState} from "react";
+import React from "react";
 import {useDispatch} from "react-redux";
-import "./result.css";
+import "./event.css";
 
-const ResultItem = ({result}) => {
+const EventItem = ({event}) => {
 
     // local time edge case
-    const resultTime = result.time;
-    const resultTimeArray = resultTime?.split(":");
-    let localTime = "TBD";
-    if (resultTimeArray) {
-        localTime = resultTimeArray[0] + ":" + resultTimeArray[1] + " EST"
-    }
+    //const eventTime = event.time;
+    //const eventTimeArray = eventTime?.split(":");
+    //let localTime = "TBD";
+    //if (eventTimeArray) {
+        //localTime = eventTimeArray[0] + ":" + eventTimeArray[1] + " EST"
+    //}
 
     // poster edge case
     let posterUrl = "event1.jpg";
-    if (result.image.url) {
-        posterUrl = result.image.url;
+    //if (event.image.url) {
+        //posterUrl = event.image.url;
+    //}
+
+    // interested count
+    let intCount = 0;
+    if (event.interestedUsers) {
+        intCount = event.interestedUsers.length;
+    }
+
+    // going count
+    let goingCount = 0;
+    if (event.registeredUsers) {
+        goingCount = event.registeredUsers.length;
     }
 
     // interested button
@@ -35,12 +48,12 @@ const ResultItem = ({result}) => {
                             <button className="btn btn-light" onClick={() => setInterested(!interested)}>
                                 {
                                     interested ? (
-                                    <>
-                                        <div className="d-inline me-2">
-                                            Interested
-                                        </div>
-                                        <i className="d-inline bi bi-star-fill wd-yellow"></i>
-                                    </>) : (
+                                        <>
+                                            <div className="d-inline me-2">
+                                                Interested
+                                            </div>
+                                            <i className="d-inline bi bi-star-fill wd-yellow"></i>
+                                        </>) : (
                                         <>
                                             <div className="d-inline me-2">
                                                 Interest
@@ -51,23 +64,26 @@ const ResultItem = ({result}) => {
                                 }
                             </button>
                         </div>
-                        {result.time ? (
+                        {event.time ? (
                                 <div className="fw-bold">
-                                    {result.date} {localTime}
+                                    {event.dateAndTime}
                                 </div>
                             ) :
                             (
                                 <div className="fw-bold">
-                                    {result.date} {localTime}
+                                    {event.dateAndTime}
                                 </div>
                             )
                         }
                         <div className="fw-bold card-title mb-1">
-                            {result.name}
+                            {event.name}
                         </div>
                         <i className="d-inline bi bi-geo-alt-fill me-1"></i>
                         <div className="d-inline text-muted fw-bold">
-                            {result.venueName}
+                            {event.venueName}
+                        </div>
+                        <div className="text-muted">
+                            {intCount} interested · {goingCount} going
                         </div>
                     </div>
                 </div>
@@ -76,4 +92,4 @@ const ResultItem = ({result}) => {
     );
 };
 
-export default ResultItem;
+export default EventItem;
