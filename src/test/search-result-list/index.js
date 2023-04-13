@@ -7,9 +7,7 @@ const ResultList = () => {
 
     const {result, loading} = useSelector(state => state.result)
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(searchThunk())
-    }, [])
+
 
     return(
         <ul className="list-group">
