@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import "./result.css";
 
 const ResultItem = ({result}) => {
+    const dispatch = useDispatch();
 
     // local time edge case
     const resultTime = result.time;
@@ -20,8 +21,6 @@ const ResultItem = ({result}) => {
 
     // interested button
     const [interested, setInterested] = useState(false);
-
-    const dispatch = useDispatch();
 
     return (
         <div className="card mb-2">

@@ -1,9 +1,29 @@
-import React from "react";
+import React, {useState} from "react";
 import "./header.css"
 import InputGroup from 'react-bootstrap/InputGroup';
 import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {findEventsByFilter} from "../../services/search-service";
+import {searchFilterThunk} from "../../services/search-thunks";
 
 const HeaderSearchBar = () => {
+
+    const dispatch = useDispatch();
+
+    const [location, setLocation] = useState('');
+    const [keyword, setKeyword] = useState('');
+
+    const locationHandler = (event) => {
+        const newLocation = event.target.value;
+        setLocation(newLocation);
+    }
+    const keywordHandler = (event) => {
+        const newKeyword = event.target.value;
+        setKeyword(newKeyword);
+    }
+    const searchOnclickHandler = () => {
+        dispatch(searchFilterThunk({location, keyword}));
+    }
     return(
         <div className="wd-header wd-header-margin">
             <div className="wd-searchbar container d-none d-md-block">
@@ -13,11 +33,11 @@ const HeaderSearchBar = () => {
                         <InputGroup.Text>
                             <i className="bi bi-geo-alt"></i>
                         </InputGroup.Text>
-                        <input placeholder="City or Zip Code" className="d-inline form-control"/>
+                        <input placeholder="City" className="d-inline form-control" value={location} onChange={locationHandler} />
                         <InputGroup.Text>
                             <i className="bi bi-search-heart"></i>
                         </InputGroup.Text>
-                        <input placeholder="Search for events, artists, and venues" className="d-inline form-control w-25"/>
+                        <input placeholder="Search for events, keywords, and venues" className="d-inline form-control w-25" value={keyword} onChange={keywordHandler}/>
                         <button className="btn d-inline btn-dark">
                             <Link to="/results" className="text-decoration-none link-light">Search</Link>
                         </button>
@@ -31,16 +51,16 @@ const HeaderSearchBar = () => {
                         <InputGroup.Text>
                             <i className="bi bi-geo-alt"></i>
                         </InputGroup.Text>
-                        <input placeholder="City or Zip Code" className="d-inline form-control"/>
+                        <input placeholder="City" className="d-inline form-control" value={location} onChange={locationHandler} />
                     </InputGroup>
                     <InputGroup className="mb-2">
                         <InputGroup.Text>
                             <i className="bi bi-geo-alt"></i>
                         </InputGroup.Text>
-                        <input placeholder="Search for events, artists, and venues" className="d-inline form-control w-25"/>
+                        <input placeholder="Search for events, keywords, and venues" className="d-inline form-control w-25" value={keyword} onChange={keywordHandler}/>
                     </InputGroup>
                 </div>
-                <button className="btn d-inline btn-dark mt-2 ms-2 me-2">
+                <button className="btn d-inline btn-dark mt-2 ms-2 me-2" onClick={searchOnclickHandler}>
                     <Link to="/results" className="text-decoration-none link-light">Search</Link>
                 </button>
             </div>

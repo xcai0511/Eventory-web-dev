@@ -4,8 +4,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {searchThunk} from "../../services/search-thunks";
 
 const ResultList = () => {
-    const resultArray = useSelector(
-        (state) => state.result);
 
     const {result, loading} = useSelector(state => state.result)
     const dispatch = useDispatch();
