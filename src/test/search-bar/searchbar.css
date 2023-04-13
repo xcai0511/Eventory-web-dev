@@ -1,0 +1,62 @@
+.wd-search-result {
+    max-width: 800px;
+    position: relative;
+    margin: auto;
+}
+.wd-header-sm {
+    height: max-content;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    background: url("event1.jpg");
+    background-size:cover;
+    max-width: 800px;
+    border-radius: 5px;
+}
+
+.wd-searchbar-sm {
+    width: 100%;
+    height: max-content;
+    padding: 3rem 3rem 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: auto;
+    z-index: 100;
+    opacity: 95%;
+    border-radius: 25px;
+}
+
+.wd-filter {
+    position: absolute;
+    width: max-content;
+    bottom: -0.7rem;
+    column-gap: 0.8rem;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 25px;
+    justify-content: center;
+    left: 50%;
+    transform: translate(-50%);
+    cursor: pointer;
+}
+.wd-filter-option {
+    position: absolute;
+    width: max-content;
+    bottom: -0.7rem;
+    column-gap: 0.8rem;
+    row-gap: 0.8rem;
+    padding: 8px 16px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    transform: translate(-50%);
+    cursor: pointer;
+    background-color: white;
+    opacity: 100%;
+    display: flex;
+}
+
