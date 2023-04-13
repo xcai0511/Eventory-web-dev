@@ -45,7 +45,7 @@ function Nav() {
                             ${active === 'exclusives'?'active':''}`}>
                             <div className="nav-link">Eventory Exclusives</div>
                         </Link>
-                        <Link to="/eventory/exclusives/" className={`nav-item text-decoration-none ms-lg-2 me-4
+                        <Link to="/eventory/contact/" className={`nav-item text-decoration-none ms-lg-2 me-4
                             ${active === 'contact'?'active':''}`}>
                             <div className="nav-link">Contact</div>
                         </Link>
@@ -62,15 +62,15 @@ function Nav() {
                     </ul>
                     <div className="navbar-nav ms-auto">
                         <div className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+                            <a className="nav-link dropdown-toggle d-flex align-items-center" id="userDropdown"
                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="/images/organizer-avatar.png" alt="User Profile Image"
                                      className="eventory-avatar me-2" width="40"></img>
                                 <span className="d-none d-md-inline-block">Jaime Si</span>
                             </a>
                             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><div className="dropdown-item">My Account</div></li>
-                                <li><div className="dropdown-item">Logout</div></li>
+                                <Link to="/eventory/profile" className="text-decoration-none"><div className="dropdown-item">My Account</div></Link>
+                                <Link to="/eventory/logout" className="text-decoration-none"><div className="dropdown-item">Logout</div></Link>
                             </ul>
                         </div>
                     </div>
