@@ -1,0 +1,36 @@
+.wd-detail-page {
+    max-width: 800px;
+    position: relative;
+    margin: auto;
+}
+.wd-poster-container {
+    position: relative;
+    width: 100%;
+    border-radius: 25px;
+}
+.wd-poster-frame {
+    width: 100%;
+    max-height: 400px;
+    height: auto;
+    border-radius: 25px;
+    filter: blur(3px);
+    opacity: 35%;
+}
+.wd-poster {
+    height: 100%;
+    width: auto;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.wd-poster-sm {
+    height: 100%;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+}

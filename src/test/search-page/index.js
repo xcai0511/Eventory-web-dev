@@ -1,11 +1,13 @@
 import React from "react";
 import SearchBar from "../search-bar";
 import ResultList from "../search-result-list";
+import Nav from "../../nav";
 
 const SearchPage = () => {
     return (
         <>
-            <div className="mt-2">
+            <Nav/>
+            <div>
                 <SearchBar/>
             </div>
             <div className="mt-2" style={{

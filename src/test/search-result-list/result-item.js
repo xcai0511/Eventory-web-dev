@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import "./result.css";
+import {useNavigate} from "react-router-dom";
 
 const ResultItem = ({result}) => {
     const dispatch = useDispatch();
@@ -22,8 +23,16 @@ const ResultItem = ({result}) => {
     // interested button
     const [interested, setInterested] = useState(false);
 
+    const navigate = useNavigate();
+    const cardOnclickHandler = (e_id) => {
+        const queryParams = new URLSearchParams({
+            id: e_id,
+        });
+        navigate(`/results/detail/search?${queryParams.toString()}`);
+    };
+
     return (
-        <div className="card mb-2">
+        <div className="card mb-2" onClick={cardOnclickHandler}>
             <div className="row">
                 <div className="col-3">
                     <img className="card-img wd-poster" src={posterUrl} alt="poster"/>

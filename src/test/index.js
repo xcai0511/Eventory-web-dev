@@ -7,14 +7,17 @@ import "./index.css";
 import eventReducer from "./search-event-list/event-reducer";
 import SearchPage from "./search-page";
 import {Route, Routes} from "react-router";
+import EventDetail from "./event-detail";
+import detailReducer from "./event-detail/detail-reducer";
 
 const store = configureStore(
-    {reducer: {result: resultReducer, event: eventReducer}});
+    {reducer: {result: resultReducer, event: eventReducer, detail: detailReducer}});
 function SearchResult() {
     return (
         <Provider store={store}>
             <Routes>
                 <Route path="/*" element={<SearchPage/>}/>
+                <Route path="/detail/*" element={<EventDetail/>}/>
             </Routes>
         </Provider>
     )
