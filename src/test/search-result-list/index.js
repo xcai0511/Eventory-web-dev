@@ -21,17 +21,17 @@ const ResultList = () => {
     return(
         <ul className="list-group">
             {
-                loading &&
+                result.length === 0 &&
                 <li className="list-group-item">
                     Loading...
                 </li>
             }
             {
+                !loading &&
                 result.map(result =>
                     <ResultItem
                         key={result._id}
-                        result={result}/>
-                )
+                        result={result}/>)
             }
         </ul>
     );
