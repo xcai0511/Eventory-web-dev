@@ -1,14 +1,15 @@
 import React, {useState} from "react";
+import { useNavigate } from 'react-router-dom';
 import "./header.css"
 import InputGroup from 'react-bootstrap/InputGroup';
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {findEventsByFilter} from "../../services/search-service";
 import {searchFilterThunk} from "../../services/search-thunks";
 
 const HeaderSearchBar = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [location, setLocation] = useState('');
     const [keyword, setKeyword] = useState('');
@@ -16,14 +17,20 @@ const HeaderSearchBar = () => {
     const locationHandler = (event) => {
         const newLocation = event.target.value;
         setLocation(newLocation);
-    }
+    };
     const keywordHandler = (event) => {
         const newKeyword = event.target.value;
         setKeyword(newKeyword);
-    }
+    };
     const searchOnclickHandler = () => {
-        dispatch(searchFilterThunk({location, keyword}));
-    }
+        const queryParams = new URLSearchParams({
+            city: location,
+            keyword: keyword,
+        });
+        navigate(`/results/search?${queryParams.toString()}`);
+    };
+
+
     return(
         <div className="wd-header wd-header-margin">
             <div className="wd-searchbar container d-none d-md-block">
@@ -38,8 +45,8 @@ const HeaderSearchBar = () => {
                             <i className="bi bi-search-heart"></i>
                         </InputGroup.Text>
                         <input placeholder="Search for events, keywords, and venues" className="d-inline form-control w-25" value={keyword} onChange={keywordHandler}/>
-                        <button className="btn d-inline btn-dark">
-                            <Link to="/results" className="text-decoration-none link-light">Search</Link>
+                        <button className="btn d-inline btn-dark" onClick={searchOnclickHandler}>
+                            <Link to="/results" className="text-decoration-none link-light" onClick={searchOnclickHandler}>Search</Link>
                         </button>
                     </InputGroup>
                 </div>
@@ -61,7 +68,7 @@ const HeaderSearchBar = () => {
                     </InputGroup>
                 </div>
                 <button className="btn d-inline btn-dark mt-2 ms-2 me-2" onClick={searchOnclickHandler}>
-                    <Link to="/results" className="text-decoration-none link-light">Search</Link>
+                    <Link to="/results" className="text-decoration-none link-light" onClick={searchOnclickHandler}>Search</Link>
                 </button>
             </div>
         </div>

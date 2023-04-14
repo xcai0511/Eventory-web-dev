@@ -14,7 +14,7 @@ function SearchResult() {
     return (
         <Provider store={store}>
             <Routes>
-                <Route index element={<SearchPage/>}/>
+                <Route path="/*" element={<SearchPage/>}/>
             </Routes>
         </Provider>
     )

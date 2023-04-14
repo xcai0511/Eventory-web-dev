@@ -1,12 +1,21 @@
 import React, {useEffect} from "react";
 import ResultItem from "./result-item";
 import {useDispatch, useSelector} from "react-redux";
-import {searchThunk} from "../../services/search-thunks";
+import {searchFilterThunk, searchThunk} from "../../services/search-thunks";
+import {useLocation} from "react-router";
 
 const ResultList = () => {
 
     const {result, loading} = useSelector(state => state.result)
     const dispatch = useDispatch();
+
+    const link = useLocation();
+    const queryParams = new URLSearchParams(link.search);
+    const location = queryParams.get("city");
+    const keyword = queryParams.get("keyword");
+    useEffect(() => {
+        dispatch(searchFilterThunk({location, keyword}))
+    }, []);
 
 
     return(

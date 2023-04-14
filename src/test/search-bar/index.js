@@ -4,15 +4,20 @@ import "./searchbar.css"
 import InputGroup from 'react-bootstrap/InputGroup';
 import {useDispatch} from "react-redux";
 import {searchFilterThunk} from "../../services/search-thunks";
+import {useLocation} from "react-router";
 
 const SearchBar = () => {
     const [isOpen, setOpen] = useState(false);
     const Filter = ["Exclusive Events", "General Events", "All Events"];
 
     const dispatch = useDispatch();
+    const link = useLocation();
+    const queryParams = new URLSearchParams(link.search);
+    const l = queryParams.get("city");
+    const k = queryParams.get("keyword");
 
-    const [location, setLocation] = useState('');
-    const [keyword, setKeyword] = useState('');
+    const [location, setLocation] = useState(l);
+    const [keyword, setKeyword] = useState(k);
 
     const locationHandler = (event) => {
         const newLocation = event.target.value;
@@ -35,11 +40,11 @@ const SearchBar = () => {
                             <InputGroup.Text>
                                 <i className="bi bi-geo-alt"></i>
                             </InputGroup.Text>
-                            <input placeholder="City" className="d-inline form-control" value={location} onChange={locationHandler}/>
+                            <input placeholder="City" className="d-inline form-control" value={l} onChange={locationHandler}/>
                             <InputGroup.Text>
                                 <i className="bi bi-search-heart"></i>
                             </InputGroup.Text>
-                            <input placeholder="Search for events, keywords, and venues" className="d-inline form-control w-25" value={keyword} onChange={keywordHandler}/>
+                            <input placeholder="Search for events, keywords, and venues" className="d-inline form-control w-25" value={k} onChange={keywordHandler}/>
                             <button className="btn d-inline btn-dark" onClick={searchOnclickHandler}>Search</button>
                         </InputGroup>
                     </div>
@@ -98,7 +103,7 @@ const SearchBar = () => {
                     }
                 </div>
             </div>
-            <h2 className="mt-3">'{keyword}'</h2>
+            <h2>'{k}'</h2>
             <h5 className="text-secondary">Search Results</h5>
         </div>
 

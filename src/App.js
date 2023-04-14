@@ -9,7 +9,7 @@ function App() {
           <Routes>
             <Route path="/*"
                    element={<Eventory/>}/>
-            <Route path="/results" element={<SearchResult/>}/>
+            <Route path="/results/*" element={<SearchResult/>}/>
           </Routes>
         </BrowserRouter>
       </div>
