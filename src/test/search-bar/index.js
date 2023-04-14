@@ -5,16 +5,18 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import {useDispatch} from "react-redux";
 import {searchFilterThunk} from "../../services/search-thunks";
 import {useLocation} from "react-router";
+import {useNavigate} from "react-router-dom";
 
 const SearchBar = () => {
     const [isOpen, setOpen] = useState(false);
     const Filter = ["Exclusive Events", "General Events", "All Events"];
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const link = useLocation();
     const queryParams = new URLSearchParams(link.search);
-    const l = queryParams.get("city");
-    const k = queryParams.get("keyword");
+    let l = queryParams.get("city");
+    let k = queryParams.get("keyword");
 
     const [location, setLocation] = useState(l);
     const [keyword, setKeyword] = useState(k);
@@ -28,6 +30,11 @@ const SearchBar = () => {
         setKeyword(newKeyword);
     }
     const searchOnclickHandler = () => {
+        const queryParams = new URLSearchParams({
+            city: location,
+            keyword: keyword,
+        });
+        navigate(`/results/search?${queryParams.toString()}`);
         dispatch(searchFilterThunk({location, keyword}));
     }
 
@@ -40,11 +47,11 @@ const SearchBar = () => {
                             <InputGroup.Text>
                                 <i className="bi bi-geo-alt"></i>
                             </InputGroup.Text>
-                            <input placeholder="City" className="d-inline form-control" value={l} onChange={locationHandler}/>
+                            <input placeholder="City" className="d-inline form-control" value={location} onChange={locationHandler}/>
                             <InputGroup.Text>
                                 <i className="bi bi-search-heart"></i>
                             </InputGroup.Text>
-                            <input placeholder="Search for events, keywords, and venues" className="d-inline form-control w-25" value={k} onChange={keywordHandler}/>
+                            <input placeholder="Search for events, keywords, and venues" className="d-inline form-control w-25" value={keyword} onChange={keywordHandler}/>
                             <button className="btn d-inline btn-dark" onClick={searchOnclickHandler}>Search</button>
                         </InputGroup>
                     </div>
