@@ -41,7 +41,7 @@ const DetailItem = ({detail}) => {
                         }
                     </button>
                 </div>
-                <div>Detail</div>
+                <div>Genre:  #{detail.genre}</div>
             </div>
             <div className="row mt-3">
                 <div className="col-8 me-3">
