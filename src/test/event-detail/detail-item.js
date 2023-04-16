@@ -1,5 +1,9 @@
 import React, {useState} from "react";
 import "./detail.css";
+import GoogleMapReact from 'google-map-react';
+import { loadGoogleMapsAPI } from "google-maps-api-loader";
+import Map from "./map";
+
 const DetailItem = ({detail}) => {
     const [interested, setInterested] = useState(false);
     // detail time
@@ -12,6 +16,24 @@ const DetailItem = ({detail}) => {
     const dateArray = detailDateString.split(" ");
     console.log(dateArray);
     const eventDate = dateArray[0] + ", " + dateArray[1] + " " + dateArray[2] + ", " + dateArray[3];
+    // address
+    const [showMap, setShowMap] = useState(false);
+    const [center, setCenter] = useState({lat: 0, lng: 0});
+    const [zoom, setZoom] = useState(8);
+    const showAddressOnclick = async () => {
+        setShowMap(!showMap);
+        const address = detail.venueAddress;
+        try {
+            const maps = await loadGoogleMapsAPI({ key: 'MAPS_API_KEY' });
+            const geocoder = new maps.Geocoder();
+            const results = await geocoder.geocode({address});
+            const { lat, lng } = results[0].geometry.location;
+            setCenter({ lat, lng });
+            setZoom(15);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
 
     return(
@@ -46,26 +68,31 @@ const DetailItem = ({detail}) => {
             <div className="row mt-3">
                 <div className="col-8 me-3">
                     <h1 className="fw-bold">{detail.name}</h1>
-                    <div className="border rounded mb-2 pt-3 pb-3">
-                        Organization Info
-                    </div>
+                    <h4 className="fw-bold">When and Where</h4>
                     <div className="row mt-2">
-                        <h3 className="fw-bold">When</h3>
                         <div className="col-2 mt-2">
                             <i className="wd-icon bi bi-calendar-heart"></i>
                         </div>
                         <div className="col-10 mt-0">
-                            <div>Date: {eventDate}</div>
-                            <div>Time: {eventTime}</div>
+                            <div className="fw-bold">Date and Time</div>
+                            <div>{eventDate} {eventTime}</div>
                         </div>
                     </div>
-                    <div className="mt-2">
-                        <h3 className="fw-bold">Where</h3>
-                        <div>{detail.venueName}</div>
-                        <div>{detail.venueCity}</div>
-                        <div>{detail.venuePostalCode}</div>
-                        <div>{detail.venueAddress}</div>
+                    <div className="row mt-2">
+                        <div className="col-2 mt-2">
+                            <i className="wd-icon bi bi-geo-alt"></i>
+                        </div>
+                        <div className="col-10 mt-0">
+                            <div className="fw-bold">Location</div>
+                            <div>{detail.venueName} {detail.venueAddress}, {detail.venueCity} {detail.venuePostalCode}</div>
+                            <div className="btn" onClick={showAddressOnclick}>Show Map</div>
+                            {
+                                showMap &&
+                                <Map center={center} zoom={zoom}/>
+                            }
+                        </div>
                     </div>
+
                 </div>
                 <div className="col-3 mt-3 ms-5">
                     <div className="border rounded pb-5 pt-5">
