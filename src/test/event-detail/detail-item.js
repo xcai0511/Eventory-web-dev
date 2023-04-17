@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 import "./detail.css";
-import GoogleMapReact from 'google-map-react';
-import { loadGoogleMapsAPI } from "google-maps-api-loader";
 import Map from "./map";
+import {Link} from "react-router-dom";
 
 const DetailItem = ({detail}) => {
     const [interested, setInterested] = useState(false);
@@ -18,22 +17,13 @@ const DetailItem = ({detail}) => {
     const eventDate = dateArray[0] + ", " + dateArray[1] + " " + dateArray[2] + ", " + dateArray[3];
     // address
     const [showMap, setShowMap] = useState(false);
-    const [center, setCenter] = useState({lat: 0, lng: 0});
-    const [zoom, setZoom] = useState(8);
     const showAddressOnclick = async () => {
         setShowMap(!showMap);
-        const address = detail.venueAddress;
-        try {
-            const maps = await loadGoogleMapsAPI({ key: 'MAPS_API_KEY' });
-            const geocoder = new maps.Geocoder();
-            const results = await geocoder.geocode({address});
-            const { lat, lng } = results[0].geometry.location;
-            setCenter({ lat, lng });
-            setZoom(15);
-        } catch (error) {
-            console.log(error);
-        }
     };
+    // buy ticket
+    const ticketButtonOnclick = () => {
+        window.open(detail.linkToBuy);
+    }
 
 
     return(
@@ -63,10 +53,11 @@ const DetailItem = ({detail}) => {
                         }
                     </button>
                 </div>
-                <div>Genre:  #{detail.genre}</div>
+                <div className="btn btn-secondary d-inline me-2">{detail.segment}</div>
+                <div className="btn btn-secondary d-inline">{detail.genre}</div>
             </div>
             <div className="row mt-3">
-                <div className="col-8 me-3">
+                <div className="col col-md-8 me-3">
                     <h1 className="fw-bold">{detail.name}</h1>
                     <h4 className="fw-bold">When and Where</h4>
                     <div className="row mt-2">
@@ -85,19 +76,26 @@ const DetailItem = ({detail}) => {
                         <div className="col-10 mt-0">
                             <div className="fw-bold">Location</div>
                             <div>{detail.venueName} {detail.venueAddress}, {detail.venueCity} {detail.venuePostalCode}</div>
-                            <div className="btn" onClick={showAddressOnclick}>Show Map</div>
-                            {
-                                showMap &&
-                                <Map center={center} zoom={zoom}/>
-                            }
                         </div>
                     </div>
 
+                    <h4 className="fw-bold mt-2">Description</h4>
+                    <div>{detail.description}</div>
+
+
                 </div>
-                <div className="col-3 mt-3 ms-5">
-                    <div className="border rounded pb-5 pt-5">
-                        buy tickets
+                <div className="d-none d-md-block col-md-3 mt-3 ms-5">
+                    <div>
+                        <h4 className="fw-bold">Link to buy</h4>
+                        <button className="btn btn-warning wd-button-link" onClick={ticketButtonOnclick}>
+                            Buy Tickets
+                        </button>
                     </div>
+                </div>
+                <div className="d-md-none wd-footer">
+                    <button className="btn btn-warning wd-button-link" onClick={ticketButtonOnclick}>
+                        Buy Tickets
+                    </button>
                 </div>
             </div>
 

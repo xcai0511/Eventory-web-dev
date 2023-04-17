@@ -33,3 +33,12 @@
     border-radius: 5px;
     padding: 10px 15px;
 }
+.wd-button-link {
+    width: 100%;
+    text-decoration: none;
+}
+.wd-footer {
+    position: fixed;
+    bottom: 0;
+    height: 2.5rem;
+}
