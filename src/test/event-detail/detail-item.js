@@ -45,7 +45,7 @@ const DetailItem = ({detail}) => {
                                 </>) : (
                                 <>
                                     <div className="d-inline me-2">
-                                        Interest
+                                        Interested
                                     </div>
                                     <i className="d-inline bi bi-star"></i>
                                 </>
@@ -57,10 +57,10 @@ const DetailItem = ({detail}) => {
                 <div className="btn btn-secondary d-inline">{detail.genre}</div>
             </div>
             <div className="row mt-3">
-                <div className="col col-md-8 me-3">
+                <div className="col col-md-9 p-md-3">
                     <h1 className="fw-bold">{detail.name}</h1>
-                    <h4 className="fw-bold">When and Where</h4>
-                    <div className="row mt-2">
+                    <h4 className="fw-bold mt-3">When and Where</h4>
+                    <div className="row mt-3">
                         <div className="col-2 mt-2">
                             <i className="wd-icon bi bi-calendar-heart"></i>
                         </div>
@@ -69,7 +69,7 @@ const DetailItem = ({detail}) => {
                             <div>{eventDate} {eventTime}</div>
                         </div>
                     </div>
-                    <div className="row mt-2">
+                    <div className="row mt-3">
                         <div className="col-2 mt-2">
                             <i className="wd-icon bi bi-geo-alt"></i>
                         </div>
@@ -79,15 +79,15 @@ const DetailItem = ({detail}) => {
                         </div>
                     </div>
 
-                    <h4 className="fw-bold mt-2">Description</h4>
+                    <h4 className="fw-bold mt-4">Description</h4>
                     <div>{detail.description}</div>
 
 
                 </div>
-                <div className="d-none d-md-block col-md-3 mt-3 ms-5">
+                <div className="d-none d-md-block col-md-3 mt-4">
                     <div>
                         <h4 className="fw-bold">Link to buy</h4>
-                        <button className="btn btn-warning wd-button-link" onClick={ticketButtonOnclick}>
+                        <button className="btn btn-warning wd-button-link mt-2" onClick={ticketButtonOnclick}>
                             Buy Tickets
                         </button>
                     </div>

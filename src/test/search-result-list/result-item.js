@@ -51,7 +51,7 @@ const ResultItem = ({result}) => {
                                     </>) : (
                                         <>
                                             <div className="d-inline me-2">
-                                                Interest
+                                                Interested
                                             </div>
                                             <i className="d-inline bi bi-star"></i>
                                         </>
