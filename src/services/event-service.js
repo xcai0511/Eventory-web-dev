@@ -7,8 +7,3 @@ export const findAllEvents = async () => {
     const results = response.data;
     return results;
 }
-export const getTicketmasterEventDetails = async (e_id) => {
-    const response = await axios.get(`${SEARCH_API}/${e_id}`);
-    const results = response.data;
-    return results;
-}

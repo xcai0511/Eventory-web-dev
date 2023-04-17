@@ -18,6 +18,7 @@ const ResultList = () => {
     }, []);
 
 
+
     return(
         <ul className="list-group">
             {

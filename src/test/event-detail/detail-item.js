@@ -1,19 +1,22 @@
 import React, {useState} from "react";
 import "./detail.css";
-import Map from "./map";
-import {Link} from "react-router-dom";
 
 const DetailItem = ({detail}) => {
     const [interested, setInterested] = useState(false);
     // detail time
+    console.log("detail");
+    console.log(detail);
+
+    /*
     const detailTime = detail.time;
     const detailTimeArray = detailTime.split(":");
     const eventTime = detailTimeArray[0] + " : " + detailTimeArray[1] + " EDT";
+
+     */
     // detail date
     const detailDate = new Date(detail.date);
     const detailDateString = detailDate.toString();
     const dateArray = detailDateString.split(" ");
-    console.log(dateArray);
     const eventDate = dateArray[0] + ", " + dateArray[1] + " " + dateArray[2] + ", " + dateArray[3];
     // address
     const [showMap, setShowMap] = useState(false);
@@ -26,7 +29,9 @@ const DetailItem = ({detail}) => {
     }
 
 
+
     return(
+
         <div className="wd-detail-page mt-3">
             <div className="wd-poster-container">
                 <img className="wd-poster-frame" src={`/images/${detail.image}`}/>
@@ -66,7 +71,7 @@ const DetailItem = ({detail}) => {
                         </div>
                         <div className="col-10 mt-0">
                             <div className="fw-bold">Date and Time</div>
-                            <div>{eventDate} {eventTime}</div>
+                            <div>{eventDate} {detail.time}</div>
                         </div>
                     </div>
                     <div className="row mt-3">
@@ -98,8 +103,6 @@ const DetailItem = ({detail}) => {
                     </button>
                 </div>
             </div>
-
-
         </div>
     );
 };

@@ -8,10 +8,9 @@ import eventReducer from "./search-event-list/event-reducer";
 import SearchPage from "./search-page";
 import {Route, Routes} from "react-router";
 import EventDetail from "./event-detail";
-import detailReducer from "./event-detail/detail-reducer";
 
 const store = configureStore(
-    {reducer: {result: resultReducer, event: eventReducer, detail: detailReducer}});
+    {reducer: {result: resultReducer, event: eventReducer}});
 function SearchResult() {
     return (
         <Provider store={store}>
