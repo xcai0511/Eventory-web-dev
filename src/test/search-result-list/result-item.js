@@ -24,9 +24,9 @@ const ResultItem = ({result}) => {
     const [interested, setInterested] = useState(false);
 
     const navigate = useNavigate();
-    const cardOnclickHandler = (e_id) => {
+    const cardOnclickHandler = () => {
         const queryParams = new URLSearchParams({
-            id: e_id,
+            id: result._id,
         });
         navigate(`/results/detail/search?${queryParams.toString()}`);
     };

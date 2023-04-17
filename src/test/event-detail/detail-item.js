@@ -30,7 +30,7 @@ const DetailItem = ({detail}) => {
         <div className="wd-detail-page mt-3">
             <div className="wd-poster-container">
                 <img className="wd-poster-frame" src={`/images/${detail.image}`}/>
-                <img className="wd-poster" src={`/images/${detail.image}`}/>
+                <img className="wd-poster-img" src={`/images/${detail.image}`}/>
             </div>
             <div className="mt-3 mb-2">
                 <div className="float-end">
