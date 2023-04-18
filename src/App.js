@@ -1,4 +1,4 @@
-import SearchResult from "./test";
+import SearchResult from "./search-events";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Eventory from "./eventory";
 

@@ -2,7 +2,7 @@ import {useState} from "react";
 import React from "react";
 import {useDispatch} from "react-redux";
 import "./event.css";
-import "../search-result-list/result.css";
+import "../search-ticketmaster-result-list/result.css";
 
 const EventoryResultItem = ({event}) => {
 
@@ -28,6 +28,7 @@ const EventoryResultItem = ({event}) => {
     }
 
     // interested button
+    // TODO: link current event to current user
     const [interested, setInterested] = useState(false);
 
     const dispatch = useDispatch();
