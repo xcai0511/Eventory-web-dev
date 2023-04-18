@@ -7,7 +7,7 @@ const initialState = {
     loading: false
 }
 
-const resultSlice = createSlice({
+const ticketmasterEventSlice = createSlice({
     name: "result",
     initialState,
     extraReducers: {
@@ -66,4 +66,4 @@ const resultSlice = createSlice({
 
 });
 
-export default resultSlice.reducer;
+export default ticketmasterEventSlice.reducer;

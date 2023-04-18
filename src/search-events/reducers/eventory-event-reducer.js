@@ -6,7 +6,7 @@ const initialState = {
     loading: false
 }
 
-const eventSlice = createSlice({
+const eventoryEventSlice = createSlice({
     name: "event",
     initialState,
     extraReducers: {
@@ -44,4 +44,4 @@ const eventSlice = createSlice({
 
 });
 
-export default eventSlice.reducer;
+export default eventoryEventSlice.reducer;
