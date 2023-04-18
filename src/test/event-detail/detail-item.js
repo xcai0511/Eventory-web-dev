@@ -7,12 +7,11 @@ const DetailItem = ({detail}) => {
     console.log("detail");
     console.log(detail);
 
-    /*
+    // detail time
     const detailTime = detail.time;
     const detailTimeArray = detailTime.split(":");
     const eventTime = detailTimeArray[0] + " : " + detailTimeArray[1] + " EDT";
 
-     */
     // detail date
     const detailDate = new Date(detail.date);
     const detailDateString = detailDate.toString();

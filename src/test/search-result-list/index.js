@@ -7,6 +7,7 @@ import {useLocation} from "react-router";
 const ResultList = () => {
 
     const {result, loading} = useSelector(state => state.result)
+
     const dispatch = useDispatch();
 
     const link = useLocation();

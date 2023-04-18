@@ -6,18 +6,18 @@ import "./event.css";
 const EventItem = ({event}) => {
 
     // local time edge case
-    //const eventTime = event.time;
-    //const eventTimeArray = eventTime?.split(":");
-    //let localTime = "TBD";
-    //if (eventTimeArray) {
-        //localTime = eventTimeArray[0] + ":" + eventTimeArray[1] + " EST"
-    //}
+    const eventTime = event.time;
+    const eventTimeArray = eventTime?.split(":");
+    let localTime = "TBD";
+    if (eventTimeArray) {
+        localTime = eventTimeArray[0] + ":" + eventTimeArray[1] + " EST"
+    }
 
     // poster edge case
     let posterUrl = "event1.jpg";
-    //if (event.image.url) {
-        //posterUrl = event.image.url;
-    //}
+    if (event.image.url) {
+        posterUrl = event.image.url;
+    }
 
     // interested count
     let intCount = 0;

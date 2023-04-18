@@ -1,9 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import detailArray from './detail.json';
+import {searchEventDetailThunk} from "../../services/search-thunks";
+
+const initialState = {
+    result: [],
+    loading: false
+}
 
 const detailSlice = createSlice({
     name: 'detail',
-    initialState: detailArray
+    initialState
 });
 
 export default detailSlice.reducer;
