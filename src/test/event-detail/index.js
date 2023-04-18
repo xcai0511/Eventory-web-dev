@@ -55,7 +55,6 @@ const EventDetail = () => {
             {
                 !loading &&
                 <div className="wd-detail-page">
-                    <h1>event detail</h1>
                     <div className="wd-poster-container">
                         <img className="wd-poster-frame" src={detailImage[1].url}/>
                         <img className="wd-poster-img" src={detailImage[1].url}/>

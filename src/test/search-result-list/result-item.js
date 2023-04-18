@@ -14,6 +14,9 @@ const ResultItem = ({result}) => {
         localTime = resultTimeArray[0] + ":" + resultTimeArray[1] + " EST"
     }
 
+    const resultDate = new Date(result.date);
+    const estDate = resultDate.toLocaleDateString("en-US", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
+    console.log(estDate);
     // poster edge case
     let posterUrl = "event1.jpg";
     if (result.image.url) {
@@ -59,17 +62,9 @@ const ResultItem = ({result}) => {
                                 }
                             </button>
                         </div>
-                        {result.time ? (
-                                <div className="fw-bold">
-                                    {result.date} {localTime}
-                                </div>
-                            ) :
-                            (
-                                <div className="fw-bold">
-                                    {result.date} {localTime}
-                                </div>
-                            )
-                        }
+                        <div className="fw-bold">
+                            {estDate} {localTime}
+                        </div>
                         <div className="fw-bold card-title mb-1">
                             {result.name}
                         </div>

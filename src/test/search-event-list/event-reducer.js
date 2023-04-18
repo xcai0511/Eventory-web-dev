@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {eventThunk} from "../../services/event-thunks";
+import {eventFilterThunk, eventThunk} from "../../services/event-thunks";
 
 const initialState = {
     result: [],
@@ -21,6 +21,21 @@ const eventSlice = createSlice({
                 state.result = payload
             },
         [eventThunk.rejected]:
+            (state, action) => {
+                state.loading = false
+                state.result = action.error
+            },
+        [eventFilterThunk.pending]:
+            (state) => {
+                state.loading = true
+                state.result = []
+            },
+        [eventFilterThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
+                state.result = payload
+            },
+        [eventFilterThunk.rejected]:
             (state, action) => {
                 state.loading = false
                 state.result = action.error

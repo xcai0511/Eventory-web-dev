@@ -1,17 +1,21 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {eventThunk} from "../../services/event-thunks";
-import EventItem from "./event-item";
+import {useLocation} from "react-router";
+import EventoryResultItem from "./event-item";
+import {eventFilterThunk} from "../../services/event-thunks";
 
-const EventList = () => {
-    const eventArray = useSelector(
-        (state) => state.result);
+const EventoryResultList = () => {
 
-    const {result, loading} = useSelector(state => state.result)
+    const {result, loading} = useSelector(state => state.event)
+    console.log(result);
     const dispatch = useDispatch();
+    const link = useLocation();
+    const queryParams = new URLSearchParams(link.search);
+    const city = queryParams.get("city");
+    const keyword = queryParams.get("keyword");
     useEffect(() => {
-        dispatch(eventThunk())
-    }, [])
+        dispatch(eventFilterThunk({city, keyword}))
+    }, []);
 
     return(
         <ul className="list-group">
@@ -23,13 +27,13 @@ const EventList = () => {
             }
             {
                 result.map(result =>
-                    <EventItem
+                    <EventoryResultItem
                         key={result._id}
-                        result={result}/>
+                        event={result}/>
                 )
             }
         </ul>
     );
 };
 
-export default EventList;
+export default EventoryResultList;

@@ -2,6 +2,7 @@ import React from "react";
 import SearchBar from "../search-bar";
 import ResultList from "../search-result-list";
 import Nav from "../../nav";
+import EventoryResultList from "../search-event-list";
 
 const SearchPage = () => {
     return (
@@ -9,6 +10,18 @@ const SearchPage = () => {
             <Nav/>
             <div>
                 <SearchBar/>
+            </div>
+            <div className="col">
+
+            </div>
+            <div className="mt-2" style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                maxWidth: "800px",
+                margin: "auto"
+            }}>
+                <EventoryResultList/>
             </div>
             <div className="mt-2" style={{
                 display: "flex",
