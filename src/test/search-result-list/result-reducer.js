@@ -15,31 +15,37 @@ const resultSlice = createSlice({
             (state) => {
                 state.loading = true
                 state.result = []
+                state.detail = []
             },
         [searchThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
                 state.result = payload
+                state.detail = []
             },
         [searchThunk.rejected]:
             (state, action) => {
                 state.loading = false
                 state.result = action.error
+                state.detail = []
             },
         [searchFilterThunk.pending]:
             (state) => {
                 state.loading = true
                 state.result = []
+                state.detail = []
             },
         [searchFilterThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
                 state.result = payload
+                state.detail = []
             },
         [searchFilterThunk.rejected]:
             (state, action) => {
                 state.loading = false
                 state.result = action.error
+                state.detail = []
             },
         [searchEventDetailThunk.pending]:
             (state) => {

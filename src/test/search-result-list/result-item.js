@@ -6,6 +6,8 @@ import {searchEventDetailThunk} from "../../services/search-thunks";
 
 const ResultItem = ({result}) => {
     const dispatch = useDispatch();
+    console.log("ResltItem");
+    console.log(result)
 
     // local time edge case
     const resultTime = result.time;

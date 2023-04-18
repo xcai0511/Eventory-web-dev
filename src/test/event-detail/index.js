@@ -10,7 +10,6 @@ const EventDetail = () => {
     const link = useLocation();
     const queryParams = new URLSearchParams(link.search);
     const e_id = queryParams.get("id");
-    console.log(e_id);
     useEffect(() => {
         dispatch(searchEventDetailThunk({e_id}))
     }, []);
