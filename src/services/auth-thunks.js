@@ -1,7 +1,7 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import * as service from "./auth-service";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import * as service from './auth-service';
 
-export const userSignUpThunk =  createAsyncThunk(
+export const userSignUpThunk = createAsyncThunk(
     'users/signup',
     async (user, { rejectWithValue }) => {
         try {
@@ -12,7 +12,7 @@ export const userSignUpThunk =  createAsyncThunk(
                 return rejectWithValue('Something went wrong.');
             }
             return rejectWithValue(error.response.data);
-        };
+        }
     }
 );
 
@@ -27,22 +27,16 @@ export const signInThunk = createAsyncThunk(
                 return rejectWithValue('Something went wrong.');
             }
             return rejectWithValue(error.response.data);
-        };
+        }
     }
 );
 
-export const logOutThunk = createAsyncThunk(
-    'everybody/logout',
-    async () => {
-        const logOutResult = await service.everybodyLogOut();
-        return logOutResult;
-    }
-);
+export const logOutThunk = createAsyncThunk('everybody/logout', async () => {
+    const logOutResult = await service.everybodyLogOut();
+    return logOutResult;
+});
 
-export const profileThunk = createAsyncThunk(
-    'everybody/profile',
-    async () => {
-        const profileResult = await service.currentUserProfile();
-        return profileResult;
-    }
-);
+export const profileThunk = createAsyncThunk('everybody/profile', async () => {
+    const profileResult = await service.currentUserProfile();
+    return profileResult;
+});
