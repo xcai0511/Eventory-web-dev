@@ -3,14 +3,11 @@ import "./detail.css";
 
 const DetailItem = ({detail}) => {
     const [interested, setInterested] = useState(false);
-    // detail time
-    console.log("detail");
-    console.log(detail);
 
     // detail time
-    const detailTime = detail.time;
-    const detailTimeArray = detailTime.split(":");
-    const eventTime = detailTimeArray[0] + " : " + detailTimeArray[1] + " EDT";
+    //const detailTime = detail.time;
+    //const detailTimeArray = detailTime.split(":");
+    //const eventTime = detailTimeArray[0] + " : " + detailTimeArray[1] + " EDT";
 
     // detail date
     const detailDate = new Date(detail.date);
@@ -33,8 +30,8 @@ const DetailItem = ({detail}) => {
 
         <div className="wd-detail-page mt-3">
             <div className="wd-poster-container">
-                <img className="wd-poster-frame" src={`/images/${detail.image}`}/>
-                <img className="wd-poster-img" src={`/images/${detail.image}`}/>
+                <img className="wd-poster-frame" src={detail.image}/>
+                <img className="wd-poster-img" src={detail.image}/>
             </div>
             <div className="mt-3 mb-2">
                 <div className="float-end">

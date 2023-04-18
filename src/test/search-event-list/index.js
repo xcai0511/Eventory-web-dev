@@ -6,7 +6,7 @@ import {eventFilterThunk} from "../../services/event-thunks";
 
 const EventoryResultList = () => {
 
-    const {result, loading} = useSelector(state => state.event)
+    let {result, loading} = useSelector(state => state.event)
     console.log(result);
     const dispatch = useDispatch();
     const link = useLocation();
@@ -16,6 +16,12 @@ const EventoryResultList = () => {
     useEffect(() => {
         dispatch(eventFilterThunk({city, keyword}))
     }, []);
+
+    const type = queryParams.get("type");
+
+    if (type === "General Events") {
+        result = [];
+    }
 
     return(
         <ul className="list-group">

@@ -33,10 +33,14 @@ const SearchBar = () => {
         const queryParams = new URLSearchParams({
             city: location,
             keyword: keyword,
+            type: type.type,
         });
+        console.log(type);
         navigate(`/results/search?${queryParams.toString()}`);
         dispatch(searchFilterThunk({location, keyword}));
     }
+
+    const [type, setType] = useState("");
 
     return(
         <div className="wd-search-result">
@@ -65,7 +69,7 @@ const SearchBar = () => {
                             {
                                 Filter.map(
                                     (type) => (
-                                        <button key={type} className="btn ms-0 ms-1 btn-light" onClick={() => (console.log({type}), setOpen(false))}>
+                                        <button key={type} className="btn ms-0 ms-1 btn-light" onClick={() => (setType({type}), setOpen(false))}>
                                             {type}
                                         </button>
                                     )
@@ -100,7 +104,7 @@ const SearchBar = () => {
                             {
                                 Filter.map(
                                     (type) => (
-                                        <button key={type} className="btn ms-0 ms-1 btn-light" onClick={() => (console.log({type}), setOpen(false))}>
+                                        <button key={type} className="btn ms-0 ms-1 btn-light" onClick={() => (setType({type}), setOpen(false))}>
                                             {type}
                                         </button>
                                     )

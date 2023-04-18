@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import "./result.css";
 import {useNavigate} from "react-router-dom";
+import {searchEventDetailThunk} from "../../services/search-thunks";
 
 const ResultItem = ({result}) => {
     const dispatch = useDispatch();
@@ -9,18 +10,20 @@ const ResultItem = ({result}) => {
     // local time edge case
     const resultTime = result.time;
     const resultTimeArray = resultTime?.split(":");
-    let localTime = "TBD";
+    let localTime;
     if (resultTimeArray) {
         localTime = resultTimeArray[0] + ":" + resultTimeArray[1] + " EST"
+    }
+    if (localTime === ":undefined EST") {
+        localTime = "TBD";
     }
 
     const resultDate = new Date(result.date);
     const estDate = resultDate.toLocaleDateString("en-US", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
-    console.log(estDate);
     // poster edge case
     let posterUrl = "event1.jpg";
-    if (result.image.url) {
-        posterUrl = result.image.url;
+    if (result.image) {
+        posterUrl = result.image;
     }
 
     // interested button
@@ -32,6 +35,7 @@ const ResultItem = ({result}) => {
             id: result._id,
         });
         navigate(`/results/detail/search?${queryParams.toString()}`);
+        dispatch(searchEventDetailThunk(result.id));
     };
 
     return (

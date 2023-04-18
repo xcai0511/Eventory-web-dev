@@ -23,7 +23,7 @@ const SearchPage = () => {
             }}>
                 <EventoryResultList/>
             </div>
-            <div className="mt-2" style={{
+            <div className="" style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",

@@ -3,6 +3,7 @@ import {searchEventDetailThunk, searchFilterThunk, searchThunk} from "../../serv
 
 const initialState = {
     result: [],
+    detail: [],
     loading: false
 }
 
@@ -43,17 +44,17 @@ const resultSlice = createSlice({
         [searchEventDetailThunk.pending]:
             (state) => {
                 state.loading = true
-                state.result = []
+                state.detail = []
             },
         [searchEventDetailThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
-                state.result = payload
+                state.detail = payload
             },
         [searchEventDetailThunk.rejected]:
             (state, action) => {
                 state.loading = false
-                state.result = action.error
+                state.detail = action.error
             }
     },
 
