@@ -7,5 +7,5 @@ const api = axios.create({ withCredentials: true });
 // add a new service to update user information
 export const updateUser = async (userId, updatedUser) => {
     const response = await api.put(`${USERS_API}/${userId}`, updatedUser);
-    return response;
+    return response.data;
 };

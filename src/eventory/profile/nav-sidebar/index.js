@@ -24,12 +24,7 @@ const NavSidebar = () => {
             <Link
                 to="/profile/favorites"
                 className={`list-group-item ${active === 'favorites' ? 'active' : ''}`}>
-                <span>Favorites</span>
-            </Link>
-            <Link
-                to="/profile/reviews"
-                className={`list-group-item ${active === 'reviews' ? 'active' : ''}`}>
-                <span>Reviews</span>
+                <span>My Favorites</span>
             </Link>
             <Link
                 to="/profile/account-security"

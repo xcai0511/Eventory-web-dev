@@ -10,7 +10,6 @@ import authReducer from '../../reducers/auth-reducer';
 import NavSidebar from './nav-sidebar';
 import PublicProfileComponent from './public-profile';
 import UserFavoritesComponent from './user-favorites';
-import UserReviewsComponent from './user-reviews';
 import AccountSecurityComponent from './account-security';
 
 const store = configureStore({
@@ -32,7 +31,6 @@ const Profile = () => {
                     <Routes>
                         <Route path="/" element={<PublicProfileComponent />} />
                         <Route path="/favorites" element={<UserFavoritesComponent />} />
-                        <Route path="/reviews" element={<UserReviewsComponent />} />
                         <Route
                             path="/account-security"
                             element={<AccountSecurityComponent />}

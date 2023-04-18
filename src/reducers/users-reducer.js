@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { userSignUpThunk } from '../services/auth-thunks';
 import { updateUserProfileThunk } from '../services/users-thunk';
+import { useDispatch } from 'react-redux';
 
 const initialState = {
     userData: null,
@@ -10,7 +11,11 @@ const initialState = {
 const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {},
+    reducers: {
+        // userDataUpdated: (state, action) => {
+        //     state.userData = action.payload;
+        // },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(userSignUpThunk.pending, (state) => {
@@ -32,11 +37,8 @@ const userSlice = createSlice({
                 // add a new case for the new thunk
                 state.userStatus = 'updated';
                 state.userData = action.payload;
-            })
-            .addCase(updateUserProfileThunk.rejected, (state, action) => {
-                // add a new case for the new thunk
-                state.userStatus = 'updateFailed';
-                state.userData = action.payload;
+                // call the userDataUpdated reducer to update the userData state
+                // userSlice.caseReducers.userDataUpdated(state, action);
             });
     },
 });

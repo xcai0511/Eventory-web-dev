@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { logOutThunk, profileThunk, signInThunk } from '../services/auth-thunks';
+import { updateUserProfileThunk } from '../services/users-thunk';
 
 const initialState = {
     userStatus: 'idle',
@@ -10,7 +11,11 @@ const initialState = {
 const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {},
+    reducers: {
+        // setCurrentUser: (state, action) => {
+        //     state.currentUser = action.payload;
+        // },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(signInThunk.pending, (state) => {
@@ -42,7 +47,11 @@ const authSlice = createSlice({
                 state.message = null;
                 state.currentUser = action.payload.data;
             });
+        // .addCase(updateUserProfileThunk.fulfilled, (state, action) => {
+        //     state.currentUser = action.payload;
+        // });
     },
 });
 
+export const { setCurrentUser } = authSlice.actions;
 export default authSlice.reducer;
