@@ -25,6 +25,7 @@ export const eventFilterThunk = createAsyncThunk(
 export const eventIdThunk = createAsyncThunk(
     'eventory/search/id', async ({eventId}, { rejectWithValue }) => {
         try {
+            console.log(`event id thunk: ${eventId}`);
             const findResult = await service.findEventById(eventId);
             return findResult;
         } catch (e) {

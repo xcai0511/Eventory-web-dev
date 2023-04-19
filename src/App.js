@@ -1,10 +1,13 @@
 import SearchResult from "./search-events";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Eventory from "./eventory";
+import {ToastContainer} from "react-toastify";
+import React from "react";
 
 function App() {
   return (
       <div className="container-fluid">
+        <ToastContainer />
         <BrowserRouter>
           <Routes>
             <Route path="/*"

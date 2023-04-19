@@ -26,7 +26,7 @@ const eventoryEventSlice = createSlice({
         [eventThunk.rejected]:
             (state, action) => {
                 state.loading = false
-                state.result = action.error
+                state.result = action.payload.message
                 state.detail = []
             },
         [eventFilterThunk.pending]:
@@ -47,7 +47,7 @@ const eventoryEventSlice = createSlice({
         [eventFilterThunk.rejected]:
             (state, action) => {
                 state.loading = false
-                state.result = action.error
+                state.result = action.payload.message
                 state.detail = []
                 console.log("event filter thunk reject")
             },
@@ -64,7 +64,8 @@ const eventoryEventSlice = createSlice({
         [eventIdThunk.rejected]:
             (state, action) => {
                 state.loading = false
-                state.detail = action.error
+                console.log(action)
+                state.detail = action.payload.message
             }
     },
 

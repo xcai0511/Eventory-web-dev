@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./detail.css";
 
-const DetailItem = ({detail}) => {
+const TicketmasterDetailItem = ({detail}) => {
     const [interested, setInterested] = useState(false);
 
     // detail time
@@ -103,4 +103,4 @@ const DetailItem = ({detail}) => {
     );
 };
 
-export default DetailItem;
+export default TicketmasterDetailItem;

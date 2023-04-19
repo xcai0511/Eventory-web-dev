@@ -8,6 +8,7 @@ import {Route, Routes} from "react-router";
 import eventoryEventReducer from "./reducers/eventory-event-reducer";
 import ticketmasterEventReducer from "./reducers/ticketmaster-event-reducer";
 import TicketmasterEventDetail from "./ticketmaster-event-detail";
+import EventoryEventDetail from "./eventory-event-detail";
 
 const store = configureStore(
     {reducer: {result: ticketmasterEventReducer, event: eventoryEventReducer}});
@@ -17,6 +18,7 @@ function SearchResult() {
             <Routes>
                 <Route path="/*" element={<SearchPage/>}/>
                 <Route path="/tm/detail/*" element={<TicketmasterEventDetail/>}/>
+                <Route path="/ev/detail/*" element={<EventoryEventDetail/>}/>
             </Routes>
         </Provider>
     )

@@ -12,7 +12,6 @@
     "bootstrap-icons": "^1.10.3",
     "google-map-react": "^2.2.0",
     "google-maps-api-loader": "^1.1.1",
-    "google-maps-react": "^2.0.6",
     "jquery": "^3.6.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
@@ -21,6 +20,7 @@
     "react-router": "^6.10.0",
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
+    "react-toastify": "^9.1.2",
     "redux": "^4.2.1",
     "web-vitals": "^2.1.4"
   },

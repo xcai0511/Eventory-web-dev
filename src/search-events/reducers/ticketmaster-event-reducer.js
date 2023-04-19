@@ -26,7 +26,7 @@ const ticketmasterEventSlice = createSlice({
         [searchThunk.rejected]:
             (state, action) => {
                 state.loading = false
-                state.result = action.error
+                state.result = action.payload.message
                 state.detail = []
             },
         [searchFilterThunk.pending]:
@@ -44,7 +44,7 @@ const ticketmasterEventSlice = createSlice({
         [searchFilterThunk.rejected]:
             (state, action) => {
                 state.loading = false
-                state.result = action.error
+                state.result = action.payload.message
                 state.detail = []
             },
         [searchEventDetailThunk.pending]:
@@ -60,7 +60,8 @@ const ticketmasterEventSlice = createSlice({
         [searchEventDetailThunk.rejected]:
             (state, action) => {
                 state.loading = false
-                state.detail = action.error
+                console.log(action)
+                state.detail = action.payload.message
             }
     },
 

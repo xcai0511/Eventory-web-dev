@@ -3,6 +3,8 @@ import React from "react";
 import {useDispatch} from "react-redux";
 import "./event.css";
 import "../search-ticketmaster-result-list/result.css";
+import {useNavigate} from "react-router-dom";
+import {eventIdThunk} from "../../services/eventory-thunks";
 
 const EventoryResultItem = ({event}) => {
 
@@ -33,8 +35,19 @@ const EventoryResultItem = ({event}) => {
 
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+    const cardOnclickHandler = () => {
+        const queryParams = new URLSearchParams({
+            id: event._id,
+        });
+        console.log(`card on click ${event._id}`)
+        dispatch(eventIdThunk(event._id));
+        navigate(`/results/ev/detail/search?${queryParams.toString()}`);
+        // dispatch(eventIdThunk(event._id));
+    };
+
     return (
-        <div className="card mb-2">
+        <div className="card mb-2" onClick={cardOnclickHandler}>
             <div className="row">
                 <div className="col-3 mt-2">
                     <img className="card-img wd-poster" src={posterUrl} alt="poster"/>
