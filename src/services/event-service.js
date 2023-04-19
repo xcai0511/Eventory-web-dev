@@ -7,3 +7,8 @@ export const findAllEvents = async () => {
     const results = response.data;
     return results;
 }
+export const findEvents = async (city, keyword) => {
+    const response = await axios.get(`${SEARCH_API}/?city=${city}&keyword=${keyword}`);
+    const results = response.data;
+    return results;
+}

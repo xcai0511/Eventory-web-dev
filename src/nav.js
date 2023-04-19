@@ -2,6 +2,8 @@ import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 import React from "react";
 import "./eventory/index.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 function Nav() {
     const currentUser = useSelector((state) => state.auth.currentUser);
@@ -9,9 +11,11 @@ function Nav() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
-                <a className="navbar-brand" href="/">
-                    <img src="/images/eventory-logo-text-only.png" alt="Eventory Event Management" width="100"></img>
-                </a>
+                <NavLink to="home">
+                    <a className="navbar-brand" href="/">
+                        <img src="/images/eventory-logo-text-only.png" alt="Eventory Event Management" width="100" />
+                    </a>
+                </NavLink>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navigation-bar" aria-controls="navigation-bar" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -20,29 +24,29 @@ function Nav() {
                 <div className="collapse navbar-collapse" id="navigation-bar">
                     <ul className="navbar-nav mx-auto">
                         <li className="nav-item">
-                            <NavLink to="/eventory/about" className="nav-link" activeClassName="active">
+                            <NavLink to="about" className="nav-link">
                                 About
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/eventory/exclusives" className="nav-link" activeClassName="active">
+                            <NavLink to="eventory-exclusives" className="nav-link">
                                 Eventory Exclusives
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/eventory/contact" className="nav-link" activeClassName="active">
+                            <NavLink to="contact" className="nav-link" activeClassName="active">
                                 Contact
                             </NavLink>
                         </li>
                     </ul>
                     {!currentUser && <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
-                            <NavLink to="/eventory/signin" className="nav-link" activeClassName="active">
+                            <NavLink to="signin" className="nav-link">
                                 Log in
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/eventory/signup" className="nav-link" activeClassName="active">
+                            <NavLink to="signup" className="nav-link">
                                 Sign up
                             </NavLink>
                         </li>
@@ -57,12 +61,12 @@ function Nav() {
                             </a>
                             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                 <li>
-                                    <NavLink to="/eventory/profile" className="dropdown-item">
+                                    <NavLink to="profile" className="dropdown-item">
                                         My Account
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/eventory/logout" className="dropdown-item">
+                                    <NavLink to="logout" className="dropdown-item">
                                         Logout
                                     </NavLink>
                                 </li>

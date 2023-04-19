@@ -1,17 +1,18 @@
-import SearchResult from "./test";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Eventory from "./eventory";
 
 function App() {
   return (
-      <div className="container-fluid">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/*"
-                   element={<Eventory/>}/>
-          </Routes>
+      <Provider store={store}>
+      <BrowserRouter>
+          <div className="container-fluid">
+              <Routes>
+                <Route path="/*"
+                       element={<Eventory/>}/>
+              </Routes>
+            </div>
         </BrowserRouter>
-      </div>
+      </Provider>
   )
 };
 
