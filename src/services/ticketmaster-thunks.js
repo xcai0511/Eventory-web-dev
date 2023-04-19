@@ -1,10 +1,10 @@
 import {createAsyncThunk}
     from "@reduxjs/toolkit"
 import * as service
-    from "./search-service"
+    from "./ticketmaster-service"
 
 export const searchThunk = createAsyncThunk(
-    'search/results', async ({ rejectWithValue }) => {
+    'ticketmaster/search/results', async ({ rejectWithValue }) => {
         try {
             const findResult = await service.findEventsInMa();
             return findResult;
@@ -19,7 +19,7 @@ export const searchThunk = createAsyncThunk(
 )
 
 export const searchFilterThunk = createAsyncThunk(
-    'search/searchFilter', async ({location, keyword}, { rejectWithValue }) => {
+    'ticketmaster/search/searchFilter', async ({location, keyword}, { rejectWithValue }) => {
         try {
             const findResult = await service.findEventsByFilter(location, keyword);
             return findResult;

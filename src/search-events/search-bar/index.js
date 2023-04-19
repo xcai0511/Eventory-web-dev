@@ -3,9 +3,10 @@ import "../header-search-bar/header.css"
 import "./searchbar.css"
 import InputGroup from 'react-bootstrap/InputGroup';
 import {useDispatch} from "react-redux";
-import {searchFilterThunk} from "../../services/search-thunks";
+import {searchFilterThunk} from "../../services/ticketmaster-thunks";
 import {useLocation} from "react-router";
 import {useNavigate} from "react-router-dom";
+import {eventFilterThunk} from "../../services/eventory-thunks";
 
 const SearchBar = () => {
     const [isOpen, setOpen] = useState(false);
@@ -29,7 +30,9 @@ const SearchBar = () => {
         const newKeyword = event.target.value;
         setKeyword(newKeyword);
     }
-    const searchOnclickHandler = () => {
+    const searchOnclickHandler = async () => {
+        dispatch(eventFilterThunk({location, keyword}));
+        dispatch(searchFilterThunk({location, keyword}));
         const queryParams = new URLSearchParams({
             city: location,
             keyword: keyword,
@@ -37,7 +40,6 @@ const SearchBar = () => {
         });
         console.log(type);
         navigate(`/results/search?${queryParams.toString()}`);
-        dispatch(searchFilterThunk({location, keyword}));
     }
 
     const [type, setType] = useState("");

@@ -2,10 +2,10 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import DetailItem from "./detail-item";
 import {useLocation} from "react-router";
-import {searchEventDetailThunk} from "../../services/search-thunks";
+import {searchEventDetailThunk} from "../../services/ticketmaster-thunks";
 import "./detail.css";
 
-const EventDetail = () => {
+const TicketmasterEventDetail = () => {
     const dispatch = useDispatch();
     const link = useLocation();
     const queryParams = new URLSearchParams(link.search);
@@ -39,5 +39,5 @@ const EventDetail = () => {
 
 };
 
-export default EventDetail;
+export default TicketmasterEventDetail;
 

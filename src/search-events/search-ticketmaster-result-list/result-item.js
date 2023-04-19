@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import "./result.css";
 import {useNavigate} from "react-router-dom";
-import {searchEventDetailThunk} from "../../services/search-thunks";
+import {searchEventDetailThunk} from "../../services/ticketmaster-thunks";
 
 const ResultItem = ({result}) => {
     const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const ResultItem = ({result}) => {
         const queryParams = new URLSearchParams({
             id: result._id,
         });
-        navigate(`/results/detail/search?${queryParams.toString()}`);
+        navigate(`/results/tm/detail/search?${queryParams.toString()}`);
         dispatch(searchEventDetailThunk(result.id));
     };
 

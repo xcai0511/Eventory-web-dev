@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {searchEventDetailThunk, searchFilterThunk, searchThunk} from "../../services/search-thunks";
+import {searchEventDetailThunk, searchFilterThunk, searchThunk} from "../../services/ticketmaster-thunks";
 
 const initialState = {
     result: [],

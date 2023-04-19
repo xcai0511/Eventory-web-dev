@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import ResultItem from "./result-item";
 import {useDispatch, useSelector} from "react-redux";
-import {searchFilterThunk, searchThunk} from "../../services/search-thunks";
+import {searchFilterThunk, searchThunk} from "../../services/ticketmaster-thunks";
 import {useLocation} from "react-router";
 
 const ResultList = () => {

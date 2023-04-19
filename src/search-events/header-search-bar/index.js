@@ -4,7 +4,7 @@ import "./header.css"
 import InputGroup from 'react-bootstrap/InputGroup';
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {searchFilterThunk} from "../../services/search-thunks";
+import {searchFilterThunk} from "../../services/ticketmaster-thunks";
 
 const HeaderSearchBar = () => {
 

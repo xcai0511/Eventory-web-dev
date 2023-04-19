@@ -2,19 +2,20 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useLocation} from "react-router";
 import EventoryResultItem from "./event-item";
-import {eventFilterThunk} from "../../services/event-thunks";
+import {eventFilterThunk} from "../../services/eventory-thunks";
 
 const EventoryResultList = () => {
 
-    let {result, loading} = useSelector(state => state.event)
+    let {result, detail, loading} = useSelector(state => state.event)
     console.log(result);
+    console.log(detail);
     const dispatch = useDispatch();
     const link = useLocation();
     const queryParams = new URLSearchParams(link.search);
-    const city = queryParams.get("city");
+    const location = queryParams.get("city");
     const keyword = queryParams.get("keyword");
     useEffect(() => {
-        dispatch(eventFilterThunk({city, keyword}))
+        dispatch(eventFilterThunk({location, keyword}))
     }, []);
 
     const type = queryParams.get("type");
