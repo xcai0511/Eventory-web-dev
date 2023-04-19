@@ -1,0 +1,82 @@
+/* This is where reusable styling of this template will be. 
+   Will contain things like:
+   * Button styling
+   * Background color styling
+   * padding and margin
+*/
+
+.btn {
+    background-color: var(--blue-secondary);
+    color: white;
+    font-weight: bold;
+    border-radius: 50px;
+    border-style: none;
+}
+
+.btn:hover {
+    border: none;
+    background: var(--yellow-primary);
+    color: black;
+}
+
+.profile-banner {
+    width: 100%;
+    height: 230px;
+}
+
+.profile-avatar {
+    height: 160px;
+    width: 160px;
+}
+
+.profile-avatar-location {
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* .profile-sidebar .list-group-item:active {
+    background-color: var(--yellow-secondary);
+    color: #fff;
+} */
+
+.profile-sidebar .list-group-item,
+.profile-sidebar .list-group-item:visited {
+    border: none;
+    color: #000;
+    border-color: white;
+    font-weight: bold;
+}
+
+.profile-sidebar .list-group-item.active,
+.profile-sidebar .list-group-item.active:visited {
+    background-color: var(--yellow-light);
+    border-left: solid 3px;
+    border-color: var(--yellow-primary);
+    font-weight: bold;
+}
+
+.profile-textarea {
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.profile-label-font {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.fs-14px {
+    font-size: 14px;
+}
+
+.icon-20px {
+    font-size: 20px;
+}
+
+.toastify-container .toastify__toast {
+    background-color: #333;
+}

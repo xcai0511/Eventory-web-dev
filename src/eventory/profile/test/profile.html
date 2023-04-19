@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Link to BootStrap -->
+        <!-- link to BootsWatch -->
+        <!-- <link rel="stylesheet" href="../../vendors/bootswatch/bootstrap.min.css" /> -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous" />
+
+        <link rel="stylesheet" href="../../classes/index.css" />
+        <!-- Icons -->
+        <!-- <link rel="st
+            ylesheet" href="../../vendors/fontawesome/css/all.css" /> -->
+        <script
+            src="https://kit.fontawesome.com/f13717ae26.js"
+            crossorigin="anonymous"></script>
+        <!-- jQuery -->
+        <script
+            src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+            crossorigin="anonymous"></script>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>V1 Profile</title>
+    </head>
+    <body>
+        <div class="row ps-4">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="container mt-4">
+                    <!------------ avatar & button & info ------->
+                    <div class="row w-75">
+                        <!-- Upper banner and avatar -->
+                        <div class="position-relative">
+                            <div class="d-flex justify-content-center mt-2">
+                                <img
+                                    src="../../images/background.jpg"
+                                    class="img-fluid profile-banner" />
+                                <img
+                                    src="../../images/monica.jpg"
+                                    class="position-absolute rounded-circle profile-icon-160px"
+                                    style="
+                                        bottom: 60px;
+                                        left: 50%;
+                                        transform: translateX(-50%);
+                                    " />
+                            </div>
+                        </div>
+                        <div
+                            class="col-3 d-flex flex-column align-items-center justify-content-top mt-3">
+                            <!------------ Navbar ----------->
+                            <div class="list-group">
+                                <a class="list-group-item active">Public Profile</a>
+                                <a class="list-group-item">Followings</a>
+                                <a class="list-group-item">Favorites</a>
+                                <a class="list-group-item">Reviews</a>
+                                <a class="list-group-item">Account Security</a>
+                            </div>
+                        </div>
+                        <div class="col-9 pe-4">
+                            <!--------- Account Info --------->
+                            <div class="d-flex justify-content-between mt-3">
+                                <div class="h3 fw-bold">Monica Geller</div>
+                                <!-- button to change profile -->
+                                <div>
+                                    <button
+                                        class="btn btn-primary rounded-pill float-end bg-black text-white">
+                                        Edit Profile
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                Music lover and enjoy attending concerts and festivals.
+                                Looking forward to meeting new people who share my
+                                interests and discovering new artists
+                            </div>
+                            <div class="me-3 mt-2">
+                                <span>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <span class="ms-1">Boston, MA</span>
+                                </span>
+                                <span class="ms-3">
+                                    <i class="fa-solid fa-cake-candles"></i>
+                                    <span class="ms-1">Born November 21, 1987</span>
+                                </span>
+                                <span class="ms-3">
+                                    <i class="fa-regular fa-calendar-days"></i>
+                                    <span class="ms-1">Joined April 2009</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </body>
+</html>

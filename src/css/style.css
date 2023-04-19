@@ -1,0 +1,39 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Open+Sans&family=Roboto:wght@300&display=swap');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+:root {
+    /* ===== Color Palette ===== */
+    --blue-primary: #11296b;
+    --blue-secondary: #00509d;
+    --yellow-primary: #ffcb05;
+    --yellow-secondary: #ffdb57;
+    --yellow-light: #fffae6;
+    --beige-primary: #ededed;
+
+    /* ===== Project color definitions ===== */
+    --bg-primary: #ffffff;
+    --text-color: #222222;
+    --bg-card: #ededed;
+
+    /* ===== Project Font Size ===== */
+    --weight-small: 400;
+    --weight-semibold: 600;
+    --weight-bold: 800;
+
+    /* ===== Project Font Size ===== */
+    /* Max width */
+    --width-small: 600px;
+    --width-medium: 1100px;
+    --width-large: 1300px;
+}
+
+/* ===== Reset default styling ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
