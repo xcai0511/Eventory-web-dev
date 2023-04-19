@@ -3,8 +3,25 @@ import * as service from './users-services';
 
 export const updateUserProfileThunk = createAsyncThunk(
     'users/updateUser',
-    async ({ userId, updatedUser }) => {
-        const result = await service.updateUser(userId, updatedUser);
-        return result.data; // return the updated user data
+    async ({ userId, updatedUser }, { rejectWithValue }) => {
+        try {
+            const response = await service.updateUser(userId, updatedUser);
+            console.log(response);
+            return response;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const resetUserPasswordThunk = createAsyncThunk(
+    'users/resetUserPassword',
+    async ({ oldPassword, newPassword }, { rejectWithValue }) => {
+        try {
+            const response = await service.resetUserPassword(oldPassword, newPassword);
+            return response;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
     }
 );

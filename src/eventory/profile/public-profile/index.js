@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUserProfileThunk } from '../../../services/users-thunk';
 
 import ProfileContentComponent from './profile-content';
 import EditProfileComponent from './edit-profile';
+import { profileThunk } from '../../../services/auth-thunks';
 
 const PublicProfileComponent = () => {
     const [isEditingProfile, setIsEditingProfile] = useState(false);
     const currentUser = useSelector((state) => state.auth.currentUser);
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // const updateUserHandler = async (updatedUser) => {
-    //     await dispatch(updateUserProfileThunk({ userId: currentUser._id, updatedUser }));
-    // };
-    // console.log('Public profile: ------ ' + JSON.stringify(currentUser));
+    // keep track of Profile Thunk
+    useEffect(() => {
+        dispatch(profileThunk());
+    }, [currentUser, dispatch]);
 
     return (
         <div>
@@ -21,13 +21,11 @@ const PublicProfileComponent = () => {
                 <EditProfileComponent
                     setIsEditingProfile={setIsEditingProfile}
                     currentUser={currentUser}
-                    // updateUserHandler={updateUserHandler}
                 />
             ) : (
                 <ProfileContentComponent
                     setIsEditingProfile={setIsEditingProfile}
                     currentUser={currentUser}
-                    // updateUserHandler={updateUserHandler}
                 />
             )}
         </div>

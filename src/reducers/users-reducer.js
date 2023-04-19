@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { userSignUpThunk } from '../services/auth-thunks';
-import { updateUserProfileThunk } from '../services/users-thunk';
+import { updateUserProfileThunk, resetUserPasswordThunk } from '../services/users-thunk';
 import { useDispatch } from 'react-redux';
 
 const initialState = {
+    error: null,
     userData: null,
     userStatus: 'idle',
 };
@@ -37,8 +38,21 @@ const userSlice = createSlice({
                 // add a new case for the new thunk
                 state.userStatus = 'updated';
                 state.userData = action.payload;
-                // call the userDataUpdated reducer to update the userData state
-                // userSlice.caseReducers.userDataUpdated(state, action);
+            })
+            .addCase(updateUserProfileThunk.rejected, (state, action) => {
+                state.userStatus = 'rejected';
+                state.error = action.payload;
+            })
+            .addCase(resetUserPasswordThunk.pending, (state) => {
+                state.userStatus = 'resetting';
+            })
+            .addCase(resetUserPasswordThunk.fulfilled, (state, action) => {
+                state.userStatus = 'updated';
+                state.userData = action.payload;
+            })
+            .addCase(resetUserPasswordThunk.rejected, (state, action) => {
+                state.userStatus = 'rejected';
+                state.error = action.payload;
             });
     },
 });

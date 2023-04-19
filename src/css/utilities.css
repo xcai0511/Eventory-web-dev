@@ -76,3 +76,7 @@
 .icon-20px {
     font-size: 20px;
 }
+
+.toastify-container .toastify__toast {
+    background-color: #333;
+}
