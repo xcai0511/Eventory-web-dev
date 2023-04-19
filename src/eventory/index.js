@@ -1,5 +1,5 @@
 import Nav from "../nav";
-import {Provider} from "react-redux";
+import {Provider, useDispatch, useSelector} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
 import userReducer from "../reducers/users-reducer";
 import authReducer from "../reducers/auth-reducer";
@@ -13,6 +13,35 @@ import CreateEventForm from "./organizer-create-event";
 import HomeComponent from "./user-home-page";
 
 function Eventory() {
+
+    const dispatch = useDispatch();
+    const currentUser = useSelector((state) => state.auth.currentUser);
+
+    useEffect(() => {
+        try{
+            dispatch(profileThunk());
+        } catch (error) {
+            alert(error.message);
+        }
+    }, [dispatch]);
+
+    let homeComponent = <HomeComponent />;
+    if (currentUser) {
+        switch (currentUser.role) {
+            case "user":
+                homeComponent = <HomeComponent />;
+                break;
+            case "organizer":
+                homeComponent = <OrganizerDashboard />;
+                break;
+            // case "admin":
+            //     homeComponent = <AdminDashboard />;
+            //     break;
+            default:
+                homeComponent = <HomeComponent />;
+        }
+    }
+
     return(
         <div>
             <Nav />
