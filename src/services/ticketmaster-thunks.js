@@ -4,16 +4,9 @@ import * as service
     from "./ticketmaster-service"
 
 export const searchThunk = createAsyncThunk(
-    'ticketmaster/search/results', async ({ rejectWithValue }) => {
-        try {
-            const findResult = await service.findEventsInMa();
-            return findResult;
-        } catch (e) {
-            if (!e.response) {
-                return rejectWithValue('Something went wrong');
-            }
-            return rejectWithValue(e.response.data);
-        }
+    'ticketmaster/search/results', async () => {
+        const findResult = await service.findEventsInMa();
+        return findResult;
     }
 
 )
