@@ -40,22 +40,27 @@ const TicketmasterDetailItem = ({detail}) => {
                             interested ? (
                                 <>
                                     <div className="d-inline me-2">
-                                        Interested
+                                        Liked
                                     </div>
-                                    <i className="d-inline bi bi-star-fill wd-yellow"></i>
+                                    <i className="d-inline bi bi-heart-fill wd-like"></i>
                                 </>) : (
                                 <>
                                     <div className="d-inline me-2">
-                                        Interested
+                                        Like
                                     </div>
-                                    <i className="d-inline bi bi-star"></i>
+                                    <i className="d-inline bi bi-heart"></i>
                                 </>
                             )
                         }
                     </button>
                 </div>
                 <div className="btn btn-secondary d-inline me-2">{detail.segment}</div>
-                <div className="btn btn-secondary d-inline">{detail.genre}</div>
+                <div className="btn btn-secondary d-inline me-2">{detail.genre}</div>
+                {
+                    detail.subgenre ? (
+                        <div className="btn btn-secondary d-inline">{detail.subgenre}</div>
+                    ) : null
+                }
             </div>
             <div className="row mt-3">
                 <div className="col col-md-9 p-md-3">

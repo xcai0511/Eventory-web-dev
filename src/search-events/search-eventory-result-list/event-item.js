@@ -55,20 +55,20 @@ const EventoryResultItem = ({event}) => {
                 <div className="col-9 mt-1 mb-0">
                     <div>
                         <div className="float-end">
-                            <button className="btn btn-light" onClick={() => setInterested(!interested)}>
+                            <button className="btn btn-light" onClick={(e) => (e.stopPropagation(), setInterested(!interested))}>
                                 {
                                     interested ? (
                                         <>
                                             <div className="d-inline me-2">
-                                                Interested
+                                                Liked
                                             </div>
-                                            <i className="d-inline bi bi-star-fill wd-yellow"></i>
+                                            <i className="d-inline bi bi-heart-fill wd-like"></i>
                                         </>) : (
                                         <>
                                             <div className="d-inline me-2">
-                                                Interested
+                                                Like
                                             </div>
-                                            <i className="d-inline bi bi-star"></i>
+                                            <i className="d-inline bi bi-heart"></i>
                                         </>
                                     )
                                 }

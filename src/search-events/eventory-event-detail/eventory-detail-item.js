@@ -26,21 +26,21 @@ const EventoryDetailItem = ({detail}) => {
                             interested ? (
                                 <>
                                     <div className="d-inline me-2">
-                                        Interested
+                                        Liked
                                     </div>
-                                    <i className="d-inline bi bi-star-fill wd-yellow"></i>
+                                    <i className="d-inline bi bi-heart-fill wd-like"></i>
                                 </>) : (
                                 <>
                                     <div className="d-inline me-2">
-                                        Interested
+                                        Like
                                     </div>
-                                    <i className="d-inline bi bi-star"></i>
+                                    <i className="d-inline bi bi-heart"></i>
                                 </>
                             )
                         }
                     </button>
                 </div>
-                <div className="btn btn-secondary d-inline">Exclusive Event</div>
+                <div className="btn btn-warning d-inline">Exclusive Event</div>
             </div>
             <div className="row mt-3">
                 <div className="">
