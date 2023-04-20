@@ -5,14 +5,14 @@ import {configureStore} from "@reduxjs/toolkit";
 import userReducer from "./reducers/users-reducer";
 import authReducer from "./reducers/auth-reducer";
 import eventReducer from "./reducers/organizerEvent-reducer";
-import eventsReducer from "./reducers/organizerEvent-reducer";
+import eventsReducer from "./reducers/organizerEvents-reducer";
 
 
 const store = configureStore({
     reducer: {
         user: userReducer,
         auth: authReducer,
-        // event: eventReducer,
+        event: eventReducer,
         events: eventsReducer
     }
 });

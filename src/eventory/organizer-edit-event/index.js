@@ -6,13 +6,24 @@ import {fetchEventByEventIdThunk, updateEventByEventIdThunk,} from "../../servic
 
 const EditEventForm = () => {
     // let [eventData, setEventData] = useState(null);
-    let eventData = useSelector(state => state.events.events);
+    let eventData = useSelector(state => state.event.event);
     console.log("edit-event " + JSON.stringify(eventData));
     let [event, setEvent] = useState(eventData);
+    // let [event, setEvent] = useState(JSON.parse(JSON.stringify(eventData)));
     console.log("event" + event);
+    // const eventDate = new Date(eventData.date);
+    //         // setDate(eventDate.toLocaleDateString('en-CA'));
+    //         //
+    //         // const eventTime = new Date(eventData.time);
+    //         // const estD = new Date(eventTime.toLocaleString('en-US', { timeZone: 'EST' }));
+    //         // const estTime = estD.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false});
+    //         //
+    //         // setTime(estTime);
     let [nameInput, setNameInput] = useState(event.name);
-    let [dateInput, setDateInput] = useState(event.date);
-    // TODO: this needs to be changed to EST when display.
+    const eventDate = new Date(event.date);
+    let [dateInput, setDateInput] = useState(eventDate.toLocaleDateString('en-VA'));
+    // let [dateInput, setDateInput] = useState(event.date);
+    // // TODO: this needs to be changed to EST when display.
     let [timeInput, setTimeInput] = useState(event.time);
     let [addressInput, setAddressInput] = useState(event.address);
     let [cityInput, setCityInput] = useState(event.city);
@@ -27,27 +38,26 @@ const EditEventForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    useEffect( async () => {
-        const {events} = await dispatch(fetchEventByEventIdThunk(eventId));
-        console.log(JSON.stringify(events));
-        setEvent(events);
-    }, [eventId, dispatch]);
-
     // useEffect(() => {
     //     if (eventData) {
-    //         setName(eventData.name);
-    //         const eventDate = new Date(eventData.date);
-    //         setDate(eventDate.toLocaleDateString('en-CA'));
-    //
-    //         const eventTime = new Date(eventData.time);
-    //         const estD = new Date(eventTime.toLocaleString('en-US', { timeZone: 'EST' }));
-    //         const estTime = estD.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false});
-    //
-    //         setTime(estTime);
-    //         setAddress(eventData.address);
-    //         setCity(eventData.city);
-    //         setPostalCode(eventData.postalCode);
-    //         setDescription(eventData.description);
+    //         console.log("I have eventData");
+    //         console.log(eventData[0]);
+    //         console.log(JSON.stringify(eventData));
+    //         setEvent(eventData[0].name);
+    //         console.log(nameInput);
+    //         // setName(eventData.name);
+    //         // const eventDate = new Date(eventData.date);
+    //         // setDate(eventDate.toLocaleDateString('en-CA'));
+    //         //
+    //         // const eventTime = new Date(eventData.time);
+    //         // const estD = new Date(eventTime.toLocaleString('en-US', { timeZone: 'EST' }));
+    //         // const estTime = estD.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false});
+    //         //
+    //         // setTime(estTime);
+    //         // setAddress(eventData.address);
+    //         // setCity(eventData.city);
+    //         // setPostalCode(eventData.postalCode);
+    //         // setDescription(eventData.description);
     //     }
     // }, [eventData]);
 
@@ -68,10 +78,6 @@ const EditEventForm = () => {
         dispatch(updateEventByEventIdThunk({eventId, updatedEvent}));
         navigate("/home");
     };
-
-    // const cancelEventUpdateHandler = () => {
-    //     navigate(-1);
-    // }
 
     const nameChangeHandler = (event) => {
         const updatedName = event.target.value;
@@ -110,7 +116,7 @@ const EditEventForm = () => {
 
     return (
         <div className="container mt-3">
-            <>
+            {event && (<>
                 <div className="mb-3">
                     <h4>Edit Your Event</h4>
                     <p className="text-muted">Please update any fields below regarding your event.</p>
@@ -188,9 +194,9 @@ const EditEventForm = () => {
                         </Link>
                     </div>
                 </form>
-            </>
+            </>)}
         </div>
     );
-};
+    };
 
 export default EditEventForm;

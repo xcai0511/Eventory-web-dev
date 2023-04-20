@@ -7,6 +7,7 @@ const OrganizerEventsList = ({ organizerId }) => {
     const dispatch = useDispatch();
     const events = useSelector((state) => state.events.events);
     const status = useSelector((state) => state.events.status);
+    const event = useSelector((state) => state.event.event);
     console.log("OrganizerEventsList");
     console.log(events);
     console.log(status);
@@ -26,12 +27,12 @@ const OrganizerEventsList = ({ organizerId }) => {
         return new Date(date).toLocaleDateString(undefined, options);
     };
 
-    const handleEditEvent = (eventId) => {
-        // try {
-        //     dispatch(fetchEventByEventIdThunk(eventId));
-        // } catch (error) {
-        //     alert(error.message);
-        // }
+    const handleEditEvent = async (eventId) => {
+        try {
+            await dispatch(fetchEventByEventIdThunk(eventId));
+        } catch (error) {
+            alert(error.message);
+        }
         navigate(`/edit-event/${eventId}`);
     };
 

@@ -37,9 +37,11 @@ export const fetchEventsByOrganizerIdThunk = createAsyncThunk(
 // TODO: Testing needed
 export const fetchEventByEventIdThunk = createAsyncThunk(
     "eventory/fetchEvent",
-    async({eventId},{rejectWithValue}) => {
+    async(eventId,{rejectWithValue}) => {
         try {
             const fetchedEvent = await fetchEventById(eventId);
+            console.log("fetchEventByEventIdThunk");
+            console.log(JSON.stringify(fetchedEvent));
             return fetchedEvent;
         } catch (error) {
             if (!error.response) {
