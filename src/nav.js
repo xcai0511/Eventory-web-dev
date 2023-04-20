@@ -24,18 +24,18 @@ function Nav() {
                 <div className="collapse navbar-collapse" id="navigation-bar">
                     <ul className="navbar-nav mx-auto">
                         <li className="nav-item">
+                            <NavLink to="home" className="nav-link">
+                                Home
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
                             <NavLink to="about" className="nav-link">
                                 About
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="eventory-exclusives" className="nav-link">
-                                Eventory Exclusives
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="contact" className="nav-link" activeClassName="active">
-                                Contact
+                            <NavLink to="faq" className="nav-link">
+                                FAQ
                             </NavLink>
                         </li>
                     </ul>
