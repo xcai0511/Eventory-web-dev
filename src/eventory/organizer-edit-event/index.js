@@ -21,10 +21,20 @@ const EditEventForm = () => {
     //         // setTime(estTime);
     let [nameInput, setNameInput] = useState(event.name);
     const eventDate = new Date(event.date);
-    let [dateInput, setDateInput] = useState(eventDate.toLocaleDateString('en-VA'));
+    let [dateInput, setDateInput] = useState(eventDate.toLocaleDateString('en-CA'));
     // let [dateInput, setDateInput] = useState(event.date);
     // // TODO: this needs to be changed to EST when display.
-    let [timeInput, setTimeInput] = useState(event.time);
+
+    const eventTime = new Date(event.time).toLocaleTimeString('en-US', {
+        timeZone: 'America/New_York', hour12: false,
+    });
+    // const estD = new Date(eventTime.toLocaleString('en-US', { timeZone: 'EST' }));
+    // const estTime = estD.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false});
+
+    console.log(eventTime);
+
+    let [timeInput, setTimeInput] = useState(eventTime);
+
     let [addressInput, setAddressInput] = useState(event.address);
     let [cityInput, setCityInput] = useState(event.city);
     let [postalCodeInput, setPostalCodeInput] = useState(event.postalCode);
