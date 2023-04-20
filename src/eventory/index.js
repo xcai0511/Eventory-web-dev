@@ -12,6 +12,7 @@ import {profileThunk} from "../services/auth-thunks";
 import CreateEventForm from "./organizer-create-event";
 import HomeComponent from "./user-home-page";
 import EditEventForm from "./organizer-edit-event";
+import ViewAttendeesList from "./organizer-view-attendees";
 
 function Eventory() {
 
@@ -51,6 +52,7 @@ function Eventory() {
                 <Route path="home" element={homeComponent} />
                 <Route path="create-event" element={<CreateEventForm />} />
                 <Route path="edit-event/:eventId" element={<EditEventForm />} />
+                <Route path="view-attendees/*" element={<ViewAttendeesList />}/>
                 {/*<Route path="about" element={<AboutComponent />} />*/}
                 {/*<Route path="eventory-exclusives" element={<EventoryExclusivesComponent />} />*/}
                 {/*<Route path="contact" element={<ContactComponent />} />*/}

@@ -30,6 +30,7 @@ const eventSlice = createSlice({
             .addCase(fetchEventByEventIdThunk.rejected, (state, action) => {
                 state.status = 'rejected';
                 state.event = null;
+                console.log(action);
                 state.error = action.payload;
             })
             .addCase(updateEventByEventIdThunk.pending, (state) => {

@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {fetchEventByEventIdThunk, fetchEventsByOrganizerIdThunk} from '../../services/organizerEvent-thunks';
+import {
+    deleteEventByEventIdThunk,
+    fetchEventByEventIdThunk,
+    fetchEventsByOrganizerIdThunk
+} from '../../services/organizerEvent-thunks';
 import {Link, useNavigate} from "react-router-dom";
 
 const OrganizerEventsList = ({ organizerId }) => {
     const dispatch = useDispatch();
     const events = useSelector((state) => state.events.events);
     const status = useSelector((state) => state.events.status);
-    const event = useSelector((state) => state.event.event);
     console.log("OrganizerEventsList");
     console.log(events);
     console.log(status);
@@ -36,6 +39,24 @@ const OrganizerEventsList = ({ organizerId }) => {
         navigate(`/edit-event/${eventId}`);
     };
 
+    const handleViewAttendees = async (eventId) => {
+        try {
+            await dispatch(fetchEventByEventIdThunk(eventId));
+        } catch (error) {
+            alert(error.message);
+        }
+        await navigate(`/view-attendees/${eventId}`);
+    };
+
+    const handleDeleteEvent = async (eventId) => {
+        try {
+            await dispatch(deleteEventByEventIdThunk(eventId));
+            await dispatch(fetchEventsByOrganizerIdThunk(organizerId));
+        } catch (error) {
+            alert(error.message);
+        }
+    };
+
     return (
         <div className="row">
             {events.map((event) => (
@@ -57,8 +78,10 @@ const OrganizerEventsList = ({ organizerId }) => {
                             </p>
                             <div className="d-flex justify-content-between align-items-center">
                                 <button className="btn btn-primary" onClick={() => handleEditEvent(event._id)}>Edit Event</button>
-                                <a href="#" className="btn btn-link text-decoration-none">View Attendees</a>
-                                <a href="#" className="text-danger text-decoration-none">Delete Event</a>
+                                <a href="#" className="btn btn-link text-decoration-none"
+                                    onClick={() => handleViewAttendees(event._id, event.interestedUsers)}>View Attendees</a>
+                                <a href="#" className="text-danger text-decoration-none"
+                                    onClick={() => handleDeleteEvent(event._id)}>Delete Event</a>
                             </div>
                         </div>
                     </div>

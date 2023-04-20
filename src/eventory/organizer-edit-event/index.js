@@ -2,75 +2,35 @@ import React, { useState, useEffect } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {useLocation} from "react-router";
-import {fetchEventByEventIdThunk, updateEventByEventIdThunk,} from "../../services/organizerEvent-thunks";
+import {updateEventByEventIdThunk,} from "../../services/organizerEvent-thunks";
 
 const EditEventForm = () => {
-    // let [eventData, setEventData] = useState(null);
     let eventData = useSelector(state => state.event.event);
+    let eventStatus = useSelector(state => state.event.status);
+    let eventError = useSelector(state => state.event.error);
     console.log("edit-event " + JSON.stringify(eventData));
     let [event, setEvent] = useState(eventData);
-    // let [event, setEvent] = useState(JSON.parse(JSON.stringify(eventData)));
-    console.log("event" + event);
-    // const eventDate = new Date(eventData.date);
-    //         // setDate(eventDate.toLocaleDateString('en-CA'));
-    //         //
-    //         // const eventTime = new Date(eventData.time);
-    //         // const estD = new Date(eventTime.toLocaleString('en-US', { timeZone: 'EST' }));
-    //         // const estTime = estD.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false});
-    //         //
-    //         // setTime(estTime);
-    let [nameInput, setNameInput] = useState(event.name);
-    const eventDate = new Date(event.date);
-    let [dateInput, setDateInput] = useState(eventDate.toLocaleDateString('en-CA'));
-    // // TODO: this needs to be changed to EST when display.
 
-    const eventTime = new Date(event.time).toLocaleTimeString('en-US', {
+    let [nameInput, setNameInput] = useState(event?.name ?? '');
+    const eventDate = new Date(event?.date).toLocaleDateString('en-CA');
+    let [dateInput, setDateInput] = useState(eventDate);
+    const eventTime = new Date(event?.time).toLocaleTimeString('en-US', {
         timeZone: 'America/New_York', hour12: false,
     });
-    // const estD = new Date(eventTime.toLocaleString('en-US', { timeZone: 'EST' }));
-    // const estTime = estD.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false});
-
-    console.log(eventTime);
-
     let [timeInput, setTimeInput] = useState(eventTime);
-
-    let [addressInput, setAddressInput] = useState(event.address);
-    let [cityInput, setCityInput] = useState(event.city);
-    let [postalCodeInput, setPostalCodeInput] = useState(event.postalCode);
-    let [descriptionInput, setDescriptionInput] = useState(event.description);
+    let [addressInput, setAddressInput] = useState(event?.address ?? '');
+    let [cityInput, setCityInput] = useState(event?.city ?? '');
+    let [postalCodeInput, setPostalCodeInput] = useState(event?.postalCode ?? '');
+    let [descriptionInput, setDescriptionInput] = useState(event?.description ?? '');
 
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const eventId = (paths[2]) ? paths[2] : '';
-    console.log("edit-event" + eventId);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if (eventData) {
-    //         console.log("I have eventData");
-    //         console.log(eventData[0]);
-    //         console.log(JSON.stringify(eventData));
-    //         setEvent(eventData[0].name);
-    //         console.log(nameInput);
-    //         // setName(eventData.name);
-    //         // const eventDate = new Date(eventData.date);
-    //         // setDate(eventDate.toLocaleDateString('en-CA'));
-    //         //
-    //         // const eventTime = new Date(eventData.time);
-    //         // const estD = new Date(eventTime.toLocaleString('en-US', { timeZone: 'EST' }));
-    //         // const estTime = estD.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false});
-    //         //
-    //         // setTime(estTime);
-    //         // setAddress(eventData.address);
-    //         // setCity(eventData.city);
-    //         // setPostalCode(eventData.postalCode);
-    //         // setDescription(eventData.description);
-    //     }
-    // }, [eventData]);
-
-    const saveEventClickHandler = (event) => {
+    const saveEventClickHandler = async (event) => {
         event.preventDefault();
 
         const updatedEvent = {
@@ -80,11 +40,11 @@ const EditEventForm = () => {
             address: addressInput,
             city: cityInput,
             postalCode: postalCodeInput,
-            description: descriptionInput,
+            description: descriptionInput
         }
         console.log(JSON.stringify(updatedEvent));
         console.log(eventId);
-        dispatch(updateEventByEventIdThunk({eventId, updatedEvent}));
+        await dispatch(updateEventByEventIdThunk({eventId, updatedEvent}));
         navigate("/home");
     };
 
@@ -125,7 +85,9 @@ const EditEventForm = () => {
 
     return (
         <div className="container mt-3">
-            {event && (<>
+            {(!eventData) && (<h4>Something went wrong. Please try again later. Do not refresh while you are on the Edit Event page.</h4>) }
+            {(eventStatus === 'pending') && (<h4>Loading</h4>)}
+            {(eventStatus === 'fulfilled') && (<>
                 <div className="mb-3">
                     <h4>Edit Your Event</h4>
                     <p className="text-muted">Please update any fields below regarding your event.</p>
@@ -206,6 +168,6 @@ const EditEventForm = () => {
             </>)}
         </div>
     );
-    };
+};
 
 export default EditEventForm;

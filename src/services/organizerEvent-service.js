@@ -24,3 +24,8 @@ export const updateEventById = async (eventId, updatedEvent) => {
     const response = await api.put(`/eventory/events/${eventId}`, updatedEvent);
     return response;
 }
+
+export const deleteEventById = async (eventId) => {
+    const response = await api.delete(`/eventory/events/${eventId}`);
+    return response;
+}
