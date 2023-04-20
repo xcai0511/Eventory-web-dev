@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import "./detail.css";
 import "../ticketmaster-event-detail/detail.css";
+import {likeEventoryThunk} from "../../services/users-thunk";
+import {useDispatch} from "react-redux";
 
 const EventoryDetailItem = ({detail}) => {
     const [interested, setInterested] = useState(false);
@@ -12,6 +14,19 @@ const EventoryDetailItem = ({detail}) => {
     const eventDate = new Date(detail.date);
     const estDate = eventDate.toLocaleDateString("en-US", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
 
+    const dispatch = useDispatch();
+    const likeButtonOnclickHandler = () => {
+        setInterested(!interested);
+        let action;
+        if (interested) {
+            action = 'dislike'
+        } else {
+            action = 'like'
+        }
+        console.log("before dispatch " + detail._id);
+        dispatch(likeEventoryThunk({eventId: detail._id, action: action}));
+    };
+
     return(
 
         <div className="wd-detail-page mt-3">
@@ -21,7 +36,7 @@ const EventoryDetailItem = ({detail}) => {
             </div>
             <div className="mt-3 mb-2">
                 <div className="float-end">
-                    <button className="btn btn-light" onClick={() => setInterested(!interested)}>
+                    <button className="btn btn-light" onClick={likeButtonOnclickHandler}>
                         {
                             interested ? (
                                 <>

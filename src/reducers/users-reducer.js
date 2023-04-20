@@ -58,15 +58,19 @@ const userSlice = createSlice({
                 state.error = action.payload;
             })
             .addCase(likeEventoryThunk.pending, (state) => {
-                state.userStatus = 'liking/disliking eventory';
+                state.userStatus = 'pending';
+                console.log("like eventory pending");
             })
             .addCase(likeEventoryThunk.fulfilled, (state, action) => {
-                state.userStatus = 'liked/disliked eventory';
+                state.userStatus = 'fulfilled';
                 state.userData = action.payload;
+                console.log("like eventory fulfilled");
             })
-            .addCase(likeEventoryThunk.fulfilled, (state, action) => {
+            .addCase(likeEventoryThunk.rejected, (state, action) => {
                 state.userStatus = 'rejected';
                 state.error = action.payload;
+                console.log("like eventory rejected");
+                console.log(state.error);
             });
     },
 });

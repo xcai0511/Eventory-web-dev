@@ -30,7 +30,11 @@ export const likeEventoryThunk = createAsyncThunk(
     'users/likeEventory',
     async ({eventId, action}, { rejectWithValue }) => {
         try {
+            console.log("likeEventoryThunk");
+            console.log("eventId" + eventId);
+            console.log("action" + action);
             const response = await service.likeOrDislikeEventoryEvent(eventId, action);
+            console.log(response);
             return response;
         } catch (error) {
             return rejectWithValue(error.response.data);

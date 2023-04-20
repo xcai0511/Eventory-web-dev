@@ -5,6 +5,7 @@ import "./event.css";
 import "../search-ticketmaster-result-list/result.css";
 import {useNavigate} from "react-router-dom";
 import {eventIdThunk} from "../../services/eventory-thunks";
+import {likeEventoryThunk} from "../../services/users-thunk";
 
 const EventoryResultItem = ({event}) => {
 
@@ -46,6 +47,19 @@ const EventoryResultItem = ({event}) => {
         // dispatch(eventIdThunk(event._id));
     };
 
+    const likeButtonOnclickHandler = (e) => {
+        e.stopPropagation();
+        setInterested(!interested);
+        let action;
+        if (interested) {
+            action = 'dislike'
+        } else {
+            action = 'like'
+        }
+        console.log("before dispatch " + event._id);
+        dispatch(likeEventoryThunk({eventId: event._id, action: action}));
+    };
+
     return (
         <div className="card mb-2" onClick={cardOnclickHandler}>
             <div className="row">
@@ -55,7 +69,7 @@ const EventoryResultItem = ({event}) => {
                 <div className="col-9 mt-1 mb-0">
                     <div>
                         <div className="float-end">
-                            <button className="btn btn-light" onClick={(e) => (e.stopPropagation(), setInterested(!interested))}>
+                            <button className="btn btn-light" onClick={likeButtonOnclickHandler}>
                                 {
                                     interested ? (
                                         <>
