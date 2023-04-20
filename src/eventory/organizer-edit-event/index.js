@@ -22,7 +22,6 @@ const EditEventForm = () => {
     let [nameInput, setNameInput] = useState(event.name);
     const eventDate = new Date(event.date);
     let [dateInput, setDateInput] = useState(eventDate.toLocaleDateString('en-CA'));
-    // let [dateInput, setDateInput] = useState(event.date);
     // // TODO: this needs to be changed to EST when display.
 
     const eventTime = new Date(event.time).toLocaleTimeString('en-US', {
