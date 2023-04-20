@@ -1,5 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {fetchOrganizerById, fetchEventsByOrganizerId, updateEventById, fetchEventById} from "./organizerEvent-service";
+import {
+    fetchOrganizerById,
+    fetchEventsByOrganizerId,
+    updateEventById,
+    fetchEventById,
+    deleteEventById
+} from "./organizerEvent-service";
 
 export const fetchOrganizerByIdThunk = createAsyncThunk(
     "events/fetchOrganizerById",
@@ -34,12 +40,13 @@ export const fetchEventsByOrganizerIdThunk = createAsyncThunk(
         }
     }
 );
-// TODO: Testing needed
 export const fetchEventByEventIdThunk = createAsyncThunk(
     "eventory/fetchEvent",
-    async({eventId},{rejectWithValue}) => {
+    async(eventId,{rejectWithValue}) => {
         try {
             const fetchedEvent = await fetchEventById(eventId);
+            console.log("fetchEventByEventIdThunk");
+            console.log(JSON.stringify(fetchedEvent));
             return fetchedEvent;
         } catch (error) {
             if (!error.response) {
@@ -49,16 +56,29 @@ export const fetchEventByEventIdThunk = createAsyncThunk(
         }
     }
 );
-// TODO: Testing needed
 export const updateEventByEventIdThunk = createAsyncThunk(
     "eventory/updateEvent",
-    async ( {eventId, updatedEvent}, { rejectWithValue }) => {
+    async ({eventId, updatedEvent}, { rejectWithValue }) => {
         try {
-            console.log("organizerEvent-thunk" + eventId);
-            console.log("organizerEvent-thunk" + JSON.stringify(updatedEvent));
             const updateEventResult = await updateEventById(eventId, updatedEvent);
-            console.log("updateEventResult" + JSON.stringify(updateEventResult));
             return updateEventResult;
+        } catch (error) {
+            if (!error.response) {
+                return rejectWithValue('Something went wrong.');
+            }
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
+export const deleteEventByEventIdThunk = createAsyncThunk(
+    "eventory/deleteEvent",
+    async (eventId, {rejectWithValue}) => {
+        try {
+            console.log("deleteEventByEventIdThunk");
+            console.log(eventId);
+            const deleteEventResult = await deleteEventById(eventId);
+            console.log(JSON.stringify(deleteEventResult));
+            return deleteEventResult;
         } catch (error) {
             if (!error.response) {
                 return rejectWithValue('Something went wrong.');

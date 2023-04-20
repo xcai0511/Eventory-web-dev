@@ -15,7 +15,7 @@ const CreateEventForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const createEventClickHandler = (event) => {
+    const createEventClickHandler = async (event) => {
         event.preventDefault();
 
         const newEvent = {
@@ -27,7 +27,7 @@ const CreateEventForm = () => {
         postalCode: zipCodeInput,
         description: descriptionInput,
         };
-        dispatch(createEventThunk(newEvent));
+        await dispatch(createEventThunk(newEvent));
         navigate("/home")
     };
 

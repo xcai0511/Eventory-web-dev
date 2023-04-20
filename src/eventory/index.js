@@ -10,6 +10,7 @@ import HomeComponent from "./user-home-page";
 import EditEventForm from "./organizer-edit-event";
 import AboutComponent from "./about";
 import AdminDashboard from "./admin-dashboard";
+import ViewAttendeesList from "./organizer-view-attendees";
 
 function Eventory() {
 
@@ -51,6 +52,10 @@ function Eventory() {
                 <Route path="edit-event/:eventId" element={<EditEventForm />} />
                 <Route path="about" element={<AboutComponent />} />
                 {/*<Route path="faq" element={<FAQComponent />} />*/}
+                <Route path="view-attendees/*" element={<ViewAttendeesList />}/>
+                {/*<Route path="about" element={<AboutComponent />} />*/}
+                {/*<Route path="eventory-exclusives" element={<EventoryExclusivesComponent />} />*/}
+                {/*<Route path="contact" element={<ContactComponent />} />*/}
                 <Route path="signin" element={<Signin />} />
                 {/*<Route path="signup" element={<Signup />} />*/}
             </Routes>
