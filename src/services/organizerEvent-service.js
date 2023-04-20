@@ -20,7 +20,7 @@ export const fetchEventById = async (eventId) => {
     return response.data;
 };
 
-export const updateEventById = async (eventId) => {
-    const response = await api.put(`/eventory/events/${eventId}`);
-    return response.data;
+export const updateEventById = async (eventId, updatedEvent) => {
+    const response = await api.put(`/eventory/events/${eventId}`, updatedEvent);
+    return response;
 }

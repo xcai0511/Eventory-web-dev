@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchEventsByOrganizerIdThunk } from '../../services/organizerEvent-thunks';
+import {fetchEventByEventIdThunk, fetchEventsByOrganizerIdThunk} from '../../services/organizerEvent-thunks';
 import {Link, useNavigate} from "react-router-dom";
 
 const OrganizerEventsList = ({ organizerId }) => {
     const dispatch = useDispatch();
     const events = useSelector((state) => state.events.events);
     const status = useSelector((state) => state.events.status);
+    console.log("OrganizerEventsList");
+    console.log(events);
+    console.log(status);
     const navigate = useNavigate();
 
     useEffect(() => {
+        console.log("OrganizerEventsList" + organizerId);
         dispatch(fetchEventsByOrganizerIdThunk(organizerId));
     }, [dispatch, organizerId]);
 
@@ -23,6 +27,11 @@ const OrganizerEventsList = ({ organizerId }) => {
     };
 
     const handleEditEvent = (eventId) => {
+        // try {
+        //     dispatch(fetchEventByEventIdThunk(eventId));
+        // } catch (error) {
+        //     alert(error.message);
+        // }
         navigate(`/edit-event/${eventId}`);
     };
 
