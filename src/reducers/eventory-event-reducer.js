@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {eventFilterThunk, eventIdThunk, eventThunk} from "../../services/eventory-thunks";
+import {eventFilterThunk, eventIdThunk, eventThunk} from "../services/eventory-thunks";
 
 const initialState = {
     result: [],

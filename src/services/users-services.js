@@ -31,3 +31,12 @@ export const resetUserPassword = async (oldPassword, newPassword) => {
 
     return response.data;
 };
+
+export const likeOrDislikeEventoryEvent = async (eventId, action) => {
+    const response = await api.put(`${USERS_API}/eventory/${eventId}`, {
+        action: action,
+    });
+    console.log('======== like or dislike eventory =======');
+    console.log('response data: ' + JSON.stringify(response));
+    return response.data;
+}

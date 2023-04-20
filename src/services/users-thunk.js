@@ -25,3 +25,15 @@ export const resetUserPasswordThunk = createAsyncThunk(
         }
     }
 );
+
+export const likeEventoryThunk = createAsyncThunk(
+    'users/likeEventory',
+    async ({eventId, action}, { rejectWithValue }) => {
+        try {
+            const response = await service.likeOrDislikeEventoryEvent(eventId, action);
+            return response;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+)
