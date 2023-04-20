@@ -4,10 +4,15 @@ import "./detail.css";
 const TicketmasterDetailItem = ({detail}) => {
     const [interested, setInterested] = useState(false);
 
-    // detail time
-    //const detailTime = detail.time;
-    //const detailTimeArray = detailTime.split(":");
-    //const eventTime = detailTimeArray[0] + " : " + detailTimeArray[1] + " EDT";
+    const resultTime = detail.time;
+    const resultTimeArray = resultTime?.split(":");
+    let localTime;
+    if (resultTimeArray) {
+        localTime = resultTimeArray[0] + ":" + resultTimeArray[1] + " EST"
+    }
+    if (localTime === ":undefined EST") {
+        localTime = "TBD";
+    }
 
     // detail date
     const detailDate = new Date(detail.date);
@@ -15,10 +20,6 @@ const TicketmasterDetailItem = ({detail}) => {
     const dateArray = detailDateString.split(" ");
     const eventDate = dateArray[0] + ", " + dateArray[1] + " " + dateArray[2] + ", " + dateArray[3];
     // address
-    const [showMap, setShowMap] = useState(false);
-    const showAddressOnclick = async () => {
-        setShowMap(!showMap);
-    };
     // buy ticket
     const ticketButtonOnclick = () => {
         window.open(detail.linkToBuy);
@@ -72,7 +73,7 @@ const TicketmasterDetailItem = ({detail}) => {
                         </div>
                         <div className="col-10 mt-0">
                             <div className="fw-bold">Date and Time</div>
-                            <div>{eventDate} {detail.time}</div>
+                            <div>{eventDate} {localTime}</div>
                         </div>
                     </div>
                     <div className="row mt-3">
