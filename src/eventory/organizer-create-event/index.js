@@ -62,7 +62,7 @@ const CreateEventForm = () => {
                                required/>
                     </div>
                     <div className="form-group mb-3">
-                        <label htmlFor="time" className="mb-1">Date
+                        <label htmlFor="time" className="mb-1">Time
                             <span className="text-danger"> *</span>
                         </label>
                         <input type="time" className="form-control" id="time"

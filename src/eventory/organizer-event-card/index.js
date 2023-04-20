@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchEventsByOrganizerIdThunk } from '../../services/organizerEvent-thunks';
+import {Link, useNavigate} from "react-router-dom";
 
 const OrganizerEventsList = ({ organizerId }) => {
     const dispatch = useDispatch();
     const events = useSelector((state) => state.events.events);
     const status = useSelector((state) => state.events.status);
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(fetchEventsByOrganizerIdThunk(organizerId));
@@ -18,6 +20,10 @@ const OrganizerEventsList = ({ organizerId }) => {
     const formatDate = (date) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(date).toLocaleDateString(undefined, options);
+    };
+
+    const handleEditEvent = (eventId) => {
+        navigate(`/edit-event/${eventId}`);
     };
 
     return (
@@ -40,7 +46,7 @@ const OrganizerEventsList = ({ organizerId }) => {
                                     : event.description}
                             </p>
                             <div className="d-flex justify-content-between align-items-center">
-                                <button className="btn btn-primary">Edit Event</button>
+                                <button className="btn btn-primary" onClick={() => handleEditEvent(event._id)}>Edit Event</button>
                                 <a href="#" className="btn btn-link text-decoration-none">View Attendees</a>
                                 <a href="#" className="text-danger text-decoration-none">Delete Event</a>
                             </div>

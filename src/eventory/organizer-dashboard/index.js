@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import CreateEventForm from "../organizer-create-event";
-import button from "bootstrap/js/src/button";
 import OrganizerEventsList from "../organizer-event-card";
 import {fetchEventsByOrganizerIdThunk} from "../../services/organizerEvent-thunks";
 import {Link} from "react-router-dom";

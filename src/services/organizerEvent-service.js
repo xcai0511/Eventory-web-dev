@@ -14,3 +14,13 @@ export const fetchOrganizerById = async (organizerId) => {
 //     const response = await api.get(`/organizers/${organizerId}`);
 //     return response.data.events;
 // };
+
+export const fetchEventById = async (eventId) => {
+    const response = await api.get(`/eventory/events/${eventId}`);
+    return response.data;
+};
+
+export const updateEventById = async (eventId) => {
+    const response = await api.put(`/eventory/events/${eventId}`);
+    return response.data;
+}

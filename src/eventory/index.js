@@ -11,6 +11,7 @@ import React, {useEffect} from "react";
 import {profileThunk} from "../services/auth-thunks";
 import CreateEventForm from "./organizer-create-event";
 import HomeComponent from "./user-home-page";
+import EditEventForm from "./organizer-edit-event";
 
 function Eventory() {
 
@@ -49,6 +50,7 @@ function Eventory() {
                 <Route index element={homeComponent}/>
                 <Route path="home" element={homeComponent} />
                 <Route path="create-event" element={<CreateEventForm />} />
+                <Route path="edit-event/:eventId" element={<EditEventForm />} />
                 {/*<Route path="about" element={<AboutComponent />} />*/}
                 {/*<Route path="eventory-exclusives" element={<EventoryExclusivesComponent />} />*/}
                 {/*<Route path="contact" element={<ContactComponent />} />*/}
