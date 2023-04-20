@@ -9,6 +9,7 @@ import CreateEventForm from "./organizer-create-event";
 import HomeComponent from "./user-home-page";
 import EditEventForm from "./organizer-edit-event";
 import AboutComponent from "./about";
+import AdminDashboard from "./admin-dashboard";
 
 function Eventory() {
 
@@ -32,9 +33,9 @@ function Eventory() {
             case "organizer":
                 homeComponent = <OrganizerDashboard />;
                 break;
-            // case "admin":
-            //     homeComponent = <AdminDashboard />;
-            //     break;
+            case "admin":
+                homeComponent = <AdminDashboard />;
+                break;
             default:
                 homeComponent = <HomeComponent />;
         }

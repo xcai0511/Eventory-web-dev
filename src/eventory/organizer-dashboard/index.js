@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import OrganizerEventsList from "../organizer-event-card";
 import {fetchEventsByOrganizerIdThunk} from "../../services/organizerEvent-thunks";
 import {Link} from "react-router-dom";
+import "./index.css"
 
 const OrganizerDashboard = () => {
 
