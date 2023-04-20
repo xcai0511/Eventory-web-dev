@@ -1,12 +1,13 @@
 import {NavLink} from "react-router-dom";
-import {useSelector} from "react-redux";
 import React from "react";
 import "./eventory/index.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
 function Nav() {
-    const currentUser = useSelector((state) => state.auth.currentUser);
+    // const currentUser = useSelector((state) => state.auth.currentUser);
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(currentUser);
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">

@@ -10,14 +10,20 @@ function Signin() {
     let [passwordInput, setPasswordInput] = useState('');
     const signInStatus = useSelector((state) => state.auth.userStatus);
     const signInMessage = useSelector((state) => state.auth.message);
+    const currentUser = useSelector((state) => state.auth.currentUser);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     // Automatically nagivate to the Home screen if signInStatus is 'fulfilled'.
     useEffect(() => {
+        if (currentUser) {
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            console.log(currentUser);
+        }
         if (signInStatus === 'fulfilled') {
             navigate('/home');
+            window.location.reload();
         }
-    }, [signInStatus, navigate]);
+    }, [currentUser, signInStatus, navigate]);
     const signInClickHandler = (event) => {
         event.preventDefault();
         const userCredentials = {
@@ -29,6 +35,7 @@ function Signin() {
         } catch (error) {
             alert(error.message);
         }
+
     };
     return (
         <form className="login-signup-wrapper" onSubmit={signInClickHandler}>

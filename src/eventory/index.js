@@ -1,6 +1,6 @@
 
 import Nav from "../nav";
-import {Provider} from "react-redux";
+import {Provider, useSelector} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
 import Signup from './signup';
 import Signin from './signin/';
@@ -13,7 +13,7 @@ import Home from "./home";
 import authReducer from "../reducers/auth-reducer";
 import usersReducer from "../reducers/users-reducer";
 import SearchResult from "../search-events";
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 const store = configureStore(
     {reducer: {result: ticketmasterEventReducer, event: eventoryEventReducer, user: usersReducer, auth: authReducer}});
@@ -30,6 +30,7 @@ function Eventory() {
                 <Route path="profile/*" element={<Profile />} />
                 <Route path="results/*" element={<SearchResult/>}/>
             </Routes>
+
         </Provider>
     );
 }

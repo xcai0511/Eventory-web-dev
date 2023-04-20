@@ -19,8 +19,10 @@ function ProfileContentComponent({ setIsEditingProfile, currentUser }) {
     };
 
     const logOutHandler = () => {
+        localStorage.removeItem('currentUser');
         dispatch(logOutThunk());
         navigate('/home');
+        window.location.reload();
     };
 
     return (
