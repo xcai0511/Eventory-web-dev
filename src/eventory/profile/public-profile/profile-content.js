@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 function ProfileContentComponent({ setIsEditingProfile, currentUser }) {
-    console.log('Profile Content: ------ ' + JSON.stringify(currentUser));
+    // console.log('Profile Content: ------ ' + JSON.stringify(currentUser));
 
     // console.log(JSON.stringify(currentUser));
 

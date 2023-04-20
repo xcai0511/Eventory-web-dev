@@ -20,7 +20,6 @@ const authSlice = createSlice({
             })
             .addCase(signInThunk.fulfilled, (state, action) => {
                 console.log('fulfilled');
-                console.log(JSON.stringify(action.payload.data));
                 state.userStatus = 'fulfilled';
                 state.message = null;
                 state.currentUser = action.payload.data;
@@ -37,7 +36,6 @@ const authSlice = createSlice({
             })
             .addCase(profileThunk.fulfilled, (state, action) => {
                 console.log('fulfilled');
-                console.log(JSON.stringify(action.payload.data));
                 state.userStatus = 'fulfilled';
                 state.message = null;
                 state.currentUser = action.payload.data;

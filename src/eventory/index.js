@@ -2,20 +2,31 @@
 import Nav from "../nav";
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
-import HeaderSearchBar from "../search-events/header-search-bar";
-import AnonymousEventCard from "../search-events/anonymous-event-card";
+import Signup from './signup';
+import Signin from './signin/';
+import Search from './search';
+import Profile from './profile';
 import ticketmasterEventReducer from "../search-events/reducers/ticketmaster-event-reducer";
 import eventoryEventReducer from "../search-events/reducers/eventory-event-reducer";
+import {Route, Routes} from "react-router-dom";
+import Home from "./home";
+import authReducer from "../reducers/auth-reducer";
+import usersReducer from "../reducers/users-reducer";
 
 const store = configureStore(
-    {reducer: {result: ticketmasterEventReducer, event: eventoryEventReducer}});
+    {reducer: {result: ticketmasterEventReducer, event: eventoryEventReducer, user: usersReducer, auth: authReducer}});
 
 function Eventory() {
     return(
         <Provider store={store}>
             <Nav/>
-            <HeaderSearchBar/>
-            <AnonymousEventCard/>
+            <Routes>
+                <Route index element={<Home />} />
+                <Route path="home" element={<Home />} />
+                <Route path="signup" element={<Signup />} />
+                <Route path="signin" element={<Signin />} />
+                <Route path="profile/*" element={<Profile />} />
+            </Routes>
         </Provider>
     );
 }
@@ -25,10 +36,7 @@ export default Eventory;
 // import { Routes, Route } from 'react-router';
 // import Nav from '../nav';
 // import Home from './home';
-// import Signup from './signup';
-// import Signin from './signin/';
-// import Search from './search';
-// import Profile from './profile';
+
 // // import UserProfile from './profile/test';
 // import userReducer from '../reducers/users-reducer';
 // import authReducer from '../reducers/auth-reducer';

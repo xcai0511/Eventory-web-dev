@@ -1,23 +1,11 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router';
-import { useSelector } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit'; // import configureStore
-import { Provider } from 'react-redux'; // import the Provider component
-
-import userReducer from '../../reducers/users-reducer';
-import authReducer from '../../reducers/auth-reducer';
 
 import NavSidebar from './nav-sidebar';
 import PublicProfileComponent from './public-profile';
 import UserFavoritesComponent from './user-favorites';
 import AccountSecurityComponent from './account-security';
 
-const store = configureStore({
-    reducer: {
-        user: userReducer,
-        auth: authReducer,
-    },
-});
 
 const Profile = () => {
     return (

@@ -33,15 +33,18 @@ const userSlice = createSlice({
             .addCase(updateUserProfileThunk.pending, (state) => {
                 // add a new case for the new thunk
                 state.userStatus = 'updating';
+                console.log("updating user profile")
             })
             .addCase(updateUserProfileThunk.fulfilled, (state, action) => {
                 // add a new case for the new thunk
                 state.userStatus = 'updated';
                 state.userData = action.payload;
+                console.log("updated user profile")
             })
             .addCase(updateUserProfileThunk.rejected, (state, action) => {
                 state.userStatus = 'rejected';
                 state.error = action.payload;
+                console.log("update user profile rejected")
             })
             .addCase(resetUserPasswordThunk.pending, (state) => {
                 state.userStatus = 'resetting';

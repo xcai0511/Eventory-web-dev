@@ -1,8 +1,14 @@
+import HeaderSearchBar from "../../search-events/header-search-bar";
+import AnonymousEventCard from "../../search-events/anonymous-event-card";
+import React from "react";
+
 function Home() {
     return (
-        <div>
-            <h2>This is home.</h2>
-        </div>
+        <>
+            <HeaderSearchBar/>
+            <AnonymousEventCard/>
+        </>
+
     );
 }
 export default Home;
