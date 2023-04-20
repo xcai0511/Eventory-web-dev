@@ -3,6 +3,7 @@ import "./detail.css";
 import "../ticketmaster-event-detail/detail.css";
 import {likeEventoryThunk} from "../../services/users-thunk";
 import {useDispatch} from "react-redux";
+import UserItem from "./user-item";
 
 const EventoryDetailItem = ({detail}) => {
     const [interested, setInterested] = useState(false);
@@ -13,6 +14,8 @@ const EventoryDetailItem = ({detail}) => {
 
     const eventDate = new Date(detail.date);
     const estDate = eventDate.toLocaleDateString("en-US", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
+
+    const intUser = detail.interestedUsers;
 
     const dispatch = useDispatch();
     const likeButtonOnclickHandler = () => {
@@ -88,11 +91,30 @@ const EventoryDetailItem = ({detail}) => {
                                     <div>{detail.organizer.bio}</div>
                                 </div>
                             </div>
-                        ) : (null)
+                        ) : null
                     }
 
                     <h4 className="fw-bold mt-4">Description</h4>
                     <div>{detail.description}</div>
+
+                    {
+                        intUser ? (
+                            <div className="mt-3">
+                                <h4 className="fw-bold list-group-item wd-user-list">Liked Users</h4>
+                                <ul className="list-group">
+                                    <li className="list-group-item">
+                                        {intUser.map(user => {
+                                            return <UserItem
+                                                key={user._id}
+                                                user={user}/>
+                                        })}
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        ) : null
+                    }
                 </div>
             </div>
         </div>
