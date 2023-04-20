@@ -19,8 +19,14 @@ const SearchBar = () => {
     let l = queryParams.get("city");
     let k = queryParams.get("keyword");
 
+
     const [location, setLocation] = useState(l);
     const [keyword, setKeyword] = useState(k);
+
+    let kw = "ALL EVENTS";
+    if (k) {
+        kw = k;
+    }
 
     const locationHandler = (event) => {
         const newLocation = event.target.value;
@@ -116,7 +122,7 @@ const SearchBar = () => {
                     }
                 </div>
             </div>
-            <h2>'{k}'</h2>
+            <h2>'{kw}'</h2>
             <h5 className="text-secondary">Search Results</h5>
         </div>
 

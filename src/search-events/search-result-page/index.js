@@ -4,15 +4,13 @@ import ResultList from "../search-ticketmaster-result-list";
 import Nav from "../../nav";
 import EventoryResultList from "../search-eventory-result-list";
 
-const SearchPage = () => {
+function SearchPage() {
     return (
         <>
-            <Nav/>
             <div>
                 <SearchBar/>
             </div>
             <div className="col">
-
             </div>
             <div className="mt-2" style={{
                 display: "flex",

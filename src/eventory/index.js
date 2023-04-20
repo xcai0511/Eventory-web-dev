@@ -12,6 +12,8 @@ import {Route, Routes} from "react-router-dom";
 import Home from "./home";
 import authReducer from "../reducers/auth-reducer";
 import usersReducer from "../reducers/users-reducer";
+import SearchResult from "../search-events";
+import React from "react";
 
 const store = configureStore(
     {reducer: {result: ticketmasterEventReducer, event: eventoryEventReducer, user: usersReducer, auth: authReducer}});
@@ -26,6 +28,7 @@ function Eventory() {
                 <Route path="signup" element={<Signup />} />
                 <Route path="signin" element={<Signin />} />
                 <Route path="profile/*" element={<Profile />} />
+                <Route path="results/*" element={<SearchResult/>}/>
             </Routes>
         </Provider>
     );
