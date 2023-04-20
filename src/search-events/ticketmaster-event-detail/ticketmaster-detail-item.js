@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import "./detail.css";
+import {likeTicketmasterThunk} from "../../services/users-thunk";
+import {useDispatch} from "react-redux";
 
 const TicketmasterDetailItem = ({detail}) => {
     const [interested, setInterested] = useState(false);
@@ -25,6 +27,25 @@ const TicketmasterDetailItem = ({detail}) => {
         window.open(detail.linkToBuy);
     }
 
+    const dispatch = useDispatch();
+    const likeButtonOnclickHandler = async (e) => {
+        e.stopPropagation();
+        let action;
+        if (interested) {
+            action = 'dislike'
+        } else {
+            action = 'like'
+        }
+        const { payload: { message } = {} } = await dispatch(likeTicketmasterThunk({eventId: detail._id, action: action}));
+        console.log(message);
+        if (message === "Unauthorized.") {
+            alert("Please log in or sign up to like an event!");
+        } else {
+            setInterested(!interested);
+        }
+    }
+
+
 
 
     return(
@@ -36,7 +57,7 @@ const TicketmasterDetailItem = ({detail}) => {
             </div>
             <div className="mt-3 mb-2">
                 <div className="float-end">
-                    <button className="btn btn-light" onClick={() => setInterested(!interested)}>
+                    <button className="btn btn-light" onClick={likeButtonOnclickHandler}>
                         {
                             interested ? (
                                 <>

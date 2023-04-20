@@ -40,3 +40,12 @@ export const likeOrDislikeEventoryEvent = async (eventId, action) => {
     console.log('response data: ' + JSON.stringify(response));
     return response.data;
 }
+
+export const likeOrDislikeTicketmasterEvent = async (eventId, action) => {
+    const response = await api.put(`${USERS_API}/ticketmaster/${eventId}`, {
+        action: action,
+    });
+    console.log('======== like or dislike ticketmaster =======');
+    console.log('response data: ' + JSON.stringify(response));
+    return response.data;
+}

@@ -18,16 +18,21 @@ const EventoryDetailItem = ({detail}) => {
     const intUser = detail.interestedUsers;
 
     const dispatch = useDispatch();
-    const likeButtonOnclickHandler = () => {
-        setInterested(!interested);
+    const likeButtonOnclickHandler = async (e) => {
+        e.stopPropagation();
         let action;
         if (interested) {
             action = 'dislike'
         } else {
             action = 'like'
         }
-        console.log("before dispatch " + detail._id);
-        dispatch(likeEventoryThunk({eventId: detail._id, action: action}));
+        const { payload: { message } = {} } = await dispatch(likeEventoryThunk({eventId: detail._id, action: action}));
+        console.log(message);
+        if (message === "Unauthorized.") {
+            alert("Please log in or sign up to like an event!");
+        } else {
+            setInterested(!interested);
+        }
     };
 
     return(

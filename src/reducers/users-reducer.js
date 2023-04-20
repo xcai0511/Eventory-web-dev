@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { userSignUpThunk } from '../services/auth-thunks';
-import {updateUserProfileThunk, resetUserPasswordThunk, likeEventoryThunk} from '../services/users-thunk';
+import {
+    updateUserProfileThunk,
+    resetUserPasswordThunk,
+    likeEventoryThunk,
+    likeTicketmasterThunk
+} from '../services/users-thunk';
 import { useDispatch } from 'react-redux';
 
 const initialState = {
@@ -70,6 +75,21 @@ const userSlice = createSlice({
                 state.userStatus = 'rejected';
                 state.error = action.payload;
                 console.log("like eventory rejected");
+                console.log(state.error);
+            })
+            .addCase(likeTicketmasterThunk.pending, (state) => {
+                state.userStatus = 'pending';
+                console.log("like ticketmaster pending");
+            })
+            .addCase(likeTicketmasterThunk.fulfilled, (state, action) => {
+                state.userStatus = 'fulfilled';
+                state.userData = action.payload;
+                console.log("like ticketmaster fulfilled");
+            })
+            .addCase(likeTicketmasterThunk.rejected, (state, action) => {
+                state.userStatus = 'rejected';
+                state.error = action.payload;
+                console.log("like ticketmaster rejected");
                 console.log(state.error);
             });
     },

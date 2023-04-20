@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import "./result.css";
 import {useNavigate} from "react-router-dom";
 import {searchEventDetailThunk} from "../../services/ticketmaster-thunks";
+import {likeTicketmasterThunk} from "../../services/users-thunk";
 
 const ResultItem = ({result}) => {
     const dispatch = useDispatch();
@@ -40,6 +41,23 @@ const ResultItem = ({result}) => {
         dispatch(searchEventDetailThunk(result.id));
     };
 
+    const likeButtonOnclickHandler = async (e) => {
+        e.stopPropagation();
+        let action;
+        if (interested) {
+            action = 'dislike'
+        } else {
+            action = 'like'
+        }
+        const { payload: { message } = {} } = await dispatch(likeTicketmasterThunk({eventId: result._id, action: action}));
+        console.log(message);
+        if (message === "Unauthorized.") {
+            alert("Please log in or sign up to like an event!");
+        } else {
+            setInterested(!interested);
+        }
+    }
+
     return (
         <div className="card mb-2" onClick={cardOnclickHandler}>
             <div className="row">
@@ -49,7 +67,7 @@ const ResultItem = ({result}) => {
                 <div className="col-9 mt-1 mb-0">
                     <div>
                         <div className="float-end">
-                            <button className="btn btn-light" onClick={(e) => (e.stopPropagation(), setInterested(!interested))}>
+                            <button className="btn btn-light" onClick={likeButtonOnclickHandler}>
                                 {
                                     interested ? (
                                         <>

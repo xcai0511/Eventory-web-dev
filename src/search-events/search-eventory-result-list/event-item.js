@@ -47,9 +47,8 @@ const EventoryResultItem = ({event}) => {
         // dispatch(eventIdThunk(event._id));
     };
 
-    const likeButtonOnclickHandler = (e) => {
+    const likeButtonOnclickHandler = async (e) => {
         e.stopPropagation();
-        setInterested(!interested);
         let action;
         if (interested) {
             action = 'dislike'
@@ -57,7 +56,13 @@ const EventoryResultItem = ({event}) => {
             action = 'like'
         }
         console.log("before dispatch " + event._id);
-        dispatch(likeEventoryThunk({eventId: event._id, action: action}));
+        const { payload: { message } = {} } = await dispatch(likeEventoryThunk({eventId: event._id, action: action}));
+        console.log(message);
+        if (message === "Unauthorized.") {
+            alert("Please log in or sign up to like an event!");
+        } else {
+            setInterested(!interested);
+        }
     };
 
     return (
