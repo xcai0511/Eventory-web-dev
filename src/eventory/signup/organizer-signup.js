@@ -1,29 +1,27 @@
 import { useState } from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {userSignUpThunk} from "../../services/auth-thunks";
+import {organizerSignUpThunk} from "../../services/auth-thunks";
 import "./signup.css";
 import "../index.css";
 import {Link} from "react-router-dom";
 
-function Signup() {
+function OrganizerSignup() {
     let [usernameInput, setUsernameInput] = useState('');
     let [passwordInput, setPasswordInput] = useState('');
-    let [firstNameInput, setFirstNameInput] = useState('');
-    let [lastNameInput, setLastNameInput] = useState('');
-    let [dobInput, setDobInput] = useState('');
-    const signUpStatus = useSelector(state => state.user.userStatus);
-    const signUpData = useSelector(state => state.user.userData);
+    let [nameInput, setNameInput] = useState('');
+    let [bioInput, setBioInput] = useState('');
+    const signUpStatus = useSelector(state => state.organizer.organizerStatus);
+    const signUpData = useSelector(state => state.organizer.organizerData);
     const dispatch = useDispatch();
     const signUpClickHandler = (event) => {
         event.preventDefault();
-        const newUser = {
+        const newOrganizer = {
             username: usernameInput,
             password: passwordInput,
-            firstName: firstNameInput,
-            lastName: lastNameInput,
-            dateOfBirth: dobInput
+            name: nameInput,
+            bio: bioInput,
         };
-        dispatch(userSignUpThunk(newUser));
+        dispatch(organizerSignUpThunk(newOrganizer));
     };
     return (
         <form className="login-signup-wrapper"  onSubmit={signUpClickHandler}>
@@ -32,7 +30,7 @@ function Signup() {
                     <div className="col-md-6 signup-image"/>
                     <div className="col-md-6 login-signup-form">
                         <div className="login-signup-input-box">
-                            <h4 className="finalproj-text-align-center mb-2 fw-bold">Get Started</h4>
+                            <h4 className="finalproj-text-align-center mb-2 fw-bold">Organizer Sign Up</h4>
                             {(signUpStatus === 'fulfilled') && (
                                 <div className="login-signup-input-field text-primary">{signUpData.data.message}</div>
                             )}
@@ -43,24 +41,19 @@ function Signup() {
                                 <div className="login-signup-input-field text-secondary">Loading...</div>
                             )}
                             <div className="login-signup-input-field">
-                                <input type="text" className="login-signup-input" id="signup-user-first-name"
-                                       placeholder="First Name" autoComplete="off" value={firstNameInput}
-                                       onChange={(event) => setFirstNameInput(event.target.value)} required/>
+                                <input type="text" className="login-signup-input" id="signup-organizer-name"
+                                       placeholder="Organization Name" autoComplete="off" value={nameInput}
+                                       onChange={(event) => setNameInput(event.target.value)} required/>
                             </div>
                             <div className="login-signup-input-field">
-                                <input type="text" className="login-signup-input" id="signup-user-last-name"
-                                       placeholder="Last Name" autoComplete="off" value={lastNameInput}
-                                       onChange={(event) => setLastNameInput(event.target.value)} required/>
-                            </div>
-                            <div className="login-signup-input-field">
-                                <input type="text" className="login-signup-input" id="signup-user-email"
+                                <input type="text" className="login-signup-input" id="signup-organizer-email"
                                        placeholder="Email Address" autoComplete="off" value={usernameInput}
                                        onChange={(event) => setUsernameInput(event.target.value)} required/>
                             </div>
                             <div className="login-signup-input-field">
-                                <input type="date" className="dob-input" id="signup-user-dob"
-                                       placeholder="Date of Birth" value={dobInput}
-                                       onChange={(event) => setDobInput(event.target.value)} required/>
+                                <input type="textarea" className="login-signup-input" id="signup-organizer-bio"
+                                       placeholder="Organization Description" autoComplete="off" value={bioInput}
+                                       onChange={(event) => setBioInput(event.target.value)} required/>
                             </div>
                             <div className="login-signup-input-field">
                                 <input type="password" className="login-signup-input" id="signup-user-password"
@@ -68,8 +61,8 @@ function Signup() {
                                        onChange={(event) => setPasswordInput(event.target.value)} required/>
                             </div>
                             <div className="login-signup-input-field mb-1">
-                                <small><Link to="/organizer-signup" className="text-decoration-none">Signing up as an
-                                    organizer?</Link></small>
+                                <small><Link to="/signup" className="text-decoration-none">Signing up as an
+                                    attendee?</Link></small>
                             </div>
                             <div className="login-signup-input-field">
                                 <input type="submit" className="login-signup-submit fw-bold mt-2 mb-4" value="Sign up"/>
@@ -86,4 +79,4 @@ function Signup() {
     );
 };
 
-export default Signup;
+export default OrganizerSignup;

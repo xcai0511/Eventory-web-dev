@@ -15,7 +15,6 @@
 
 /* Login and Signup Forms */
 .login-signup-wrapper {
-    background: lightgray;
     padding: 0 20px 0 20px;
 }
 
@@ -23,7 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    margin-top: 50px;
 }
 
 .login-signup-eventory-logo {
@@ -73,16 +72,6 @@
 .login-signup-submit:hover {
     background: rgba(37, 95, 156, 0.9);
     color: white;
-}
-
-@media only screen and (max-width: 768px) {
-    .login-signup-image {
-        border-radius: 10px 10px 0 0;
-    }
-    .login-signup-row {
-        max-width: 420px;
-        width: 100%;
-    }
 }
 
 /* Login and Forgot Password Row Size */

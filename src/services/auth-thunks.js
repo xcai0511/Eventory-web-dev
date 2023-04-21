@@ -16,6 +16,21 @@ export const userSignUpThunk = createAsyncThunk(
     }
 );
 
+export const organizerSignUpThunk = createAsyncThunk(
+    'organizers/signup',
+    async (organizer, { rejectWithValue }) => {
+        try {
+            const organizerSignUpResult = await service.organizerSignUp(organizer);
+            return organizerSignUpResult;
+        } catch (error) {
+            if (!error.response) {
+                return rejectWithValue('Something went wrong.');
+            }
+            return rejectWithValue(error.response.data);
+        }
+    }
+)
+
 export const signInThunk = createAsyncThunk(
     'everybody/signin',
     async (user, { rejectWithValue }) => {

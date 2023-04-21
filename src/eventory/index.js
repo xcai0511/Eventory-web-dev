@@ -14,11 +14,8 @@ import AboutComponent from "./about";
 import AdminDashboard from "./admin-dashboard";
 import ViewAttendeesList from "./organizer-view-attendees";
 import Profile from './profile';
-import ticketmasterEventReducer from "../reducers/ticketmaster-event-reducer";
-import eventoryEventReducer from "../reducers/eventory-event-reducer";
-import authReducer from "../reducers/auth-reducer";
-import usersReducer from "../reducers/users-reducer";
 import SearchResult from "../search-events";
+import OrganizerSignup from "./signup/organizer-signup";
 
 // import Nav from "../nav";
 // import {Provider, useSelector} from "react-redux";
@@ -83,6 +80,7 @@ function Eventory() {
                 <Route path="view-attendees/*" element={<ViewAttendeesList />}/>
                 <Route path="signin" element={<Signin />} />
                 <Route path="signup" element={<Signup />} />
+                <Route path="organizer-signup" element={<OrganizerSignup />} />
                 <Route path="profile/*" element={<Profile />} />
                 <Route path="results/*" element={<SearchResult/>}/>
             </Routes>

@@ -1,7 +1,6 @@
 input[type="date"]:before {
     content: attr(placeholder) !important;
     color: gray;
-    margin-right: 6em;
 }
 
 .signup-row {
@@ -25,4 +24,15 @@ input[type="date"]:before {
      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
      margin-bottom: 20px;
      outline: none;
+
  }
+
+@media only screen and (max-width: 768px) {
+    .signup-image {
+        border-radius: 10px 10px 0 0;
+    }
+    .login-signup-row {
+        max-width: 420px;
+        width: 100%;
+    }
+}

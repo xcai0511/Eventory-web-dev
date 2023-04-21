@@ -6,3 +6,13 @@
     position: relative;
     border-radius: 10px 0 0 10px;
 }
+
+@media only screen and (max-width: 768px) {
+    .login-image {
+        border-radius: 10px 10px 0 0;
+    }
+    .login-signup-row {
+        max-width: 420px;
+        width: 100%;
+    }
+}

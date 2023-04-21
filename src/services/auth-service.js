@@ -2,11 +2,17 @@ import axios from 'axios';
 
 const API_BASE = process.env.REACT_APP_EVENTORY_API_BASE;
 const USERS_API = `${API_BASE}/users`;
+const ORGANIZERS_API = `${API_BASE}/organizers`;
 
 const api = axios.create({ withCredentials: true });
 
 export const userSignUp = async (user) => {
     const response = await axios.post(USERS_API, user);
+    return response;
+};
+
+export const organizerSignUp = async (organizer) => {
+    const response = await axios.post(ORGANIZERS_API, organizer);
     return response;
 };
 
