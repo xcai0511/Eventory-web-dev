@@ -1,10 +1,17 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./detail.css";
 import {likeTicketmasterThunk} from "../../services/users-thunk";
 import {useDispatch} from "react-redux";
 
 const TicketmasterDetailItem = ({detail}) => {
+    // interested button
     const [interested, setInterested] = useState(false);
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const likeEvents = currentUser.likedTicketmasterEvents;
+    const liked = likeEvents.includes(detail._id);
+    useEffect(() => {
+        setInterested(liked);
+    })
 
     const resultTime = detail.time;
     const resultTimeArray = resultTime?.split(":");
@@ -41,9 +48,20 @@ const TicketmasterDetailItem = ({detail}) => {
         if (message === "Unauthorized.") {
             alert("Please log in or sign up to like an event!");
         } else {
+            let newLikeEvents = [];
+            if (likeEvents.includes(detail._id)) {
+                newLikeEvents = likeEvents.filter(id => id !== detail._id);
+            } else {
+                newLikeEvents = likeEvents.concat(detail._id);
+            }
+            currentUser.likedTicketmasterEvents = newLikeEvents;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            console.log("new user after like")
+            currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            console.log(currentUser);
             setInterested(!interested);
         }
-    }
+    };
 
 
 

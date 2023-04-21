@@ -12,7 +12,7 @@ const NavSidebar = () => {
     const active = paths[2] ? paths[2] : 'profile';
 
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    //const currentUser = useSelector((state) => state.auth.currentUser); // add this line to get the currentUser from Redux store
+    // const currentUser = useSelector((state) => state.auth.currentUser); // add this line to get the currentUser from Redux store
     return (
         <div className="profile-sidebar list-group">
             <div className="h4 mb-4 fw-bold">Welcome {currentUser.firstName}</div>

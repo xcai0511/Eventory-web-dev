@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import React from "react";
 import {useDispatch} from "react-redux";
 import "./event.css";
@@ -6,6 +6,7 @@ import "../search-ticketmaster-result-list/result.css";
 import {useNavigate} from "react-router-dom";
 import {eventIdThunk} from "../../services/eventory-thunks";
 import {likeEventoryThunk} from "../../services/users-thunk";
+import {profileThunk} from "../../services/auth-thunks";
 
 const EventoryResultItem = ({event}) => {
 
@@ -19,14 +20,19 @@ const EventoryResultItem = ({event}) => {
     const estDate = eventDate.toLocaleDateString("en-US", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
 
     // interested count
-    let intCount = 0;
-    if (event.interestedUsers) {
-        intCount = event.interestedUsers.length;
-    }
+    // let intCount = 0;
+    // if (event.interestedUsers) {
+    //     intCount = event.interestedUsers.length;
+    // }
 
     // interested button
-    // TODO: link current event to current user
     const [interested, setInterested] = useState(false);
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const likeEvents = currentUser.likedEvents;
+    const liked = likeEvents.includes(event._id);
+    useEffect(() => {
+        setInterested(liked);
+    })
 
     const dispatch = useDispatch();
 
@@ -55,6 +61,17 @@ const EventoryResultItem = ({event}) => {
         if (message === "Unauthorized.") {
             alert("Please log in or sign up to like an event!");
         } else {
+            let newLikeEvents = [];
+            if (likeEvents.includes(event._id)) {
+                newLikeEvents = likeEvents.filter(id => id !== event._id);
+            } else {
+                newLikeEvents = likeEvents.concat(event._id);
+            }
+            currentUser.likedEvents = newLikeEvents;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            console.log("new user after like")
+            currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            console.log(currentUser);
             setInterested(!interested);
         }
     };
@@ -99,9 +116,9 @@ const EventoryResultItem = ({event}) => {
                         <div className="d-inline text-muted fw-bold">
                             {event.address}
                         </div>
-                        <div className="text-muted">
-                            {intCount} interested
-                        </div>
+                        {/*<div className="text-muted">*/}
+                        {/*    {intCount} interested*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </div>

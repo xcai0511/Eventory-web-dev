@@ -7,6 +7,9 @@ import {useLocation} from "react-router";
 const ResultList = () => {
 
     let {result, loading} = useSelector(state => state.result)
+    if (result === "Exceeded Ticketmaster API rate limit. Please wait and try again.") {
+        loading = !loading
+    }
     const dispatch = useDispatch();
 
     const link = useLocation();
@@ -28,8 +31,8 @@ const ResultList = () => {
     return(
         <ul className="list-group">
             {
-                result.length === 0 &&
-                <></>
+                loading &&
+                <div>Exceeded Ticketmaster API rate limit. Please wait and try again.</div>
             }
             {
                 !loading &&
