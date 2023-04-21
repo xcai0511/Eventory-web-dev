@@ -96,9 +96,17 @@ const CreateEventForm = () => {
                             <span className="text-danger"> *</span>
                         </label>
                         <input type="text" className="form-control" id="zipCode"
+                               pattern="[0-9]*"
+                               maxLength="5"
                                value={zipCodeInput}
                                onChange={(event) =>
-                                   setZipCodeInput(event.target.value)}
+                                   setZipCodeInput(event.target.value)
+                               }
+                               onKeyPress={(event) => {
+                                   if (!/[0-9]/.test(event.key)) {
+                                       event.preventDefault();
+                                   }
+                               }}
                                required/>
                     </div>
                     <div className="form-group mb-3">

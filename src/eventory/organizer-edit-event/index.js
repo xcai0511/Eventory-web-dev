@@ -143,8 +143,15 @@ const EditEventForm = () => {
                             <span className="text-danger"> *</span>
                         </label>
                         <input type="text" className="form-control" id="zipCode"
+                               pattern="[0-9]*"
+                               maxLength="5"
                                value={postalCodeInput}
                                onChange={postalCodeChangeHandler}
+                               onKeyPress={(event) => {
+                                   if (!/[0-9]/.test(event.key)) {
+                                       event.preventDefault();
+                                   }
+                               }}
                                required/>
                     </div>
                     <div className="form-group mb-3">
