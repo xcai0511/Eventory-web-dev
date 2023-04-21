@@ -6,7 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
 function Nav() {
-    const currentUser = useSelector((state) => state.auth.currentUser);
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">

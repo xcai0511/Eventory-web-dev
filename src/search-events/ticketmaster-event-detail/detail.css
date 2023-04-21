@@ -1,0 +1,44 @@
+.wd-detail-page {
+    max-width: 800px;
+    position: relative;
+    margin: auto;
+}
+.wd-poster-container {
+    position: relative;
+    width: 100%;
+    border-radius: 25px;
+    contain: content;
+}
+.wd-poster-frame {
+    width: 100%;
+    max-height: 400px;
+    height: auto;
+    border-radius: 25px;
+    filter: blur(3px);
+    opacity: 35%;
+}
+.wd-poster-img {
+    height: 100%;
+    width: auto;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.wd-icon {
+    background-color: #e6e6e7;
+    font-size: 20px;
+    color: #0c63e4;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+.wd-button-link {
+    width: 100%;
+    text-decoration: none;
+}
+.wd-footer {
+    position: fixed;
+    bottom: 0;
+    height: 2.5rem;
+}

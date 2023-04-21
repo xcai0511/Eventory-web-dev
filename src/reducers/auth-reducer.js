@@ -19,6 +19,7 @@ const authSlice = createSlice({
                 state.currentUser = null;
             })
             .addCase(signInThunk.fulfilled, (state, action) => {
+                console.log('fulfilled');
                 state.userStatus = 'fulfilled';
                 state.message = null;
                 state.currentUser = action.payload.data;
@@ -42,3 +43,5 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
+// export const { setCurrentUser } = authSlice.actions;
+

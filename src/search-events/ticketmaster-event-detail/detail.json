@@ -1,0 +1,17 @@
+[
+  {
+    "_id": 123,
+    "name": "This is a Name",
+    "linkToBuy": "https://www.google.com/",
+    "description": "This is a description, a very long one.This is a description, a very long one. This is a description, a very long one. This is a description, a very long one. This is a description, a very long one. This is a description, a very long one. This is a description, a very long one.",
+    "date": "2023-04-27",
+    "time": "18:00:00",
+    "segment": "segment",
+    "genre": "genre",
+    "image": "event1.jpg",
+    "venueName": "some venue",
+    "venueCity": "Cambridge",
+    "venuePostalCode": "02141",
+    "venueAddress": "151 N First St"
+  }
+]

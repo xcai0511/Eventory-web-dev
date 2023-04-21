@@ -1,7 +1,7 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import * as service from "./auth-service.js";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import * as service from './auth-service';
 
-export const userSignUpThunk =  createAsyncThunk(
+export const userSignUpThunk = createAsyncThunk(
     'users/signup',
     async (user, { rejectWithValue }) => {
         try {
@@ -12,7 +12,7 @@ export const userSignUpThunk =  createAsyncThunk(
                 return rejectWithValue('Something went wrong.');
             }
             return rejectWithValue(error.response.data);
-        };
+        }
     }
 );
 
@@ -27,7 +27,7 @@ export const signInThunk = createAsyncThunk(
                 return rejectWithValue('Something went wrong.');
             }
             return rejectWithValue(error.response.data);
-        };
+        }
     }
 );
 
@@ -50,6 +50,6 @@ export const profileThunk = createAsyncThunk(
                 return rejectWithValue('Something went wrong.');
             }
             return rejectWithValue(error.response.data);
-        };
+        }
     }
 );
