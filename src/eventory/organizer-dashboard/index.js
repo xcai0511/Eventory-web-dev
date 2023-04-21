@@ -4,6 +4,8 @@ import OrganizerEventsList from "../organizer-event-card";
 import {fetchEventsByOrganizerIdThunk} from "../../services/organizerEvent-thunks";
 import {Link} from "react-router-dom";
 import "./index.css"
+import OrganizerProfileDetails from "./organizer-profile-details";
+import Footer from "../footer";
 
 const OrganizerDashboard = () => {
 
@@ -21,7 +23,16 @@ const OrganizerDashboard = () => {
     }, [dispatch, organizerId]);
 
     return (
-        <div className="container mt-4">
+        <>
+            <div className="container mt-4">
+
+                <h4 className="mb-4">Welcome, {currentUser.name}</h4>
+                <h5>Your Profile Information:</h5>
+
+                <OrganizerProfileDetails />
+
+                <hr/>
+
                 <div className="row mb-3">
                     <div className="col text-end">
                         <Link to="/create-event" className="btn btn-primary d-none d-md-inline-block me-4 mt-3 mb-3">
@@ -33,9 +44,12 @@ const OrganizerDashboard = () => {
                         </Link>
                     </div>
                     {organizerId && <OrganizerEventsList organizerId={organizerId}/>}
-
                 </div>
-        </div>
+
+            </div>
+            <Footer />
+        </>
+
     );
 };
 
