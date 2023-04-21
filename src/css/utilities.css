@@ -73,6 +73,10 @@
     font-size: 14px;
 }
 
+.icon-15px {
+    font-size: 15px;
+}
+
 .icon-20px {
     font-size: 20px;
 }
@@ -81,7 +85,7 @@
     background-color: #333;
 }
 
-.favorites-card {
+.profile-card {
     background-color: var(--beige-primary);
-    height: 200px;
+    height: 180px;
 }

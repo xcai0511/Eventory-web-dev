@@ -2,18 +2,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { eventIdThunk } from '../../../services/eventory-thunks';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { icon, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const EventCardComponent = ({ event }) => {
-    const eventTime = new Date(event?.time);
-    const estD = new Date(
-        eventTime.toLocaleString('en-US', { timeZone: 'America/New_York' })
-    );
-    const estTime = estD.toLocaleString('en-US', {
-        timeZone: 'America/New_York',
-        minuteS: '2-digit',
-        secondS: '2-digit',
-    });
-
     const eventDate = new Date(event?.date);
     const estDate = eventDate.toLocaleDateString('en-US', {
         weekday: 'short',
@@ -42,22 +34,33 @@ const EventCardComponent = ({ event }) => {
     };
 
     return (
-        <div className="card mb-2 favorites-card" onClick={cardOnclickHandler}>
+        <div className="card mb-2 profile-card" onClick={cardOnclickHandler}>
             <div className="row">
                 <div className="col-3 mt-2">
                     <img className="card-img wd-poster" src={posterUrl} alt="poster" />
                 </div>
                 <div className="col-9 mt-1 mb-0">
                     <div>
-                        <div className="float-end"></div>
-                        <small className="wd-exclusive">Exclusive Event</small>
-                        <div className="fw-bold">
-                            {estDate} {estTime}
-                        </div>
-                        <div className="fw-bold card-title mb-1">{event?.name}</div>
-                        <i className="d-inline bi bi-geo-alt-fill me-1"></i>
-                        <div className="d-inline text-muted fw-bold">
-                            {event?.address} {event?.postalCode}
+                        <h4 className="mt-2 fw-bold card-title mb-1">{event?.name}</h4>
+                        <div className="mt-3">
+                            <div className="mb-1">
+                                <FontAwesomeIcon
+                                    icon={icon({ name: 'calendar-days', style: 'solid' })}
+                                    className="icon-15px"
+                                />
+                                <span className="fw-bold ms-1">Date</span>
+                                <span className="ms-1">{estDate}</span>
+                            </div>
+                            <div className="mb-1">
+                                <FontAwesomeIcon
+                                    icon={icon({ name: 'location-dot', style: 'solid' })}
+                                    className="icon-15px"
+                                />
+                                <span className="fw-bold ms-1">Location</span>
+                                <span className="ms-1">
+                                    {event?.address} {event?.postalCode}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
