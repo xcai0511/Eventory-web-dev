@@ -16,6 +16,7 @@ import ViewAttendeesList from "./organizer-view-attendees";
 import Profile from './profile';
 import SearchResult from "../search-events";
 import OrganizerSignup from "./signup/organizer-signup";
+import Footer from "./footer";
 
 // import Nav from "../nav";
 // import {Provider, useSelector} from "react-redux";

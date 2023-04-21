@@ -10,11 +10,11 @@ const AnonymousEventCard = () => {
     useEffect(() => {
         dispatch(searchThunk())
     }, []);
-    const resultArray = result.slice(0, 8);
+    const resultArray = result.slice(0, 4);
     console.log(resultArray);
     return (
         <>
-            <h3 className="fw-bold ms-2 mt-4 mb-4">Suggested Events</h3>
+            <h3 className="fw-bold ms-2 mt-4 mb-3">Suggested Events</h3>
             <div>
                 <CardGroup className="mt-2">
                     {
@@ -23,7 +23,7 @@ const AnonymousEventCard = () => {
                             <EventCardItem
                                 key={result._id}
                                 result={result}
-                                colClass="col-12 col-sm-6 col-md-6 col-lg-6 col-xxl-3"/>)
+                                colClass="col-12 col-sm-6 col-md-6 col-lg-3 col-xxl-3"/>)
                     }
                 </CardGroup>
             </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import './index.css'
 import {GoogleMap, useLoadScript} from "@react-google-maps/api";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Footer from "../footer";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -25,7 +26,7 @@ export default function AboutComponent() {
 
     return (
         <>
-            <div className="container">
+            <div className="container mb-4">
                 <div className="row mt-4">
                     <h2>About Eventory</h2>
                 </div>
@@ -109,9 +110,8 @@ export default function AboutComponent() {
                         </div>
                     </div>
                 </div>
-
-
             </div>
+            <Footer />
         </>
     );
 }
