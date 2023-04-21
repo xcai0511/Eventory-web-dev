@@ -1,32 +1,43 @@
 import {useLocation} from "react-router";
-import {useSelector} from "react-redux";
-import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {fetchEventByEventIdThunk} from "../../services/organizerEvent-thunks";
 
 const ViewAttendeesList = () => {
     let eventData = useSelector(state => state.organizersEvent.event);
     let eventStatus = useSelector(state => state.organizersEvent.status);
     let eventError = useSelector(state => state.organizersEvent.error);
-    console.log("ViewAttendeesList: " + JSON.stringify(eventData));
-    const interestedUsers = eventData.interestedUsers;
+
+    const dispatch = useDispatch();
+    const {pathname} = useLocation();
+
+    useEffect(() => {
+        const paths = pathname.split('/');
+        const eventId = (paths[2]) ? paths[2] : '';
+        dispatch(fetchEventByEventIdThunk(eventId))
+    }, [])
+
+    const interestedUsers = eventData?.interestedUsers ?? [];
     const numAttendees = interestedUsers.length;
-    console.log("interestedUsers");
-    console.log(interestedUsers);
+
     return (
-        <div>
-            <h1>View Attendees</h1>
-            <p>{numAttendees} attendee{numAttendees !== 1 ? 's' : ''}</p>
-            {interestedUsers && interestedUsers.length > 0 ? (
-                <ul className="list-group">
-                    {interestedUsers.map((user) => (
-                        <li key={user._id} className="list-group-item">
-                            <i className="bi bi-person me-3"></i>
-                            {user.firstName} {user.lastName}
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p>No attendees found.</p>
-            )}
+        <div className="container mt-4">
+            <div>
+                <h1>View Attendees</h1>
+                <p>{numAttendees} attendee{numAttendees !== 1 ? 's' : ''}</p>
+                {interestedUsers && interestedUsers.length > 0 ? (
+                    <ul className="list-group">
+                        {interestedUsers.map((user) => (
+                            <li key={user._id} className="list-group-item">
+                                <i className="bi bi-person me-3"></i>
+                                {user.firstName} {user.lastName}
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No attendees found.</p>
+                )}
+            </div>
         </div>
     );
 };

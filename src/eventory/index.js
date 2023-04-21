@@ -19,25 +19,8 @@ import eventoryEventReducer from "../reducers/eventory-event-reducer";
 import authReducer from "../reducers/auth-reducer";
 import usersReducer from "../reducers/users-reducer";
 import SearchResult from "../search-events";
-
-// import Nav from "../nav";
-// import {Provider, useSelector} from "react-redux";
-// import {configureStore} from "@reduxjs/toolkit";
-// import Signup from './signup';
-// import Signin from './signin/';
-// import Search from './search';
-// import Profile from './profile';
-// import ticketmasterEventReducer from "../reducers/ticketmaster-event-reducer";
-// import eventoryEventReducer from "../reducers/eventory-event-reducer";
-// import {Route, Routes} from "react-router-dom";
-// import Home from "./home";
-// import authReducer from "../reducers/auth-reducer";
-// import usersReducer from "../reducers/users-reducer";
-// import SearchResult from "../search-events";
-// import React, {useEffect, useState} from "react";
-
-// const store = configureStore(
-//     {reducer: {result: ticketmasterEventReducer, event: eventoryEventReducer, user: usersReducer, auth: authReducer}});
+import AdminManageUsersPage from "./admin-manage-users";
+import AdminManageOrganizersPage from "./admin-manage-organizers";
 
 function Eventory() {
 
@@ -85,6 +68,8 @@ function Eventory() {
                 <Route path="signup" element={<Signup />} />
                 <Route path="profile/*" element={<Profile />} />
                 <Route path="results/*" element={<SearchResult/>}/>
+                <Route path="manage-users" element={<AdminManageUsersPage/>}/>
+                <Route path="manage-organizers" element={<AdminManageOrganizersPage/>}/>
             </Routes>
         </div>
         // <Provider store={store}>
