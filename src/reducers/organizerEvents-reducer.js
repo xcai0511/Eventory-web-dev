@@ -7,7 +7,7 @@ import {
 const initialState = {
     status: 'idle',
     events: null,
-    error: null // string? json object?
+    error: null
 };
 
 const eventsSlice = createSlice({
@@ -40,15 +40,15 @@ const eventsSlice = createSlice({
             })
             .addCase(deleteEventByEventIdThunk.fulfilled, (state, action) => {
                 console.log("deleteEventByEventIdThunk.fulfilled")
-                state.status = 'pending';
+                state.status = 'fulfilled';
                 // state.events = null; // TODO
                 state.error = null;
             })
             .addCase(deleteEventByEventIdThunk.rejected, (state, action) => {
                 console.log("deleteEventByEventIdThunk.rejected");
-                state.status = 'pending';
+                state.status = 'rejected';
                 // state.events = null;
-                state.error = null;
+                state.error = action.payload;
             })
     }});
 

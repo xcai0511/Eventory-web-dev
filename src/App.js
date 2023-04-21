@@ -11,6 +11,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import ticketmasterEventReducer from "./reducers/ticketmaster-event-reducer";
 import eventoryEventReducer from "./reducers/eventory-event-reducer";
 import organizersReducer from "./reducers/organizers-reducer";
+import usersManagementReducer from "./reducers/usersManagement-reducer";
+import organizersManagementReducer from "./reducers/organizersManagement-reducer";
+
 
 
 const store = configureStore({
@@ -22,6 +25,8 @@ const store = configureStore({
         result: ticketmasterEventReducer,
         usersEvent: eventoryEventReducer,
         organizer: organizersReducer,
+        usersManagement: usersManagementReducer,
+        organizersManagement: organizersManagementReducer,
     }
 });
 
@@ -42,20 +47,3 @@ function App() {
 }
 
 export default App;
-
-{/*import SearchResult from "./search-events";*/}
-{/*import {BrowserRouter, Route, Routes} from "react-router-dom";*/}
-{/*import Eventory from "./eventory";*/}
-{/*import {ToastContainer} from "react-toastify";*/}
-{/*import React from "react";*/}
-{/*import 'react-toastify/dist/ReactToastify.css';*/}
-
-{/*function App() {*/}
-{/*  return (*/}
-{/*      <div className="container-fluid">*/}
-{/*        <ToastContainer />*/}
-{/*        <BrowserRouter>*/}
-{/*          <Routes>*/}
-{/*            <Route path="/*"*/}
-{/*                   element={<Eventory/>}/>*/}
-{/*          </Routes>*/}

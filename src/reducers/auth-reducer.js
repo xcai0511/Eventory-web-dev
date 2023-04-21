@@ -23,6 +23,7 @@ const authSlice = createSlice({
                 state.userStatus = 'fulfilled';
                 state.message = null;
                 state.currentUser = action.payload.data;
+                localStorage.setItem('currentUser', JSON.stringify(action.payload.data))
             })
             .addCase(signInThunk.rejected, (state, action) => {
                 state.userStatus = 'rejected';
@@ -43,5 +44,5 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
-// export const { setCurrentUser } = authSlice.actions;
+
 
