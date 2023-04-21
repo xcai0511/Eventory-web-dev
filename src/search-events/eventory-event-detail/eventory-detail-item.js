@@ -4,6 +4,8 @@ import "../ticketmaster-event-detail/detail.css";
 import {likeEventoryThunk} from "../../services/users-thunk";
 import {useDispatch} from "react-redux";
 import UserItem from "./user-item";
+import {profileThunk} from "../../services/auth-thunks";
+import {eventIdThunk} from "../../services/eventory-thunks";
 
 const EventoryDetailItem = ({detail}) => {
     // interested button
@@ -13,7 +15,7 @@ const EventoryDetailItem = ({detail}) => {
     const liked = likeEvents.includes(detail._id);
     useEffect(() => {
         setInterested(liked);
-    })
+    }, [])
 
     const eventTime = new Date(detail.time);
     const estD = new Date(eventTime.toLocaleString('en-US', { timeZone: 'America/New_York' }));
@@ -22,7 +24,7 @@ const EventoryDetailItem = ({detail}) => {
     const eventDate = new Date(detail.date);
     const estDate = eventDate.toLocaleDateString("en-US", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
 
-    const intUser = detail.interestedUsers;
+    // let intUser = detail.interestedUsers;
 
     const dispatch = useDispatch();
     const likeButtonOnclickHandler = async (e) => {
@@ -122,12 +124,12 @@ const EventoryDetailItem = ({detail}) => {
                     <div>{detail.description}</div>
 
                     {
-                        intUser ? (
+                        detail.interestedUsers ? (
                             <div className="mt-3">
-                                <h4 className="fw-bold list-group-item wd-user-list">Liked Users</h4>
-                                <ul className="list-group">
+                                <h4 className="fw-bold list-group-item">Liked Users</h4>
+                                <ul className="list-group wd-liked-user-list">
                                     <li className="list-group-item">
-                                        {intUser.map(user => {
+                                        {detail.interestedUsers.map(user => {
                                             return <UserItem
                                                 key={user._id}
                                                 user={user}/>

@@ -19,6 +19,7 @@ import eventoryEventReducer from "../reducers/eventory-event-reducer";
 import authReducer from "../reducers/auth-reducer";
 import usersReducer from "../reducers/users-reducer";
 import SearchResult from "../search-events";
+import PublicProfilePages from "./public-profile-pages";
 
 // import Nav from "../nav";
 // import {Provider, useSelector} from "react-redux";
@@ -85,6 +86,7 @@ function Eventory() {
                 <Route path="signup" element={<Signup />} />
                 <Route path="profile/*" element={<Profile />} />
                 <Route path="results/*" element={<SearchResult/>}/>
+                <Route path="public-profile/*" element={<PublicProfilePages/>}/>
             </Routes>
         </div>
         // <Provider store={store}>

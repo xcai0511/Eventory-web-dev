@@ -9,6 +9,7 @@ const AnonymousEventCard = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(searchThunk())
+        console.log("searching all events");
     }, []);
     const resultArray = result.slice(0, 8);
     console.log(resultArray);
