@@ -7,14 +7,16 @@ import { profileThunk } from '../../../services/auth-thunks';
 
 const PublicProfileComponent = () => {
     const [isEditingProfile, setIsEditingProfile] = useState(false);
-    const currentUser = useSelector((state) => state.auth.currentUser);
-    // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // const currentUser = useSelector((state) => state.auth.currentUser);
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const dispatch = useDispatch();
 
     // keep track of Profile Thunk
     useEffect(() => {
         dispatch(profileThunk());
     }, [currentUser, dispatch]);
+
+    console.log('current user in the profile content:' + JSON.stringify(currentUser));
 
     return (
         <div>
