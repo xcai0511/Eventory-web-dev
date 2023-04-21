@@ -17,6 +17,7 @@ import Profile from './profile';
 import SearchResult from "../search-events";
 import OrganizerSignup from "./signup/organizer-signup";
 import Footer from "./footer";
+import FAQComponent from "./faq";
 
 // import Nav from "../nav";
 // import {Provider, useSelector} from "react-redux";
@@ -77,7 +78,7 @@ function Eventory() {
                 <Route path="create-event" element={<CreateEventForm />} />
                 <Route path="edit-event/:eventId" element={<EditEventForm />} />
                 <Route path="about" element={<AboutComponent />} />
-                {/*<Route path="faq" element={<FAQComponent />} />*/}
+                <Route path="faq" element={<FAQComponent />} />
                 <Route path="view-attendees/*" element={<ViewAttendeesList />}/>
                 <Route path="signin" element={<Signin />} />
                 <Route path="signup" element={<Signup />} />
