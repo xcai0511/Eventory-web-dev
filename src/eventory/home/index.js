@@ -1,10 +1,8 @@
 import HeaderSearchBar from "../../search-events/header-search-bar";
 import AnonymousEventCard from "../../search-events/anonymous-event-card";
 import React from "react";
-import {useSelector} from "react-redux";
-import Nav from "../../nav";
 
-function Home() {
+function HomeComponent() {
     return (
         <>
             {/*<Nav/>*/}
@@ -14,4 +12,4 @@ function Home() {
 
     );
 }
-export default Home;
+export default HomeComponent;

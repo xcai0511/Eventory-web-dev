@@ -15,7 +15,7 @@ const EventoryEventDetail = () => {
         dispatch(eventIdThunk({eventId}))
     }, []);
 
-    let {detail, result, loading} = useSelector((state) => state.event);
+    let {detail, result, loading} = useSelector((state) => state.usersEvent);
     console.log(detail);
     let detailArray = [];
     detailArray[0] = detail;

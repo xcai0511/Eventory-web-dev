@@ -8,7 +8,8 @@ import "./index.css"
 const OrganizerDashboard = () => {
 
     const dispatch = useDispatch();
-    const currentUser = useSelector((state) => state.auth.currentUser);
+    //const currentUser = useSelector((state) => state.auth.currentUser);
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'))
 
     let organizerId = '';
     if (currentUser) {

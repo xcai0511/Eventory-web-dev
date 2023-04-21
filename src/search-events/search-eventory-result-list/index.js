@@ -6,7 +6,7 @@ import {eventFilterThunk} from "../../services/eventory-thunks";
 
 const EventoryResultList = () => {
 
-    let {result, detail, loading} = useSelector(state => state.event)
+    let {result, detail, loading} = useSelector(state => state.usersEvent)
     console.log(result);
     console.log(detail);
     const dispatch = useDispatch();

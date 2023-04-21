@@ -11,7 +11,7 @@ const initialState = {
 };
 
 const eventSlice = createSlice({
-    name: 'event',
+    name: 'organizersEvent',
     initialState,
     reducers: {},
 

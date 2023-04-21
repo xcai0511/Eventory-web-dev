@@ -3,9 +3,9 @@ import {useSelector} from "react-redux";
 import {useState} from "react";
 
 const ViewAttendeesList = () => {
-    let eventData = useSelector(state => state.event.event);
-    let eventStatus = useSelector(state => state.event.status);
-    let eventError = useSelector(state => state.event.error);
+    let eventData = useSelector(state => state.organizersEvent.event);
+    let eventStatus = useSelector(state => state.organizersEvent.status);
+    let eventError = useSelector(state => state.organizersEvent.error);
     console.log("ViewAttendeesList: " + JSON.stringify(eventData));
     const interestedUsers = eventData.interestedUsers;
     const numAttendees = interestedUsers.length;

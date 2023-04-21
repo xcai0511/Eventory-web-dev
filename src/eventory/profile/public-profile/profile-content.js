@@ -12,7 +12,7 @@ function ProfileContentComponent({ setIsEditingProfile, currentUser }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     // get only the current year, month and day
-    const dateOfBirth = currentUser.dateOfBirth.slice(0, 10);
+    // const dateOfBirth = currentUser.dateOfBirth.slice(0, 10);
 
     const editProfileHandler = () => {
         setIsEditingProfile(true);
@@ -67,13 +67,13 @@ function ProfileContentComponent({ setIsEditingProfile, currentUser }) {
                             <span className="ms-2">unknown</span>
                         )}
                     </div>
-                    <div>
-                        <FontAwesomeIcon
-                            icon={icon({ name: 'cake-candles', style: 'solid' })}
-                        />
-                        <span className="ms-2 fw-bold">Birthday: </span>
-                        <span className="ms-2"> Born {dateOfBirth}</span>
-                    </div>
+                    {/*<div>*/}
+                    {/*    <FontAwesomeIcon*/}
+                    {/*        icon={icon({ name: 'cake-candles', style: 'solid' })}*/}
+                    {/*    />*/}
+                    {/*    <span className="ms-2 fw-bold">Birthday: </span>*/}
+                    {/*    <span className="ms-2"> Born {dateOfBirth}</span>*/}
+                    {/*</div>*/}
                     <div>
                         <FontAwesomeIcon
                             icon={icon({

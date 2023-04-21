@@ -12,7 +12,7 @@ import EventoryEventDetail from "./eventory-event-detail";
 import usersReducer from "../reducers/users-reducer";
 
 const store = configureStore(
-    {reducer: {result: ticketmasterEventReducer, event: eventoryEventReducer, user: usersReducer}});
+    {reducer: {result: ticketmasterEventReducer, usersEvent: eventoryEventReducer, user: usersReducer}});
 function SearchResult() {
     return (
         <Provider store={store}>

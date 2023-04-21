@@ -1,13 +1,23 @@
-import {NavLink} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {Link, NavLink} from "react-router-dom";
 import React from "react";
 import "./eventory/index.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import {logOutThunk} from "./services/auth-thunks";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router";
 
 function Nav() {
 
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const logOutHandler = () => {
+        localStorage.removeItem('currentUser');
+        dispatch(logOutThunk());
+        navigate('/home');
+        window.location.reload();
+    };
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -67,9 +77,9 @@ function Nav() {
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="logout" className="dropdown-item">
+                                    <Link onClick={logOutHandler} className="dropdown-item">
                                         Logout
-                                    </NavLink>
+                                    </Link>
                                 </li>
                             </ul>
                         </div>

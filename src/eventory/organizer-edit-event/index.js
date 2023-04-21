@@ -5,9 +5,9 @@ import {useLocation} from "react-router";
 import {updateEventByEventIdThunk,} from "../../services/organizerEvent-thunks";
 
 const EditEventForm = () => {
-    let eventData = useSelector(state => state.event.event);
-    let eventStatus = useSelector(state => state.event.status);
-    let eventError = useSelector(state => state.event.error);
+    let eventData = useSelector(state => state.organizersEvent.event);
+    let eventStatus = useSelector(state => state.organizersEvent.status);
+    let eventError = useSelector(state => state.organizersEvent.error);
     console.log("edit-event " + JSON.stringify(eventData));
     let [event, setEvent] = useState(eventData);
 

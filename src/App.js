@@ -16,10 +16,10 @@ const store = configureStore({
     reducer: {
         user: userReducer,
         auth: authReducer,
-        event: eventReducer,
-        events: eventsReducer,
+        organizersEvent: eventReducer,
+        organizersEvents: eventsReducer,
         result: ticketmasterEventReducer,
-        // event: eventoryEventReducer, TODO: Conflicting name
+        usersEvent: eventoryEventReducer
     }
 });
 

@@ -9,8 +9,8 @@ import {Link, useNavigate} from "react-router-dom";
 
 const OrganizerEventsList = ({ organizerId }) => {
     const dispatch = useDispatch();
-    const events = useSelector((state) => state.events.events);
-    const status = useSelector((state) => state.events.status);
+    const events = useSelector((state) => state.organizersEvents.events);
+    const status = useSelector((state) => state.organizersEvents.status);
     console.log("OrganizerEventsList");
     console.log(events);
     console.log(status);

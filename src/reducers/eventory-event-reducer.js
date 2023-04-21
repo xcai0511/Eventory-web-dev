@@ -8,7 +8,7 @@ const initialState = {
 }
 
 const eventoryEventSlice = createSlice({
-    name: "event",
+    name: "usersEvent",
     initialState,
     extraReducers: {
         [eventThunk.pending]:

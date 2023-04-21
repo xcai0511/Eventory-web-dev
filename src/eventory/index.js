@@ -42,7 +42,8 @@ import SearchResult from "../search-events";
 function Eventory() {
 
     const dispatch = useDispatch();
-    const currentUser = useSelector((state) => state.auth.currentUser);
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // const currentUser = useSelector((state) => state.auth.currentUser);
 
     useEffect(() => {
         try{
