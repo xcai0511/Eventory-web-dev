@@ -18,12 +18,6 @@ const EventoryResultItem = ({event}) => {
     const eventDate = new Date(event.date);
     const estDate = eventDate.toLocaleDateString("en-US", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
 
-    // poster edge case
-    let posterUrl = "event1.jpg";
-    if (event.image) {
-        posterUrl = event.image
-    }
-
     // interested count
     let intCount = 0;
     if (event.interestedUsers) {
@@ -68,8 +62,8 @@ const EventoryResultItem = ({event}) => {
     return (
         <div className="card mb-2" onClick={cardOnclickHandler}>
             <div className="row">
-                <div className="col-3 mt-2">
-                    <img className="card-img wd-poster" src={posterUrl} alt="poster"/>
+                <div className="col-3 mt-0">
+                    <img className="card-img wd-poster" src="/images/eventory-exclusive-img.png" alt="poster"/>
                 </div>
                 <div className="col-9 mt-1 mb-0">
                     <div>
@@ -95,7 +89,7 @@ const EventoryResultItem = ({event}) => {
                         </div>
                         <small className="wd-exclusive">Exclusive Event</small>
                         <div className="fw-bold">
-                            {estDate} {estTime}
+                            {estDate} {estTime} EST
 
                         </div>
                         <div className="fw-bold card-title mb-1">
@@ -103,7 +97,7 @@ const EventoryResultItem = ({event}) => {
                         </div>
                         <i className="d-inline bi bi-geo-alt-fill me-1"></i>
                         <div className="d-inline text-muted fw-bold">
-                            {event.address} {event.postalCode}
+                            {event.address}
                         </div>
                         <div className="text-muted">
                             {intCount} interested

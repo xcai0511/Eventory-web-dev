@@ -4,7 +4,6 @@ import "./header.css"
 import InputGroup from 'react-bootstrap/InputGroup';
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {searchFilterThunk} from "../../services/ticketmaster-thunks";
 
 const HeaderSearchBar = () => {
 
@@ -32,7 +31,7 @@ const HeaderSearchBar = () => {
 
 
     return(
-        <div className="wd-header wd-header-margin">
+        <div className="wd-header">
             <div className="wd-searchbar container d-none d-md-block">
                 <h2 className="ms-3">Search Your Events</h2>
                 <div className="row ms-1 me-1">

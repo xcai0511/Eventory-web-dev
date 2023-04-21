@@ -4,3 +4,8 @@
 .wd-exclusive {
     color: #c48204;
 }
+
+.wd-poster {
+    height: 100%;
+    object-fit: cover;
+}

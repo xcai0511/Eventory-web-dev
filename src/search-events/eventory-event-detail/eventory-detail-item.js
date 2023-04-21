@@ -39,8 +39,8 @@ const EventoryDetailItem = ({detail}) => {
 
         <div className="wd-detail-page mt-3">
             <div className="wd-poster-container">
-                <img className="wd-poster-frame" src={detail.image}/>
-                <img className="wd-poster-img" src={detail.image}/>
+                <img className="wd-poster-frame" src="/images/eventory-exclusive-img.png"/>
+                <img className="wd-poster-img" src="/images/eventory-exclusive-img.png"/>
             </div>
             <div className="mt-3 mb-2">
                 <div className="float-end">

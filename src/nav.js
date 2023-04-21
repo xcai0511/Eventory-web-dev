@@ -19,6 +19,41 @@ function Nav() {
         window.location.reload();
     };
 
+    let navBarDisplayName = "";
+    if (currentUser) {
+        switch (currentUser.role) {
+            case "user":
+                navBarDisplayName = `${currentUser.firstName} ${currentUser.lastName}`;
+                break;
+            case "organizer":
+                navBarDisplayName = `${currentUser.name}`;
+                break;
+            case "admin":
+                navBarDisplayName = `${currentUser.firstName} ${currentUser.lastName}`;
+                break;
+            default:
+                navBarDisplayName = `${currentUser.firstName} ${currentUser.lastName}`;
+        }
+    }
+
+    let navBarDisplayImage = "";
+    if (currentUser) {
+        switch (currentUser.role) {
+            case "user":
+                navBarDisplayImage = "/images/user-avatar-5.png";
+                break;
+            case "organizer":
+                navBarDisplayImage = "/images/organizer-avatar.png";
+                break;
+            case "admin":
+                navBarDisplayImage = "/images/admin-icon.png";
+                break;
+            default:
+                navBarDisplayImage = "/images/user-avatar-5.png";
+        }
+    }
+
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
@@ -66,16 +101,20 @@ function Nav() {
                         <div className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle d-flex align-items-center" id="userDropdown"
                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="/images/organizer-avatar.png" alt="User Profile Image"
+                                <img src={navBarDisplayImage} alt="User Profile Image"
                                      className="eventory-avatar me-2" width="40"></img>
-                                <span className="d-none d-md-inline-block">Jaime Si</span>
+                                <span className="d-none d-md-inline-block">
+                                    {navBarDisplayName}
+                                </span>
                             </a>
                             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li>
-                                    <NavLink to="profile" className="dropdown-item">
-                                        My Account
-                                    </NavLink>
-                                </li>
+                                {currentUser.role === 'user' && (
+                                    <li>
+                                        <NavLink to="profile" className="dropdown-item">
+                                            My Account
+                                        </NavLink>
+                                    </li>
+                                )}
                                 <li>
                                     <Link onClick={logOutHandler} className="dropdown-item">
                                         Logout

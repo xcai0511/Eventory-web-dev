@@ -1,11 +1,10 @@
 import React from "react";
 import "./event-card.css";
-import Card from 'react-bootstrap/Card'
 import {useNavigate} from "react-router-dom";
 import {searchEventDetailThunk} from "../../services/ticketmaster-thunks";
 import {useDispatch} from "react-redux";
 
-const EventCardItem = ({result}) => {
+const EventCardItem = ({result, colClass}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const cardOnclickHandler = () => {
@@ -16,14 +15,12 @@ const EventCardItem = ({result}) => {
         dispatch(searchEventDetailThunk(result.id));
     };
     return (
-        <Card className="ms-2 me-2" onClick={cardOnclickHandler}>
-            <Card.Img variant="top" src={result.image} className="wd-eventcard-img"/>
-            <Card.Body>
-                <Card.Title>
-                    {result.name}
-                </Card.Title>
-            </Card.Body>
-        </Card>
+        <div className={`${colClass} p-2`}>
+            <div className="card" onClick={cardOnclickHandler}>
+                <img className="card-img-top wd-eventcard-img" src={result.image}></img>
+                <div className="card-title-overlay">{result.name}</div>
+            </div>
+        </div>
     );
 };
 export default EventCardItem;

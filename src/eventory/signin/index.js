@@ -3,14 +3,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {signInThunk} from "../../services/auth-thunks";
 import "../index.css";
 import "./index.css";
-import '../../projectIndex.css';
 import {useNavigate} from "react-router";
 
 // import { useEffect, useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { signInThunk } from '../../services/auth-thunks';
 // import './index.css';
-// import '../../projectIndex.css';
 // import { useNavigate } from 'react-router';
 
 function Signin() {

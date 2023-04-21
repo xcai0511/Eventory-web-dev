@@ -1,16 +1,12 @@
 .wd-header {
-    height: 700px;
-    position: relative;
+    height: 500px;
+    /*position: relative;*/
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 100px;
+    width: 100%;
     background: url("event1.jpg");
     background-size:cover;
-}
-.wd-header-margin {
-    margin-left: -150px;
-    margin-right: -150px;
 }
 
 .wd-searchbar {

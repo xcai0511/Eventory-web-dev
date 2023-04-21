@@ -6,6 +6,7 @@ import {
     fetchEventsByOrganizerIdThunk
 } from '../../services/organizerEvent-thunks';
 import {Link, useNavigate} from "react-router-dom";
+import "../index.css";
 
 const OrganizerEventsList = ({ organizerId }) => {
     const dispatch = useDispatch();
@@ -61,10 +62,10 @@ const OrganizerEventsList = ({ organizerId }) => {
         <div className="row">
             {events.map((event) => (
                 <div key={event._id} className="col-12 col-md-12 col-lg-6 col-xxl-4 p-2">
-                    <div className="card m-1">
+                    <div className="m-1 card">
                         <img className="card-img-top events-card-image" src="/images/eventory-exclusive-img.png" alt="Card image cap" />
                         <div className="card-body">
-                            <h5 className="card-title">
+                            <h5 className="card-title fw-bold">
                                 {event.name.length > 35
                                     ? `${event.name.substring(0, 35)}...`
                                     : event.name}
@@ -78,10 +79,10 @@ const OrganizerEventsList = ({ organizerId }) => {
                             </p>
                             <div className="d-flex justify-content-between align-items-center">
                                 <button className="btn btn-primary" onClick={() => handleEditEvent(event._id)}>Edit Event</button>
-                                <a href="#" className="btn btn-link text-decoration-none"
-                                    onClick={() => handleViewAttendees(event._id, event.interestedUsers)}>View Attendees</a>
-                                <a href="#" className="text-danger text-decoration-none"
-                                    onClick={() => handleDeleteEvent(event._id)}>Delete Event</a>
+                                <span className="text-primary text-decoration-none" style={{cursor: 'pointer'}}
+                                    onClick={() => handleViewAttendees(event._id, event.interestedUsers)}>View Attendees</span>
+                                <span className="text-danger text-decoration-none" style={{cursor: 'pointer'}}
+                                    onClick={() => handleDeleteEvent(event._id)}>Delete Event</span>
                             </div>
                         </div>
                     </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {userSignUpThunk} from "../../services/auth-thunks";
 import "./index.css";
-import "../../projectIndex.css";
+import "../index.css";
 
 function Signup() {
     let [usernameInput, setUsernameInput] = useState('');
@@ -57,7 +57,7 @@ function Signup() {
                                        onChange={(event) => setUsernameInput(event.target.value)} required/>
                             </div>
                             <div className="login-signup-input-field">
-                                <input type="date" className="login-signup-input" id="signup-user-dob"
+                                <input type="date" className="dob-input" id="signup-user-dob"
                                        placeholder="Date of Birth" value={dobInput}
                                        onChange={(event) => setDobInput(event.target.value)} required/>
                             </div>
