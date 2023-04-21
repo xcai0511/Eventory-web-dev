@@ -73,10 +73,19 @@
     font-size: 14px;
 }
 
+.icon-15px {
+    font-size: 15px;
+}
+
 .icon-20px {
     font-size: 20px;
 }
 
 .toastify-container .toastify__toast {
     background-color: #333;
+}
+
+.profile-card {
+    background-color: var(--beige-primary);
+    height: 180px;
 }

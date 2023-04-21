@@ -29,17 +29,6 @@ function EditProfileComponent({ setIsEditingProfile, currentUser }) {
     const locationChangeHandler = (event) => {
         setLocation(event.target.value);
     };
-    //
-    // const saveHandler = (event) => {
-    //     event.preventDefault();
-    //     const formData = { firstName, lastName, bio, location };
-    //     dispatch(
-    //         updateUserProfileThunk({ userId: currentUser._id, updatedUser: formData })
-    //     ).then(() => {
-    //         setIsEditingProfile(false); // close the edit profile form
-    //         profileThunk();
-    //     });
-    // };
 
     const saveHandler = (event) => {
         event.preventDefault();
@@ -48,15 +37,16 @@ function EditProfileComponent({ setIsEditingProfile, currentUser }) {
             updateUserProfileThunk({ userId: currentUser._id, updatedUser: formData })
         ).then(() => {
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            console.log("old user");
+            console.log('old user');
             console.log(currentUser);
             currentUser.firstName = firstName;
             currentUser.lastName = lastName;
             currentUser.bio = bio;
             currentUser.location = location;
-            console.log("new user");
+            console.log('new user');
             console.log(currentUser);
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
             setIsEditingProfile(false); // close the edit profile form
             profileThunk();
         });

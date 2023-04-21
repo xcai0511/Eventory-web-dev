@@ -16,6 +16,8 @@ const PublicProfileComponent = () => {
         dispatch(profileThunk());
     }, [currentUser, dispatch]);
 
+    console.log('current user in the profile content:' + JSON.stringify(currentUser));
+
     return (
         <div>
             {isEditingProfile ? (

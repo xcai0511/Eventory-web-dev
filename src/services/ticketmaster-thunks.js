@@ -1,18 +1,14 @@
-import {createAsyncThunk}
-    from "@reduxjs/toolkit"
-import * as service
-    from "./ticketmaster-service"
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import * as service from './ticketmaster-service';
 
-export const searchThunk = createAsyncThunk(
-    'ticketmaster/search/results', async () => {
-        const findResult = await service.findEventsInMa();
-        return findResult;
-    }
-
-)
+export const searchThunk = createAsyncThunk('ticketmaster/search/results', async () => {
+    const findResult = await service.findEventsInMa();
+    return findResult;
+});
 
 export const searchFilterThunk = createAsyncThunk(
-    'ticketmaster/search/searchFilter', async ({location, keyword}, { rejectWithValue }) => {
+    'ticketmaster/search/searchFilter',
+    async ({ location, keyword }, { rejectWithValue }) => {
         try {
             const findResult = await service.findEventsByFilter(location, keyword);
             return findResult;
@@ -23,11 +19,11 @@ export const searchFilterThunk = createAsyncThunk(
             return rejectWithValue(e.response.data);
         }
     }
-
-)
+);
 
 export const searchEventDetailThunk = createAsyncThunk(
-    'search/results/detail', async ({e_id},{ rejectWithValue }) => {
+    'search/results/detail',
+    async ({ e_id }, { rejectWithValue }) => {
         try {
             const result = await service.getTicketmasterEventDetails(e_id);
             return result;
@@ -38,5 +34,4 @@ export const searchEventDetailThunk = createAsyncThunk(
             return rejectWithValue(e.response.data);
         }
     }
-
-)
+);
