@@ -4,6 +4,7 @@ import { useLocation } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
+import {isCurrentUser} from "../../../utils/utils";
 
 const NavSidebar = () => {
     const { pathname } = useLocation();
@@ -11,8 +12,12 @@ const NavSidebar = () => {
     // const active = paths[2];
     const active = paths[2] ? paths[2] : 'profile';
 
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    //const currentUser = useSelector((state) => state.auth.currentUser); // add this line to get the currentUser from Redux store
+    // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+
+    const currentUser = useSelector((state) => state.auth.currentUser); // add this line to get the currentUser from Redux store
+    // Check if there is a current user
+    isCurrentUser(currentUser);
     return (
         <div className="profile-sidebar list-group">
             <div className="h4 mb-4 fw-bold">Welcome {currentUser.firstName}</div>

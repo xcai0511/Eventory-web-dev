@@ -12,9 +12,9 @@ function Nav() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const logOutHandler = () => {
+    const logOutHandler = async () => {
         localStorage.removeItem('currentUser');
-        dispatch(logOutThunk());
+        await dispatch(logOutThunk());
         navigate('/home');
         window.location.reload();
     };
@@ -32,7 +32,7 @@ function Nav() {
                 navBarDisplayName = `${currentUser.firstName} ${currentUser.lastName}`;
                 break;
             default:
-                navBarDisplayName = `${currentUser.firstName} ${currentUser.lastName}`;
+                navBarDisplayName = '';
         }
     }
 
