@@ -10,6 +10,7 @@ import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import ticketmasterEventReducer from "./reducers/ticketmaster-event-reducer";
 import eventoryEventReducer from "./reducers/eventory-event-reducer";
+import anonymousReducer from "./reducers/anonymous-reducer";
 
 
 const store = configureStore({
@@ -19,7 +20,8 @@ const store = configureStore({
         organizersEvent: eventReducer,
         organizersEvents: eventsReducer,
         result: ticketmasterEventReducer,
-        usersEvent: eventoryEventReducer
+        usersEvent: eventoryEventReducer,
+        anonymous: anonymousReducer,
     }
 });
 
