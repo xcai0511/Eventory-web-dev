@@ -19,20 +19,18 @@ const EventoryResultItem = ({event}) => {
     const eventDate = new Date(event.date);
     const estDate = eventDate.toLocaleDateString("en-US", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
 
-    // interested count
-    // let intCount = 0;
-    // if (event.interestedUsers) {
-    //     intCount = event.interestedUsers.length;
-    // }
-
     // interested button
     const [interested, setInterested] = useState(false);
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const likeEvents = currentUser.likedEvents;
-    const liked = likeEvents.includes(event._id);
+    // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // const likeEvents = currentUser.likedEvents;
+    // useEffect(() => {
+    //     setInterested(likeEvents.includes(event._id));
+    // }, [likeEvents]);
     useEffect(() => {
-        setInterested(liked);
-    })
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const likeEvents = currentUser.likedEvents;
+        setInterested(likeEvents.includes(event._id));
+    }, [event._id]);
 
     const dispatch = useDispatch();
 
@@ -47,31 +45,55 @@ const EventoryResultItem = ({event}) => {
         // dispatch(eventIdThunk(event._id));
     };
 
+    // const likeButtonOnclickHandler = async (e) => {
+    //     e.stopPropagation();
+    //     let action;
+    //     if (interested) {
+    //         action = 'dislike'
+    //     } else {
+    //         action = 'like'
+    //     }
+    //     console.log("before dispatch " + event._id);
+    //     const { payload: { message } = {} } = await dispatch(likeEventoryThunk({eventId: event._id, action: action}));
+    //     console.log(message);
+    //     if (message === "Unauthorized.") {
+    //         alert("Please log in or sign up to like an event!");
+    //     } else {
+    //         let newLikeEvents = [];
+    //         if (likeEvents.includes(event._id)) {
+    //             newLikeEvents = likeEvents.filter(id => id !== event._id);
+    //         } else {
+    //             newLikeEvents = likeEvents.concat(event._id);
+    //         }
+    //         const newCurrentUser = { ...currentUser, likedEvents: newLikeEvents };
+    //         localStorage.setItem('currentUser', JSON.stringify(newCurrentUser));
+    //         console.log("new user after like")
+    //         console.log(newCurrentUser);
+    //         setInterested(!interested);
+    //     }
+    // };
     const likeButtonOnclickHandler = async (e) => {
         e.stopPropagation();
         let action;
         if (interested) {
-            action = 'dislike'
+            action = 'dislike';
         } else {
-            action = 'like'
+            action = 'like';
         }
-        console.log("before dispatch " + event._id);
         const { payload: { message } = {} } = await dispatch(likeEventoryThunk({eventId: event._id, action: action}));
         console.log(message);
         if (message === "Unauthorized.") {
             alert("Please log in or sign up to like an event!");
         } else {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
             let newLikeEvents = [];
-            if (likeEvents.includes(event._id)) {
-                newLikeEvents = likeEvents.filter(id => id !== event._id);
+            if (interested) {
+                newLikeEvents = currentUser.likedEvents.filter(id => id !== event._id);
             } else {
-                newLikeEvents = likeEvents.concat(event._id);
+                newLikeEvents = currentUser.likedEvents.concat(event._id);
             }
             currentUser.likedEvents = newLikeEvents;
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            console.log("new user after like")
-            currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            console.log(currentUser);
             setInterested(!interested);
         }
     };
