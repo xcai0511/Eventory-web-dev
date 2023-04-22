@@ -6,7 +6,6 @@ import "../search-ticketmaster-result-list/result.css";
 import {useNavigate} from "react-router-dom";
 import {eventIdThunk} from "../../services/eventory-thunks";
 import {likeEventoryThunk} from "../../services/users-thunk";
-import {profileThunk} from "../../services/auth-thunks";
 
 const EventoryResultItem = ({event}) => {
 
@@ -47,33 +46,6 @@ const EventoryResultItem = ({event}) => {
         // dispatch(eventIdThunk(event._id));
     };
 
-    // const likeButtonOnclickHandler = async (e) => {
-    //     e.stopPropagation();
-    //     let action;
-    //     if (interested) {
-    //         action = 'dislike'
-    //     } else {
-    //         action = 'like'
-    //     }
-    //     console.log("before dispatch " + event._id);
-    //     const { payload: { message } = {} } = await dispatch(likeEventoryThunk({eventId: event._id, action: action}));
-    //     console.log(message);
-    //     if (message === "Unauthorized.") {
-    //         alert("Please log in or sign up to like an event!");
-    //     } else {
-    //         let newLikeEvents = [];
-    //         if (likeEvents.includes(event._id)) {
-    //             newLikeEvents = likeEvents.filter(id => id !== event._id);
-    //         } else {
-    //             newLikeEvents = likeEvents.concat(event._id);
-    //         }
-    //         const newCurrentUser = { ...currentUser, likedEvents: newLikeEvents };
-    //         localStorage.setItem('currentUser', JSON.stringify(newCurrentUser));
-    //         console.log("new user after like")
-    //         console.log(newCurrentUser);
-    //         setInterested(!interested);
-    //     }
-    // };
     const likeButtonOnclickHandler = async (e) => {
         e.stopPropagation();
         let action;

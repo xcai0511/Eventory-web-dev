@@ -31,12 +31,13 @@ const ResultItem = ({result}) => {
 
     // interested button
     const [interested, setInterested] = useState(false);
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const likeEvents = currentUser.likedTicketmasterEvents;
-    const liked = likeEvents.includes(result._id);
     useEffect(() => {
-        setInterested(liked);
-    })
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser) {
+            const likeEvents = currentUser.likedTicketmasterEvents;
+            setInterested(likeEvents.includes(result._id));
+        }
+    }, [result._id]);
 
     const navigate = useNavigate();
     const cardOnclickHandler = () => {
@@ -51,26 +52,24 @@ const ResultItem = ({result}) => {
         e.stopPropagation();
         let action;
         if (interested) {
-            action = 'dislike'
+            action = 'dislike';
         } else {
-            action = 'like'
+            action = 'like';
         }
         const { payload: { message } = {} } = await dispatch(likeTicketmasterThunk({eventId: result._id, action: action}));
         console.log(message);
         if (message === "Unauthorized.") {
             alert("Please log in or sign up to like an event!");
         } else {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
             let newLikeEvents = [];
-            if (likeEvents.includes(result._id)) {
-                newLikeEvents = likeEvents.filter(id => id !== result._id);
+            if (interested) {
+                newLikeEvents = currentUser.likedTicketmasterEvents.filter(id => id !== result._id);
             } else {
-                newLikeEvents = likeEvents.concat(result._id);
+                newLikeEvents = currentUser.likedTicketmasterEvents.concat(result._id);
             }
             currentUser.likedTicketmasterEvents = newLikeEvents;
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            console.log("new user after like")
-            currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            console.log(currentUser);
             setInterested(!interested);
         }
     };
