@@ -7,10 +7,14 @@ import { eventIdThunk } from '../../../services/eventory-thunks';
 import EventCardComponent from './fav-exclusive-card';
 import { searchEventDetailThunk } from '../../../services/ticketmaster-thunks';
 import TicketMasterCardComponent from './fav-ticketmaster-card';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const UserFavoritesComponent = () => {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [exclusiveEventList, setExclusiveEventList] = useState({});
     const [ticketMasterEventList, setTicketMasterEventList] = useState({});
     const [errorEvents, setErrorEvents] = useState(new Set());
@@ -66,11 +70,24 @@ const UserFavoritesComponent = () => {
             {/* content: exclusive events */}
             {currentUser.likedEvents.length === 0 &&
             currentUser.likedTicketmasterEvents.length === 0 ? (
-                <div className="mt-4">No favorites yet</div>
+                <div className="mt-4">
+                    <h5 className="fw-bold my-2">No favorites yet</h5>
+                    <div>
+                        <div>
+                            Browse our wide variety of events to find the perfect match.
+                            <Link
+                                to="/home"
+                                style={{ color: '#00509d' }}
+                                className="ms-1">
+                                Explore
+                            </Link>
+                        </div>
+                    </div>
+                </div>
             ) : (
                 <>
                     {/* exclusive */}
-                    <div className="card-columns">
+                    <div className="card-columns mt-3">
                         {currentUser.likedEvents.map((eventId) => (
                             <EventCardComponent
                                 key={eventId}

@@ -37,3 +37,13 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+
+::selection {
+    color: #111;
+    background-color: var(--yellow-light);
+}
+
+/* .navbar {
+    background-color: #00509d;
+    color: white;
+} */

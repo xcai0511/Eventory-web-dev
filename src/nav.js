@@ -1,14 +1,13 @@
-import {Link, NavLink} from "react-router-dom";
-import React from "react";
-import "./eventory/index.css";
+import { Link, NavLink } from 'react-router-dom';
+import React from 'react';
+import './eventory/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import {logOutThunk} from "./services/auth-thunks";
-import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router";
+import { logOutThunk } from './services/auth-thunks';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 function Nav() {
-
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -19,16 +18,16 @@ function Nav() {
         window.location.reload();
     };
 
-    let navBarDisplayName = "";
+    let navBarDisplayName = '';
     if (currentUser) {
         switch (currentUser.role) {
-            case "user":
+            case 'user':
                 navBarDisplayName = `${currentUser.firstName} ${currentUser.lastName}`;
                 break;
-            case "organizer":
+            case 'organizer':
                 navBarDisplayName = `${currentUser.name}`;
                 break;
-            case "admin":
+            case 'admin':
                 navBarDisplayName = `${currentUser.firstName} ${currentUser.lastName}`;
                 break;
             default:
@@ -36,35 +35,43 @@ function Nav() {
         }
     }
 
-    let navBarDisplayImage = "";
+    let navBarDisplayImage = '';
     if (currentUser) {
         switch (currentUser.role) {
-            case "user":
-                navBarDisplayImage = "/images/user-avatar-5.png";
+            case 'user':
+                navBarDisplayImage = '/images/user-avatar-5.png';
                 break;
-            case "organizer":
-                navBarDisplayImage = "/images/organizer-avatar.png";
+            case 'organizer':
+                navBarDisplayImage = '/images/organizer-avatar.png';
                 break;
-            case "admin":
-                navBarDisplayImage = "/images/admin-icon.png";
+            case 'admin':
+                navBarDisplayImage = '/images/admin-icon.png';
                 break;
             default:
-                navBarDisplayImage = "/images/user-avatar-5.png";
+                navBarDisplayImage = '/images/user-avatar-5.png';
         }
     }
 
-
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg">
             <div className="container">
                 <NavLink to="home">
                     <a className="navbar-brand" href="/">
-                        <img src="/images/eventory-logo-text-only.png" alt="Eventory Event Management" width="100" />
+                        <img
+                            src="/images/eventory-logo-text-only.png"
+                            alt="Eventory Event Management"
+                            width="100"
+                        />
                     </a>
                 </NavLink>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navigation-bar" aria-controls="navigation-bar" aria-expanded="false"
-                        aria-label="Toggle navigation">
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navigation-bar"
+                    aria-controls="navigation-bar"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navigation-bar">
@@ -74,59 +81,76 @@ function Nav() {
                                 Home
                             </NavLink>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item ms-2">
                             <NavLink to="about" className="nav-link">
                                 About
                             </NavLink>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item ms-2">
                             <NavLink to="faq" className="nav-link">
                                 FAQ
                             </NavLink>
                         </li>
                     </ul>
-                    {!currentUser && <ul className="navbar-nav ms-auto">
-                        <li className="nav-item">
-                            <NavLink to="signin" className="nav-link">
-                                Log in
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="signup" className="nav-link">
-                                Sign up
-                            </NavLink>
-                        </li>
-                    </ul>}
-                    {currentUser && <div className="navbar-nav ms-auto">
-                        <div className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle d-flex align-items-center" id="userDropdown"
-                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src={navBarDisplayImage} alt="User Profile Image"
-                                     className="eventory-avatar me-2" width="40"></img>
-                                <span className="d-none d-md-inline-block">
-                                    {navBarDisplayName}
-                                </span>
-                            </a>
-                            <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                {currentUser.role === 'user' && (
+                    {!currentUser && (
+                        <ul className="navbar-nav ms-auto">
+                            <li className="nav-item">
+                                <NavLink to="signin" className="nav-link">
+                                    Log in
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink to="signup" className="nav-link">
+                                    Sign up
+                                </NavLink>
+                            </li>
+                        </ul>
+                    )}
+                    {currentUser && (
+                        <div className="navbar-nav ms-auto">
+                            <div className="nav-item dropdown">
+                                <a
+                                    className="nav-link dropdown-toggle d-flex align-items-center"
+                                    id="userDropdown"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img
+                                        src={navBarDisplayImage}
+                                        alt="User Profile Image"
+                                        className="eventory-avatar me-2"
+                                        width="40"></img>
+                                    <span className="d-none d-md-inline-block">
+                                        {navBarDisplayName}
+                                    </span>
+                                </a>
+                                <ul
+                                    className="dropdown-menu dropdown-menu-end"
+                                    aria-labelledby="userDropdown">
+                                    {currentUser.role === 'user' && (
+                                        <li>
+                                            <NavLink
+                                                to="profile"
+                                                className="dropdown-item">
+                                                My Account
+                                            </NavLink>
+                                        </li>
+                                    )}
                                     <li>
-                                        <NavLink to="profile" className="dropdown-item">
-                                            My Account
-                                        </NavLink>
+                                        <Link
+                                            onClick={logOutHandler}
+                                            className="dropdown-item">
+                                            Logout
+                                        </Link>
                                     </li>
-                                )}
-                                <li>
-                                    <Link onClick={logOutHandler} className="dropdown-item">
-                                        Logout
-                                    </Link>
-                                </li>
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
-                    </div>}
+                    )}
                 </div>
             </div>
         </nav>
-    )
+    );
 }
 
 export default Nav;

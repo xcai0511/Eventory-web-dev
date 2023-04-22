@@ -34,6 +34,7 @@
 
 .login-signup-form {
     display: flex;
+    border-radius: 10px;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -87,4 +88,13 @@
 .events-card-image {
     height: 200px;
     object-fit: cover;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    background-color: var(--yellow-secondary);
 }

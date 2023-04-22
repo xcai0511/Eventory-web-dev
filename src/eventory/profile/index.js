@@ -1,15 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import NavSidebar from './nav-sidebar';
 import PublicProfileComponent from './public-profile';
 import UserFavoritesComponent from './user-favorites';
 import AccountSecurityComponent from './account-security';
 
-
 const Profile = () => {
+    const currentUser = useSelector((state) => state.auth.currentUser);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (currentUser === null) {
+            navigate('/signin');
+        }
+    }, [currentUser, navigate]);
+
+    if (currentUser === null) {
+        return null;
+    }
+
     return (
-        // <Provider store={store}>
         <div className=" mx-auto container ">
             <div className="row mt-3">
                 <div className="col-3 d-flex flex-column align-items-center justify-content-top ">
@@ -27,7 +39,6 @@ const Profile = () => {
                 </div>
             </div>
         </div>
-        // </Provider>
     );
 };
 
