@@ -11,8 +11,8 @@ function HomeComponent() {
     return (
         <>
             <HeaderSearchBar/>
-            <AnonymousEventCard/>
             {currentUser && <UsersHomeLikedEvents />}
+            <AnonymousEventCard/>
             <Footer />
         </>
 
