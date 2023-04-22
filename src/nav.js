@@ -1,17 +1,20 @@
 import {Link, NavLink} from "react-router-dom";
-import React from "react";
+import React, {useState} from "react";
 import "./eventory/index.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import {logOutThunk} from "./services/auth-thunks";
 import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router";
+import {useLocation, useNavigate} from "react-router";
 
 function Nav() {
+
+    const [isHomeClicked, setIsHomeClicked] = useState(false);
 
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
     const logOutHandler = async () => {
         localStorage.removeItem('currentUser');
         await dispatch(logOutThunk());
@@ -53,20 +56,20 @@ function Nav() {
         }
     }
 
-
     function homeOnClickHandler() {
-        navigate("/home");
+        setIsHomeClicked(true);
+        navigate('/home')
         window.location.reload();
     }
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
-                <NavLink to="home">
-                    <a className="navbar-brand" href="/">
+                <div onClick={homeOnClickHandler} style={{ cursor: "pointer" }}>
+                    <a className="navbar-brand">
                         <img src="/images/eventory-logo-text-only.png" alt="Eventory Event Management" width="100" />
                     </a>
-                </NavLink>
+                </div>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navigation-bar" aria-controls="navigation-bar" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -75,12 +78,9 @@ function Nav() {
                 <div className="collapse navbar-collapse" id="navigation-bar">
                     <ul className="navbar-nav mx-auto">
                         <li className="nav-item">
-                            <div onClick={homeOnClickHandler} className="nav-link">
+                            <div onClick={homeOnClickHandler} className={`nav-link${location.pathname === '/home' || isHomeClicked ? ' active' : ''}`} style={{ cursor: "pointer" }}>
                                 Home
                             </div>
-                            {/*<NavLink to="home" className="nav-link">*/}
-                            {/*    Home*/}
-                            {/*</NavLink>*/}
                         </li>
                         <li className="nav-item">
                             <NavLink to="about" className="nav-link">

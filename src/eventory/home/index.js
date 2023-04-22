@@ -5,6 +5,7 @@ import Footer from "../footer";
 import UsersHomeLikedEvents from "../users-home-liked-events";
 import {useSelector} from "react-redux";
 
+
 function HomeComponent() {
     const currentUser = useSelector((state) => state.auth.currentUser);
     console.log("home/index.js " + JSON.stringify(currentUser));

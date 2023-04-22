@@ -32,6 +32,15 @@ const UsersHomeLikedEvents = () => {
         fetchLikedEventoryEvents();
     }, []);
 
+    if (currentUser.likedEvents.length === 0) {
+        return (
+            <>
+                <h3 className="fw-bold ms-2 mt-4 mb-3">Your Liked Eventory Events</h3>
+                <p className="ms-2">No liked events.</p>
+            </>
+        )
+    }
+
     return(
         <>
             <h3 className="fw-bold ms-2 mt-4 mb-3">Your Liked Eventory Events</h3>

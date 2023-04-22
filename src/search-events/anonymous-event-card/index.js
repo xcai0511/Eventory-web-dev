@@ -13,24 +13,27 @@ const AnonymousEventCard = () => {
     }, []);
     const resultArray = result.slice(0, 4);
     console.log(resultArray);
-    return (
-        <>
-            <h3 className="fw-bold ms-2 mt-4 mb-3">Suggested Events</h3>
-            <div>
-                <CardGroup className="mt-2">
-                    {
-                        !loading &&
-                        resultArray.map(result =>
-                            <EventCardItem
-                                key={result._id}
-                                result={result}
-                                colClass="col-12 col-sm-6 col-md-6 col-lg-3 col-xxl-3"/>)
-                    }
-                </CardGroup>
-            </div>
 
-        </>
+    if (resultArray) {
+        return (
+            <>
+                <h3 className="fw-bold ms-2 mt-4 mb-3">Suggested Events</h3>
+                <div>
+                    <CardGroup className="mt-2">
+                        {
+                            !loading &&
+                            resultArray.map(result =>
+                                <EventCardItem
+                                    key={result._id}
+                                    result={result}
+                                    colClass="col-12 col-sm-6 col-md-6 col-lg-3 col-xxl-3"/>)
+                        }
+                    </CardGroup>
+                </div>
 
-    );
+            </>
+        );
+    }
+
 };
 export default AnonymousEventCard;
