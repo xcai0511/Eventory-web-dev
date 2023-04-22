@@ -40,7 +40,6 @@ const authSlice = createSlice({
                 state.userStatus = 'fulfilled';
                 state.message = null;
                 state.currentUser = action.payload.data;
-
             })
     }
 });

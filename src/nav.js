@@ -54,6 +54,11 @@ function Nav() {
     }
 
 
+    function homeOnClickHandler() {
+        navigate("/home");
+        window.location.reload();
+    }
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
@@ -70,9 +75,12 @@ function Nav() {
                 <div className="collapse navbar-collapse" id="navigation-bar">
                     <ul className="navbar-nav mx-auto">
                         <li className="nav-item">
-                            <NavLink to="home" className="nav-link">
+                            <div onClick={homeOnClickHandler} className="nav-link">
                                 Home
-                            </NavLink>
+                            </div>
+                            {/*<NavLink to="home" className="nav-link">*/}
+                            {/*    Home*/}
+                            {/*</NavLink>*/}
                         </li>
                         <li className="nav-item">
                             <NavLink to="about" className="nav-link">

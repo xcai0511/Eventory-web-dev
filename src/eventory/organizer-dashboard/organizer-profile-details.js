@@ -1,14 +1,15 @@
-import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {updateOrganizerByOrganizerIdThunk} from "../../services/organizers-thunks";
+import {profileThunk} from "../../services/auth-thunks";
 
 const OrganizerProfileDetails = () => {
 
     const dispatch = useDispatch();
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'))
-
+    const currentUser = useSelector((state) => state.auth.currentUser);
+    // const currentUser = JSON.parse(localStorage.getItem('currentUser'))
 
     const [name, setName] = useState(currentUser.name);
-    const [email, setEmail] = useState(currentUser.username);
     const [bio, setBio] = useState(currentUser.bio);
 
     const [editable, setEditable] = useState(false);
@@ -18,10 +19,30 @@ const OrganizerProfileDetails = () => {
         setEditable(true);
     };
 
-    const handleSaveClick = (event) => {
+    // useEffect(() => {
+    //     dispatch(profileThunk());
+    //     set
+    // }, []);
+
+    const handleSaveClick = async (event) => {
         // Save changes and update currentUser object in localStorage
         // TODO: update user details in database
         event.preventDefault();
+        let updates = {
+            name: name,
+            bio: bio
+        };
+        console.log('handleSaveClick ' + updates);
+        await dispatch(updateOrganizerByOrganizerIdThunk({
+            organizerId: currentUser._id, updatedOrganizer: updates}))
+            .then(() => {
+                let currentUser = JSON.parse(localStorage.getItem('currentUser'))
+                currentUser.name = name;
+                currentUser.bio = bio;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                dispatch(profileThunk());
+                }
+            );
         setEditable(false);
     };
 
@@ -38,17 +59,17 @@ const OrganizerProfileDetails = () => {
                     disabled={!editable}
                 />
             </div>
-            <div className="form-group">
-                <label htmlFor="email" className="mb-1">Email address</label>
-                <input
-                    type="email"
-                    className="form-control mb-3"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    disabled={!editable}
-                />
-            </div>
+            {/*<div className="form-group">*/}
+            {/*    <label htmlFor="email" className="mb-1">Email address</label>*/}
+            {/*    <input*/}
+            {/*        type="email"*/}
+            {/*        className="form-control mb-3"*/}
+            {/*        id="email"*/}
+            {/*        value={email}*/}
+            {/*        onChange={(e) => setEmail(e.target.value)}*/}
+            {/*        disabled={!editable}*/}
+            {/*    />*/}
+            {/*</div>*/}
             <div className="form-group">
                 <label htmlFor="bio" className="mb-1">Organization Description</label>
                 <input
