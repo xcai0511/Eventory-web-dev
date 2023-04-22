@@ -27,7 +27,7 @@ const OrganizerDashboard = () => {
             <div className="container mt-4">
 
                 <h4 className="mb-4">Welcome, {currentUser.name}</h4>
-                <h5>Your Profile Information:</h5>
+                <h5>Your Profile Information</h5>
 
                 <OrganizerProfileDetails />
 
