@@ -2,8 +2,18 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
 
-function PublicUserProfileComponent({ currentUser }) {
+// TODO: XH -> XC this parameter should not be called currentUser. It is public profile for anonymous user.
+const PublicUserProfileComponent = ({ currentUser }) => {
+    console.log("PublicUserProfileComponent");
+    console.log(JSON.stringify(currentUser));
 
+    if (!currentUser) {
+        return (
+            <div className="container">
+                NO USER FOUND. CATCH FOR EDGE CASE.
+            </div>
+        )
+    }
 
     return (
         <div className="container">
