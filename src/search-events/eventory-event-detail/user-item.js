@@ -7,20 +7,21 @@ import avatar5 from '../avatar-images/user-avatar-5.png';
 import avatar6 from '../avatar-images/user-avatar-6.png';
 import avatar7 from '../avatar-images/user-avatar-7.png';
 import avatar8 from '../avatar-images/user-avatar-8.png';
-import {eventIdThunk} from "../../services/eventory-thunks";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import {findUserByIdThunk} from "../../services/anonymous-thunks";
 
 const UserItem = ({user}) => {
     const avatars = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8];
     const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const userOnclickHandler = () => {
+    const userOnclickHandler = async () => {
         const queryParams = new URLSearchParams({
             id: user._id,
         });
-        // dispatch(eventIdThunk(user._id));
+        console.log("onClick " + user._id);
+        await dispatch(findUserByIdThunk(user._id));
         navigate(`/public-profile/user/search?${queryParams.toString()}`);
     }
     return(

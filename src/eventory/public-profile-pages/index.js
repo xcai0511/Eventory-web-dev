@@ -7,7 +7,7 @@ const PublicProfilePages = () => {
     return (
             <div>
                 <Routes>
-                    <Route path="/user" element={<PublicUserProfile/>}/>
+                    <Route path="/user/*" element={<PublicUserProfile/>}/>
                 </Routes>
             </div>
         );
