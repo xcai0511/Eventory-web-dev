@@ -34,9 +34,9 @@ const ExclusiveEventCardComponent = ({ event }) => {
     };
 
     return (
-        <div className="card mb-2" onClick={cardOnclickHandler}>
+        <div className="card mb-2" onClick={cardOnclickHandler} style={{cursor:"pointer"}}>
             <div className="row">
-                <div className="col-3 mt-2">
+                <div className="col-3 mt-0">
                     <img className="card-img wd-poster" src={posterUrl} alt="poster" />
                 </div>
                 <div className="col-9 mt-1 mb-0">

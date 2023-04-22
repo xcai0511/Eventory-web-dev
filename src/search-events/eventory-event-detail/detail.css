@@ -14,4 +14,6 @@
 
 .event-detail-hover:hover {
     box-shadow: 0 8px 20px 0 rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 20px;
 }

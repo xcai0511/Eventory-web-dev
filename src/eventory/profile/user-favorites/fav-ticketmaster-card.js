@@ -45,7 +45,7 @@ const TicketMasterCardComponent = ({ event }) => {
     };
 
     return (
-        <div className="card mb-2" onClick={cardOnclickHandler}>
+        <div className="card mb-2" onClick={cardOnclickHandler} style={{cursor:"pointer"}}>
             <div className="row">
                 <div className="col-3">
                     <img className="card-img wd-poster" src={posterUrl} alt="poster" />

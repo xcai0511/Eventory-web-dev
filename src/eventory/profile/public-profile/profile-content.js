@@ -31,17 +31,10 @@ function ProfileContentComponent({ setIsEditingProfile, currentUser }) {
             <div className="position-relative">
                 <div className="d-flex justify-content-center">
                     <img
-                        // TODO: change the image
                         src={require(`../../images/event1.jpg`)}
                         className="img-fluid profile-banner"
                         alt="banner"
                     />
-                    {/*<img*/}
-                    {/*    // TODO: change the image*/}
-                    {/*    src={require(`../../images/default-profile-photo.jpg`)}*/}
-                    {/*    className="position-absolute rounded-circle public-user-profile-avatar public-user-profile-avatar-location"*/}
-                    {/*    alt="profile"*/}
-                    {/*/>*/}
                 </div>
             </div>
             <div className="mx-auto">
@@ -64,7 +57,7 @@ function ProfileContentComponent({ setIsEditingProfile, currentUser }) {
                         {currentUser.location ? (
                             <span>{currentUser.location}</span>
                         ) : (
-                            <span className="ms-2">unknown</span>
+                            <span className="ms-2">Set your location</span>
                         )}
                     </div>
                     <div>
@@ -92,7 +85,7 @@ function ProfileContentComponent({ setIsEditingProfile, currentUser }) {
                         {currentUser.bio ? (
                             <span className="">{currentUser.bio}</span>
                         ) : (
-                            <span className="">No bio</span>
+                            <span className="">Set your bio</span>
                         )}
                     </div>
                 </div>

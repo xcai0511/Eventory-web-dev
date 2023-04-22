@@ -15,7 +15,7 @@ const EventCardItem = ({result, colClass}) => {
         dispatch(searchEventDetailThunk(result.id));
     };
     return (
-        <div className={`${colClass} p-2`}>
+        <div className={`${colClass} p-2`} style={{cursor:"pointer"}}>
             <div className="card" onClick={cardOnclickHandler}>
                 <img className="card-img-top wd-eventcard-img" src={result.image}></img>
                 <div className="card-title-overlay">{result.name}</div>

@@ -149,9 +149,9 @@ const EventoryDetailItem = ({detail}) => {
                     {
                         detail.interestedUsers ? (
                             <div className="mt-3">
-                                <h4 className="fw-bold list-group-item">Liked Users</h4>
+                                <h4 className="fw-bold list-group-item">Interested Users</h4>
                                 <ul className="list-group wd-liked-user-list">
-                                    <li className="list-group-item event-detail-hover">
+                                    <li className="list-group-item">
                                         {detail.interestedUsers.map(user => {
                                             return <UserItem
                                                 key={user._id}

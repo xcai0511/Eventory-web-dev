@@ -65,7 +65,10 @@ export default function AboutComponent() {
                         <a href="https://github.com/xinyu-hou" target="_blank">
                             <i className="bi bi-github text-decoration-none about-icons"></i>
                         </a>
-                        <p>Xinyu Hou is currently pursuing a Master’s degree in Computer Science at Northeastern University in Boston, MA. She earned her Bachelor’s degree from University of Virginia, double majoring in Psychology and Computer Science.</p>
+                        <p>Xinyu Hou is currently pursuing a Master’s degree in Computer Science at
+                            Northeastern University in Boston, MA. She earned her Bachelor’s degree
+                            from University of Virginia, double majoring in Psychology and Computer
+                            Science.</p>
                         </div>
                 </div>
                 <div className="row">
@@ -90,7 +93,9 @@ export default function AboutComponent() {
                             <i className="bi bi-github text-decoration-none about-icons"></i>
                         </a>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            Jianqing is a MSCS-Align student at Northeastern University who is continuously
+                            working hard to enhance her knowledge and skills in programming.
+                            She has an extended background in management, finance, and marketing.
                         </p>
                     </div>
                 </div>

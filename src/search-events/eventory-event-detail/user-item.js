@@ -10,6 +10,7 @@ import avatar8 from '../avatar-images/user-avatar-8.png';
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {findUserByIdThunk} from "../../services/anonymous-thunks";
+import "./detail.css"
 
 const UserItem = ({user}) => {
     const avatars = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8];
@@ -25,7 +26,7 @@ const UserItem = ({user}) => {
         navigate(`/public-profile/user/search?${queryParams.toString()}`);
     }
     return(
-        <div className="mb-0" onClick={userOnclickHandler} style={{cursor: "pointer"}}>
+        <div className="mb-0 p-2 event-detail-hover" onClick={userOnclickHandler} style={{cursor: "pointer"}}>
             <img src={randomAvatar} alt="avatar" className="wd-random-avatar me-3"/>
             {/*<i className="bi bi-person me-3"></i>*/}
             {user.firstName} {user.lastName}
