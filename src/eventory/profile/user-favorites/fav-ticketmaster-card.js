@@ -51,14 +51,25 @@ const TicketMasterCardComponent = ({ event }) => {
                     <img className="card-img wd-poster" src={posterUrl} alt="poster" />
                 </div>
                 <div className="col-9 mt-1 mb-0">
-                    <div>
-                        <div className="fw-bold">
-                            {estDate} {localTime}
+                    <h4 className="mt-2 fw-bold card-title mb-1">{event?.name}</h4>
+                    <div className='mt-3'>
+                        <div className="mb-1">
+                            <FontAwesomeIcon
+                                icon={icon({ name: 'calendar-days', style: 'solid' })}
+                                className="icon-15px"
+                            />
+                            <span className="fw-bold ms-1">Date: </span>
+                            <span className="ms-1">{estDate}</span>
                         </div>
-                        <div className="fw-bold card-title mb-1">{event?.name}</div>
-                        <i className="d-inline bi bi-geo-alt-fill me-1"></i>
-                        <div className="d-inline text-muted fw-bold">
+                        <div className='mb-1'>
+                            <FontAwesomeIcon
+                                icon={icon({ name: 'location-dot', style: 'solid' })}
+                                className="icon-15px"
+                            />
+                            <span className="fw-bold ms-1">Location: </span>
+                            <span className="d-inline">
                             {event?.venueName}
+                        </span>
                         </div>
                     </div>
                 </div>

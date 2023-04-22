@@ -25,7 +25,7 @@ const UserItem = ({user}) => {
         navigate(`/public-profile/user/search?${queryParams.toString()}`);
     }
     return(
-        <div className="mb-2" onClick={userOnclickHandler}>
+        <div className="mb-0" onClick={userOnclickHandler} style={{cursor: "pointer"}}>
             <img src={randomAvatar} alt="avatar" className="wd-random-avatar me-3"/>
             {/*<i className="bi bi-person me-3"></i>*/}
             {user.firstName} {user.lastName}

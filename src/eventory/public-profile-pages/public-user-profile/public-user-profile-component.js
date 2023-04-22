@@ -23,15 +23,9 @@ const PublicUserProfileComponent = ({ currentUser }) => {
                 <div className="d-flex justify-content-center">
                     <img
                         // TODO: change the image
-                        src={require(`../../images/background.jpg`)}
+                        src={require(`../../images/event1.jpg`)}
                         className="img-fluid profile-banner"
                         alt="banner"
-                    />
-                    <img
-                        // TODO: change the image
-                        src={require(`../../images/default-profile-photo.jpg`)}
-                        className="position-absolute rounded-circle public-user-profile-avatar public-user-profile-avatar-location"
-                        alt="profile"
                     />
                 </div>
             </div>

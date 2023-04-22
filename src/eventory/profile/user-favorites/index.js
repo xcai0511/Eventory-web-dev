@@ -32,12 +32,9 @@ const UserFavoritesComponent = () => {
             setExclusiveEventList(newExclusiveEventList);
             // ticket master events
             const newTicketMasterEventList = {};
-            console.log(
-                'currentUser: ' + JSON.stringify(currentUser.likedTicketmasterEvents)
-            );
+
             for (const eventId of currentUser.likedTicketmasterEvents) {
                 try {
-                    console.log('event id: ' + eventId);
                     const res = await dispatch(searchEventDetailThunk({ e_id: eventId }));
                     if (res.payload.message === "Exceeded Ticketmaster API rate limit. Please wait and try again.") {
                         setNoEvent(true);
@@ -107,20 +104,3 @@ const UserFavoritesComponent = () => {
 
 export default UserFavoritesComponent;
 
-// });
-
-// fetch event details for all liked Ticketmaster events
-// const ticketMasterPromises = currentUser.likedTicketmasterEvents.map(
-//     (eventId) => {
-//         return dispatch(searchEventDetailThunk({ e_id: eventId }))
-//             .then((response) => {
-//                 return {
-//                     eventId,
-//                     eventDetails: response.payload,
-//                 };
-//             })
-//             .catch((error) => {
-//                 console.log(error);
-//             });
-//     }
-// );

@@ -8,6 +8,7 @@ import {profileThunk} from "../../services/auth-thunks";
 import {eventIdThunk} from "../../services/eventory-thunks";
 import {findOrganizerByIdThunk} from "../../services/anonymous-thunks";
 import {useNavigate} from "react-router";
+import Footer from "../../eventory/footer";
 
 const EventoryDetailItem = ({detail}) => {
     // interested button
@@ -80,7 +81,8 @@ const EventoryDetailItem = ({detail}) => {
 
     return(
 
-        <div className="wd-detail-page mt-3">
+        <>
+        <div className="wd-detail-page mt-3 mb-4">
             <div className="wd-poster-container">
                 <img className="wd-poster-frame" src="/images/eventory-exclusive-img.png"/>
                 <img className="wd-poster-img" src="/images/eventory-exclusive-img.png"/>
@@ -134,9 +136,8 @@ const EventoryDetailItem = ({detail}) => {
                         detail.organizer ? (
                             <div className="mt-3" onClick={organizerPublicProfileOnClickHandler}>
                                 <h4 className="fw-bold">Organizer</h4>
-                                <div className="border rounded wd-organier">
+                                <div className="border rounded wd-organier event-detail-hover" style={{cursor:"pointer"}}>
                                     <div>{detail.organizer.name}</div>
-                                    <div>{detail.organizer.bio}</div>
                                 </div>
                             </div>
                         ) : null
@@ -150,14 +151,13 @@ const EventoryDetailItem = ({detail}) => {
                             <div className="mt-3">
                                 <h4 className="fw-bold list-group-item">Liked Users</h4>
                                 <ul className="list-group wd-liked-user-list">
-                                    <li className="list-group-item">
+                                    <li className="list-group-item event-detail-hover">
                                         {detail.interestedUsers.map(user => {
                                             return <UserItem
                                                 key={user._id}
                                                 user={user}/>
                                         })}
                                     </li>
-
                                 </ul>
                             </div>
 
@@ -166,6 +166,8 @@ const EventoryDetailItem = ({detail}) => {
                 </div>
             </div>
         </div>
+        <Footer />
+            </>
     );
 };
 
