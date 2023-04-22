@@ -111,3 +111,21 @@
     object-fit: cover;
     aspect-ratio: 3/2;
 }
+
+.error-card {
+    background-color: var(--beige-primary);
+    border: 1px solid var(--beige-primary);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.error-card h5 {
+    color: #721c24;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.error-card p {
+    color: black;
+}
