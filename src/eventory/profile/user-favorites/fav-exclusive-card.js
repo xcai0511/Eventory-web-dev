@@ -34,7 +34,7 @@ const ExclusiveEventCardComponent = ({ event }) => {
     };
 
     return (
-        <div className="card mb-2 profile-card" onClick={cardOnclickHandler}>
+        <div className="card mb-2" onClick={cardOnclickHandler}>
             <div className="row">
                 <div className="col-3 mt-2">
                     <img className="card-img wd-poster" src={posterUrl} alt="poster" />

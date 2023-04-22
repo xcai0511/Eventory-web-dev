@@ -15,28 +15,49 @@ const NavSidebar = () => {
     // const currentUser = useSelector((state) => state.auth.currentUser); // add this line to get the currentUser from Redux store
     return (
         <div className="profile-sidebar list-group">
-            <div className="h4 mb-4 fw-bold">Welcome {currentUser.firstName}</div>
+            <div className="h4 mb-4 fw-bold d-none d-md-block">Welcome {currentUser.firstName}</div>
             <Link
                 to="/profile"
                 className={`list-group-item ${active === 'profile' ? 'active' : ''}`}>
-                <span>Public Profile</span>
+                <FontAwesomeIcon
+                    icon={icon({
+                        name: 'user',
+                        style: 'solid',
+                    })}
+                    className="d-lg-none"
+                />
+                <span className="d-none d-lg-block"> Profile</span>
             </Link>
             <Link
                 to="/profile/favorites"
                 className={`list-group-item ${active === 'favorites' ? 'active' : ''}`}>
-                <span>My Favorites</span>
+                <FontAwesomeIcon
+                    icon={icon({
+                        name: 'heart',
+                        style: 'solid',
+                    })}
+                    className="d-lg-none"
+                />
+                <span className="d-none d-lg-block">My Favorites</span>
             </Link>
             <Link
                 to="/profile/account-security"
                 className={`list-group-item ${
                     active === 'account-security' ? 'active' : ''
                 }`}>
-                <span>Account Security</span>
+                <FontAwesomeIcon
+                    icon={icon({
+                        name: 'shield-halved',
+                        style: 'solid',
+                    })}
+                    className="d-lg-none"
+                />
+                <span className="d-none d-lg-block">Account Security</span>
             </Link>
-            <div className="mt-4 list-group-item">
+            <div className="mt-4 list-group-item d-none d-md-block">
                 PRIVACY
                 <div className="row mt-2">
-                    <div className="col-2 fs-14px">
+                    <div className="d-none d-lg-block col-lg-2 fs-14px">
                         <FontAwesomeIcon
                             icon={icon({
                                 name: 'lock',
@@ -45,7 +66,7 @@ const NavSidebar = () => {
                             className="ms-2"
                         />
                     </div>
-                    <div className="col-9 fs-14px">
+                    <div className="col-12 col-lg-9 fs-14px">
                         <div>Your information is always private and secure.</div>
                     </div>
                 </div>
