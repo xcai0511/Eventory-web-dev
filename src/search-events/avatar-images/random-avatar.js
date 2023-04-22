@@ -9,7 +9,7 @@ import avatar7 from './user-avatar-7.png';
 import avatar8 from './user-avatar-8.png';
 import "../eventory-event-detail/detail.css";
 
-const RandomAvatar = () => {
+const LikedUserRandomAvatar = () => {
     const avatars = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8];
     const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
     return (
@@ -17,4 +17,4 @@ const RandomAvatar = () => {
     );
 };
 
-export default RandomAvatar;
+export default LikedUserRandomAvatar;

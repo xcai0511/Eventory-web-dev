@@ -94,10 +94,10 @@
 }
 
 .public-user-profile-avatar {
-    height: 20vw;
-    width: 20vw;
-    max-width: 140px;
-    max-height: 140px;
+    height: 15vw;
+    width: 15vw;
+    max-width: 110px;
+    max-height: 110px;
 }
 
 .public-user-profile-avatar-location {
@@ -110,4 +110,8 @@
     height: 100%;
     object-fit: cover;
     aspect-ratio: 3/2;
+}
+
+.public-user-profile-bg {
+    background-color: rgba(217, 204, 172, 0.38);
 }
