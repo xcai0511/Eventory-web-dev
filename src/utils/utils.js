@@ -24,7 +24,9 @@ export const isCurrentUserRoleAdmin = (currentUser) => {
     isCurrentUserRole(currentUser.role, "admin");
 };
 export const isCurrentUserRole = (currentUserRole, neededRole) => {
-    if (currentUserRole !== neededRole) {
+    console.log("currentUserRole " + currentUserRole);
+    console.log("neededRole " + neededRole);
+    if (currentUserRole !== neededRole || currentUserRole != neededRole) {
         console.log("Current user's role: " + currentUserRole);
         return (
             <div>

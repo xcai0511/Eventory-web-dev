@@ -5,10 +5,12 @@ import {useLocation} from "react-router";
 import {updateEventByEventIdThunk,} from "../../services/organizerEvent-thunks";
 
 const EditEventForm = () => {
+
+    const currentUser = useSelector((state) => state.auth.currentUser);
+
     let eventData = useSelector(state => state.organizersEvent.event);
     let eventStatus = useSelector(state => state.organizersEvent.status);
     let eventError = useSelector(state => state.organizersEvent.error);
-    console.log("edit-event " + JSON.stringify(eventData));
     let [event, setEvent] = useState(eventData);
 
     let [nameInput, setNameInput] = useState(event?.name ?? '');
@@ -84,95 +86,99 @@ const EditEventForm = () => {
     }
 
     return (
-        <div className="container mt-3">
-            {(!eventData) && (<h4>Something went wrong. Please try again later. Do not refresh while you are on the Edit Event page.</h4>) }
-            {(eventStatus === 'pending') && (<h4>Loading</h4>)}
-            {(eventStatus === 'fulfilled') && (<>
-                <div className="mb-3">
-                    <h4>Edit Your Event</h4>
-                    <p className="text-muted">Please update any fields below regarding your event.</p>
-                </div>
-                <form>
-                    <div className="form-group mb-3">
-                        <label htmlFor="name" className="mb-1">Name
-                            <span className="text-danger"> *</span>
-                        </label>
-                        <input type="text" className="form-control" id="name"
-                               value={nameInput}
-                               onChange={nameChangeHandler}
-                               required/>
+        <div>
+            {(currentUser.role !== "organizer") ? <h3 className="mt-4 ms-4">Unauthorized.</h3> :
+            <div className="container mt-3">
+                {(!eventData) && (<h4>Something went wrong. Please try again later. Do not refresh while you are on the Edit Event page.</h4>) }
+                {(eventStatus === 'pending') && (<h4>Loading</h4>)}
+                {(eventStatus === 'fulfilled') && (<>
+                    <div className="mb-3">
+                        <h4>Edit Your Event</h4>
+                        <p className="text-muted">Please update any fields below regarding your event.</p>
                     </div>
-                    <div className="form-group mb-3">
-                        <label htmlFor="date" className="mb-1">Date
-                            <span className="text-danger"> *</span>
-                        </label>
-                        <input type="date" className="form-control" id="date"
-                               value={dateInput}
-                               onChange={dateChangeHandler}
-                               required/>
-                    </div>
-                    <div className="form-group mb-3">
-                        <label htmlFor="time" className="mb-1">Time
-                            <span className="text-danger"> *</span>
-                        </label>
-                        <input type="time" className="form-control" id="time"
-                               value={timeInput}
-                               onChange={timeChangeHandler}
-                               required/>
-                    </div>
-                    <div className="form-group mb-3">
-                        <label htmlFor="address" className="mb-1">Address
-                            <span className="text-danger"> *</span>
-                        </label>
-                        <input type="text" className="form-control" id="address"
-                               value={addressInput}
-                               onChange={addressChangeHandler}
-                               required/>
-                    </div>
-                    <div className="form-group mb-3">
-                        <label htmlFor="city" className="mb-1">City
-                            <span className="text-danger"> *</span>
-                        </label>
-                        <input type="text" className="form-control" id="city"
-                               value={cityInput}
-                               onChange={cityChangeHandler}
-                               required/>
-                    </div>
-                    <div className="form-group mb-3">
-                        <label htmlFor="zipCode" className="mb-1">Zip Code
-                            <span className="text-danger"> *</span>
-                        </label>
-                        <input type="text" className="form-control" id="zipCode"
-                               pattern="[0-9]*"
-                               maxLength="5"
-                               value={postalCodeInput}
-                               onChange={postalCodeChangeHandler}
-                               onKeyPress={(event) => {
-                                   if (!/[0-9]/.test(event.key)) {
-                                       event.preventDefault();
-                                   }
-                               }}
-                               required/>
-                    </div>
-                    <div className="form-group mb-3">
-                        <label htmlFor="description" className="mb-1">Description
-                            <span className="text-danger"> *</span>
-                        </label>
-                        <textarea className="form-control" id="description" rows="3"
-                                  value={descriptionInput}
-                                  onChange={descriptionChangeHandler}
-                                  required></textarea>
-                    </div>
-                    <div className="button-container">
-                        <button className="btn btn-primary" type="button" onClick={saveEventClickHandler}>
-                            Submit
-                        </button>
-                        <Link to="/home" className="text-decoration-none ms-3">
-                            <span className="text-danger text-decoration-none ms-3">Cancel</span>
-                        </Link>
-                    </div>
-                </form>
-            </>)}
+                    <form>
+                        <div className="form-group mb-3">
+                            <label htmlFor="name" className="mb-1">Name
+                                <span className="text-danger"> *</span>
+                            </label>
+                            <input type="text" className="form-control" id="name"
+                                   value={nameInput}
+                                   onChange={nameChangeHandler}
+                                   required/>
+                        </div>
+                        <div className="form-group mb-3">
+                            <label htmlFor="date" className="mb-1">Date
+                                <span className="text-danger"> *</span>
+                            </label>
+                            <input type="date" className="form-control" id="date"
+                                   value={dateInput}
+                                   onChange={dateChangeHandler}
+                                   required/>
+                        </div>
+                        <div className="form-group mb-3">
+                            <label htmlFor="time" className="mb-1">Time
+                                <span className="text-danger"> *</span>
+                            </label>
+                            <input type="time" className="form-control" id="time"
+                                   value={timeInput}
+                                   onChange={timeChangeHandler}
+                                   required/>
+                        </div>
+                        <div className="form-group mb-3">
+                            <label htmlFor="address" className="mb-1">Address
+                                <span className="text-danger"> *</span>
+                            </label>
+                            <input type="text" className="form-control" id="address"
+                                   value={addressInput}
+                                   onChange={addressChangeHandler}
+                                   required/>
+                        </div>
+                        <div className="form-group mb-3">
+                            <label htmlFor="city" className="mb-1">City
+                                <span className="text-danger"> *</span>
+                            </label>
+                            <input type="text" className="form-control" id="city"
+                                   value={cityInput}
+                                   onChange={cityChangeHandler}
+                                   required/>
+                        </div>
+                        <div className="form-group mb-3">
+                            <label htmlFor="zipCode" className="mb-1">Zip Code
+                                <span className="text-danger"> *</span>
+                            </label>
+                            <input type="text" className="form-control" id="zipCode"
+                                   pattern="[0-9]*"
+                                   maxLength="5"
+                                   value={postalCodeInput}
+                                   onChange={postalCodeChangeHandler}
+                                   onKeyPress={(event) => {
+                                       if (!/[0-9]/.test(event.key)) {
+                                           event.preventDefault();
+                                       }
+                                   }}
+                                   required/>
+                        </div>
+                        <div className="form-group mb-3">
+                            <label htmlFor="description" className="mb-1">Description
+                                <span className="text-danger"> *</span>
+                            </label>
+                            <textarea className="form-control" id="description" rows="3"
+                                      value={descriptionInput}
+                                      onChange={descriptionChangeHandler}
+                                      required></textarea>
+                        </div>
+                        <div className="button-container">
+                            <button className="btn btn-primary" type="button" onClick={saveEventClickHandler}>
+                                Submit
+                            </button>
+                            <Link to="/home" className="text-decoration-none ms-3">
+                                <span className="text-danger text-decoration-none ms-3">Cancel</span>
+                            </Link>
+                        </div>
+                    </form>
+                </>)}
+            </div>
+            }
         </div>
     );
 };

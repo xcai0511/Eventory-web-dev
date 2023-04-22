@@ -6,7 +6,6 @@ import React, {useEffect} from "react";
 const AdminManageOrganizersPage = () => {
     // Retrieve current user
     const currentUser = useSelector((state) => state.auth.currentUser);
-    isCurrentUserRoleAdmin(currentUser);
 
     // Get all organizers info
     const organizersStatus = useSelector((state) => state.organizersManagement.status);
@@ -51,32 +50,36 @@ const AdminManageOrganizersPage = () => {
     };
 
     return (
-        <div className="container mt-4">
-            <div>
-                <h3>Organizers Management</h3>
-                <p className="mb-3">{numOrganizers} organizer{numOrganizers !== 1 ? 's' : ''}</p>
-                {organizersData &&
-                    <ul className="list-group">
-                        {organizersData.map((organizer) => (
-                            <li key={organizer._id} className="list-group-item d-flex justify-content-between align-items-center">
-                                <div>
-                                    <span className="fw-bold">ID: </span>
-                                    <span>{organizer._id}</span>
-                                    <br />
-                                    <span className="fw-bold">Email: </span>
-                                    <span>{organizer.username}</span>
-                                    <br />
-                                    <span className="fw-bold">Name: </span>
-                                    <span>{organizer.name}</span>
+        <div>
+            {(currentUser.role !== "admin") ? <h3 className="mt-4 ms-4">Unauthorized.</h3> :
+            <div className="container mt-4">
+                <div>
+                    <h3>Organizers Management</h3>
+                    <p className="mb-3">{numOrganizers} organizer{numOrganizers !== 1 ? 's' : ''}</p>
+                    {organizersData &&
+                        <ul className="list-group">
+                            {organizersData.map((organizer) => (
+                                <li key={organizer._id} className="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span className="fw-bold">ID: </span>
+                                        <span>{organizer._id}</span>
+                                        <br />
+                                        <span className="fw-bold">Email: </span>
+                                        <span>{organizer.username}</span>
+                                        <br />
+                                        <span className="fw-bold">Name: </span>
+                                        <span>{organizer.name}</span>
 
-                                </div>
-                                <i className="bi bi-trash3-fill text-danger" style={{cursor: "pointer"}}
-                                    onClick={() => deleteOrganizerOnClickHandler(organizer._id)}></i>
-                            </li>
-                        ))}
-                    </ul>
-                }
+                                    </div>
+                                    <i className="bi bi-trash3-fill text-danger" style={{cursor: "pointer"}}
+                                        onClick={() => deleteOrganizerOnClickHandler(organizer._id)}></i>
+                                </li>
+                            ))}
+                        </ul>
+                    }
+                </div>
             </div>
+            }
         </div>
     );
 };

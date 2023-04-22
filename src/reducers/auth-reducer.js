@@ -4,8 +4,8 @@ import {logOutThunk, profileThunk, signInThunk} from "../services/auth-thunks";
 const initialState = {
     userStatus: 'idle',
     message: null,
-    // currentUser: JSON.parse(localStorage.getItem('currentUser')),
-    currentUser: null
+    currentUser: JSON.parse(localStorage.getItem('currentUser')),
+    // currentUser: null
 };
 
 const authSlice = createSlice({

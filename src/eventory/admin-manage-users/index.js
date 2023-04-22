@@ -5,7 +5,6 @@ import {deleteUserByIdThunk, getAllUsersThunk} from "../../services/usersManagem
 const AdminManageUsersPage = () => {
     // Retrieve current user
     const currentUser = useSelector((state) => state.auth.currentUser);
-    isCurrentUserRoleAdmin(currentUser);
 
     // Get all users info
     const usersStatus = useSelector((state) => state.usersManagement.status);
@@ -50,6 +49,8 @@ const AdminManageUsersPage = () => {
     }
 
     return (
+        <div>
+            {(currentUser.role !== "admin") ? <h3 className="mt-4 ms-4">Unauthorized.</h3> :
         <div className="container mt-4">
             <div>
                 <h3>Users Management</h3>
@@ -76,6 +77,8 @@ const AdminManageUsersPage = () => {
                     </ul>
                 }
             </div>
+        </div>
+            }
         </div>
     );
 };

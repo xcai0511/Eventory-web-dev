@@ -13,9 +13,6 @@ const AdminDashboard = () => {
     const navigate = useNavigate();
     const currentUser = useSelector((state) => state.auth.currentUser);
 
-    // Check if there is a currentUser and if currentUser's role is admin
-    isCurrentUserRoleAdmin(currentUser);
-
     // Get all users info
     const usersStatus = useSelector((state) => state.usersManagement.status);
     const usersError = useSelector((state) => state.usersManagement.error);
@@ -59,8 +56,8 @@ const AdminDashboard = () => {
 
     return(
         <div className="container mt-4">
+            {(currentUser.role !== "admin") ? <h3 className="mt-4 ms-4">Unauthorized.</h3> :
             <div className="row">
-
                 <div>
                     <h3>Welcome, {currentUser.firstName}.</h3>
                 </div>
@@ -130,6 +127,7 @@ const AdminDashboard = () => {
                     </div>
                 </div>
             </div>
+            }
         </div>
     );
 

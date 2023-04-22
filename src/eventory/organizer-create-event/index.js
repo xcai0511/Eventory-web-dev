@@ -4,6 +4,9 @@ import { createEventThunk } from '../../services/createEvent-thunks';
 import {Link, useNavigate} from "react-router-dom";
 
 const CreateEventForm = () => {
+
+    const currentUser = useSelector((state) => state.auth.currentUser);
+
     let [nameInput, setNameInput] = useState("");
     let [dateInput , setDateInput] = useState("");
     let [timeInput, setTimeInput] = useState("");
@@ -34,8 +37,9 @@ const CreateEventForm = () => {
     const isFormFilled = nameInput && dateInput && timeInput && addressInput && cityInput && zipCodeInput && descriptionInput;
 
     return (
-        <div className="container mt-3">
-            <>
+        <div>
+            {(currentUser.role !== "organizer") ? <h3 className="mt-4 ms-4">Unauthorized.</h3> :
+            <div className="container mt-3">
                 <div className="mb-3">
                     <h4>Create Eventory Exclusive Event</h4>
                     <p className="text-muted">Please fill out the information below regarding your event.</p>
@@ -128,7 +132,8 @@ const CreateEventForm = () => {
                         </Link>
                     </div>
                 </form>
-            </>
+            </div>
+            }
         </div>
     );
 }
