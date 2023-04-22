@@ -22,7 +22,6 @@ const PublicUserProfile = () => {
         dispatch(findUserByIdThunk(userId));
         console.log("public user profile")
     }, []);
-    // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
 
 

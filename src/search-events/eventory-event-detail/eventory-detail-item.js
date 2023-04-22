@@ -6,6 +6,8 @@ import {useDispatch} from "react-redux";
 import UserItem from "./user-item";
 import {profileThunk} from "../../services/auth-thunks";
 import {eventIdThunk} from "../../services/eventory-thunks";
+import {findOrganizerByIdThunk} from "../../services/anonymous-thunks";
+import {useNavigate} from "react-router";
 
 const EventoryDetailItem = ({detail}) => {
     // interested button
@@ -32,6 +34,7 @@ const EventoryDetailItem = ({detail}) => {
     // let intUser = detail.interestedUsers;
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const likeButtonOnclickHandler = async (e) => {
         e.stopPropagation();
         let action;
@@ -57,6 +60,15 @@ const EventoryDetailItem = ({detail}) => {
             setInterested(!interested);
         }
     };
+
+    const organizerPublicProfileOnClickHandler = async () => {
+        const queryParams = new URLSearchParams({
+            id: detail.organizer._id,
+        });
+        console.log("eventory-detail-item organizerPublicProfileOnClickHandler");
+        await dispatch(findOrganizerByIdThunk(detail.organizer._id));
+        navigate(`/public-profile/organizer/search?${queryParams.toString()}`);
+    }
 
     return(
 
@@ -112,7 +124,7 @@ const EventoryDetailItem = ({detail}) => {
                     </div>
                     {
                         detail.organizer ? (
-                            <div className="mt-3">
+                            <div className="mt-3" onClick={organizerPublicProfileOnClickHandler}>
                                 <h4 className="fw-bold">Organizer</h4>
                                 <div className="border rounded wd-organier">
                                     <div>{detail.organizer.name}</div>
