@@ -137,7 +137,8 @@ const EventoryDetailItem = ({detail}) => {
                             <div className="mt-3" onClick={organizerPublicProfileOnClickHandler}>
                                 <h4 className="fw-bold">Organizer</h4>
                                 <div className="border rounded wd-organier event-detail-hover" style={{cursor:"pointer"}}>
-                                    <div>{detail.organizer.name}</div>
+                                    <div className="fw-bold ms-2 me-2">{detail.organizer.name}</div>
+                                    <div className="ms-2 me-2">{detail.organizer.bio}</div>
                                 </div>
                             </div>
                         ) : null

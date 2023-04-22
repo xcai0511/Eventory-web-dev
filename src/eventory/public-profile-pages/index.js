@@ -6,7 +6,13 @@ import PublicOrganizerProfile from "./public-organizer-profile";
 
 const PublicProfilePages = () => {
     return (
-            <div>
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                maxWidth: '800px',
+                margin: 'auto',
+            }}>
                 <Routes>
                     <Route path="/user/*" element={<PublicUserProfile/>}/>
                     <Route path="/organizer/*" element={<PublicOrganizerProfile/>}/>

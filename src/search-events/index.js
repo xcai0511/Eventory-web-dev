@@ -14,7 +14,7 @@ import usersReducer from "../reducers/users-reducer";
 // const store = configureStore(
 //     {reducer: {result: ticketmasterEventReducer, usersEvent: eventoryEventReducer, user: usersReducer}});
 function SearchResult() {
-    return ( // TODO: XH - Do not put Provider store anywhere except App.js this mess everything up.
+    return (
         // <Provider store={store}>
             <Routes>
                 <Route path="/*" element={<SearchPage/>}/>

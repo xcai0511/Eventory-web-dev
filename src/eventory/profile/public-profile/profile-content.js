@@ -36,12 +36,6 @@ function ProfileContentComponent({ setIsEditingProfile, currentUser }) {
                         className="img-fluid profile-banner"
                         alt="banner"
                     />
-                    {/*<img*/}
-                    {/*    // TODO: change the image*/}
-                    {/*    src={require(`../../images/default-profile-photo.jpg`)}*/}
-                    {/*    className="position-absolute rounded-circle public-user-profile-avatar public-user-profile-avatar-location"*/}
-                    {/*    alt="profile"*/}
-                    {/*/>*/}
                 </div>
             </div>
             <div className="mx-auto">
