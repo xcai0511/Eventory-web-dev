@@ -13,7 +13,7 @@ const UserFavoritesComponent = () => {
     const dispatch = useDispatch();
     const [exclusiveEventList, setExclusiveEventList] = useState({});
     const [ticketMasterEventList, setTicketMasterEventList] = useState({});
-    const [noEvent, setNoEvent] = useState(false);
+    const [errorEvents, setErrorEvents] = useState(new Set());
     useEffect(() => {
         dispatch(profileThunk());
 
@@ -36,12 +36,14 @@ const UserFavoritesComponent = () => {
             for (const eventId of currentUser.likedTicketmasterEvents) {
                 try {
                     const res = await dispatch(searchEventDetailThunk({ e_id: eventId }));
-                    if (res.payload.message === "Exceeded Ticketmaster API rate limit. Please wait and try again.") {
-                        setNoEvent(true);
+                    if (
+                        res.payload.message ===
+                        'Exceeded Ticketmaster API rate limit. Please wait and try again.'
+                    ) {
+                        setErrorEvents(new Set(errorEvents.add(eventId)));
                     } else {
                         newTicketMasterEventList[eventId] = res.payload;
                     }
-
                 } catch (error) {
                     console.log(error);
                 }
@@ -77,25 +79,28 @@ const UserFavoritesComponent = () => {
                         ))}
                     </div>
                     {/* Ticketmaster */}
-                    {
-                        !noEvent ? (
-                            <div className="card-columns">
-                                {currentUser.likedTicketmasterEvents.map((eventId) => (
-                                    <TicketMasterCardComponent
-                                        key={eventId}
-                                        event={ticketMasterEventList[eventId]}
-                                    />
-                                ))}
-                            </div>
-                        ) : (
-                            <div>
-                                <div>We can't load your favorite Ticketmaster event.</div>
-                                <div>Exceeded Ticketmaster API rate limit.</div>
-                                <div>Please wait and try again.</div>
-                            </div>
-                        )
-                    }
-
+                    <div className="card-columns">
+                        {currentUser.likedTicketmasterEvents
+                            .filter((eventId) => !errorEvents.has(eventId))
+                            .map((eventId) => (
+                                <TicketMasterCardComponent
+                                    key={eventId}
+                                    event={ticketMasterEventList[eventId]}
+                                />
+                            ))}
+                    </div>
+                    {errorEvents.size > 0 && (
+                        <div className="error-card py-3">
+                            <h5>
+                                Oops! Some of your liked events couldn't be displayed
+                                right now due to API limits.
+                            </h5>
+                            <p>
+                                Please try again later or refresh the page to see if they
+                                show up. Thank you for your patience!
+                            </p>
+                        </div>
+                    )}
                 </>
             )}
         </div>
@@ -103,4 +108,3 @@ const UserFavoritesComponent = () => {
 };
 
 export default UserFavoritesComponent;
-
