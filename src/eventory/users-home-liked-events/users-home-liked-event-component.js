@@ -1,7 +1,17 @@
+import {useNavigate} from "react-router-dom";
+
 const UsersHomeLikedEventComponent = ({eventoryEvent}) => {
+    const navigate = useNavigate();
+    const usersHomeLikedEventComponentOnClickHandler = () => {
+        const queryParams = new URLSearchParams({
+            id: eventoryEvent._id,
+        });
+        navigate(`/results/ev/detail/search?${queryParams.toString()}`);
+    };
+
     return (
         (eventoryEvent && (
-            <div className="col-12 col-md-6 col-lg-4 col-xxl-3 p-2">
+            <div className="col-12 col-md-6 col-lg-4 col-xxl-3 p-2" onClick={usersHomeLikedEventComponentOnClickHandler}>
                 <div className="card m-1">
                     <img className="card-img-top events-card-image" src="/images/eventory-exclusive-img.png"/>
                     <div className="card-body">
