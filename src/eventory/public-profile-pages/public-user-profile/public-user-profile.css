@@ -1,0 +1,12 @@
+.public-user-profile-avatar {
+    height: 20vw;
+    width: 20vw;
+    max-width: 140px;
+    max-height: 140px;
+}
+
+.public-user-profile-avatar-location {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
