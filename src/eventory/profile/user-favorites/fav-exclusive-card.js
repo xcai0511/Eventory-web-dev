@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
-const EventCardComponent = ({ event }) => {
+const ExclusiveEventCardComponent = ({ event }) => {
     const eventDate = new Date(event?.date);
     const estDate = eventDate.toLocaleDateString('en-US', {
         weekday: 'short',
@@ -48,7 +48,7 @@ const EventCardComponent = ({ event }) => {
                                     icon={icon({ name: 'calendar-days', style: 'solid' })}
                                     className="icon-15px"
                                 />
-                                <span className="fw-bold ms-1">Date</span>
+                                <span className="fw-bold ms-1">Date: </span>
                                 <span className="ms-1">{estDate}</span>
                             </div>
                             <div className="mb-1">
@@ -56,7 +56,7 @@ const EventCardComponent = ({ event }) => {
                                     icon={icon({ name: 'location-dot', style: 'solid' })}
                                     className="icon-15px"
                                 />
-                                <span className="fw-bold ms-1">Location</span>
+                                <span className="fw-bold ms-1">Location: </span>
                                 <span className="ms-1">
                                     {event?.address} {event?.postalCode}
                                 </span>
@@ -69,4 +69,4 @@ const EventCardComponent = ({ event }) => {
     );
 };
 
-export default EventCardComponent;
+export default ExclusiveEventCardComponent;

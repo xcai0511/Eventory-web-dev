@@ -17,6 +17,7 @@ const TicketmasterEventDetail = () => {
     }, []);
 
     let {detail,result, loading} = useSelector((state) => state.result);
+    console.log("ticket master event detail: " + detail);
     let resultArray = [];
     if (detail === "Exceeded Ticketmaster API rate limit. Please wait and try again.") {
         loading = !loading

@@ -6,63 +6,53 @@ import { profileThunk } from '../../../services/auth-thunks';
 import { eventIdThunk } from '../../../services/eventory-thunks';
 import EventCardComponent from './fav-exclusive-card';
 import { searchEventDetailThunk } from '../../../services/ticketmaster-thunks';
+import TicketMasterCardComponent from './fav-ticketmaster-card';
 
 const UserFavoritesComponent = () => {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const dispatch = useDispatch();
-    const [eventDetails, setEventDetails] = useState({});
-
+    const [exclusiveEventList, setExclusiveEventList] = useState({});
+    const [ticketMasterEventList, setTicketMasterEventList] = useState({});
+    const [noEvent, setNoEvent] = useState(false);
     useEffect(() => {
         dispatch(profileThunk());
 
         // fetch event details for all liked events
-        const exclusiveEventPromises = currentUser.likedEvents.map((eventId) => {
-            return dispatch(eventIdThunk({eventId}))
-                .then((response) => {
-                    return {
-                        eventId,
-                        eventDetails: response.payload,
-                    };
-                })
-                .catch((error) => {
+        const fetchEventDetails = async () => {
+            // exclusive events
+            const newExclusiveEventList = {};
+            for (const eventId of currentUser.likedEvents) {
+                try {
+                    const response = await dispatch(eventIdThunk({ eventId }));
+                    newExclusiveEventList[eventId] = response.payload;
+                } catch (error) {
                     console.log(error);
-                });
-        });
-    // });
+                }
+            }
+            setExclusiveEventList(newExclusiveEventList);
+            // ticket master events
+            const newTicketMasterEventList = {};
+            console.log(
+                'currentUser: ' + JSON.stringify(currentUser.likedTicketmasterEvents)
+            );
+            for (const eventId of currentUser.likedTicketmasterEvents) {
+                try {
+                    console.log('event id: ' + eventId);
+                    const res = await dispatch(searchEventDetailThunk({ e_id: eventId }));
+                    if (res.payload.message === "Exceeded Ticketmaster API rate limit. Please wait and try again.") {
+                        setNoEvent(true);
+                    } else {
+                        newTicketMasterEventList[eventId] = res.payload;
+                    }
 
-        // fetch event details for all liked Ticketmaster events
-        // const ticketMasterPromises = currentUser.likedTicketmasterEvents.map(
-        //     (eventId) => {
-        //         return dispatch(searchEventDetailThunk({ e_id: eventId }))
-        //             .then((response) => {
-        //                 return {
-        //                     eventId,
-        //                     eventDetails: response.payload,
-        //                 };
-        //             })
-        //             .catch((error) => {
-        //                 console.log(error);
-        //             });
-        //     }
-        // );
-
-        Promise.all(exclusiveEventPromises).then((results) => {
-            // store event details in component state
-            const newEventDetails = {};
-            results.forEach((result) => {
-                newEventDetails[result.eventId] = result.eventDetails;
-            });
-            setEventDetails(newEventDetails);
-        });
-    }, [currentUser, dispatch]);
-
-    // console.log(
-    //     'current user in the user favorite content:' + JSON.stringify(currentUser)
-    // );
-
-    // console.log(
-    //     'ticket master events: ' + typeof currentUser.likedTicketmasterEvents.name
-    // );
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+            setTicketMasterEventList(newTicketMasterEventList);
+        };
+        fetchEventDetails();
+    }, []);
 
     return (
         <div className="container">
@@ -75,27 +65,62 @@ const UserFavoritesComponent = () => {
                 <span className="h4 fw-bold ms-2">Favorites</span>
             </div>
             {/* content: exclusive events */}
-            {currentUser.likedEvents.length === 0 ? (
+            {currentUser.likedEvents.length === 0 &&
+            currentUser.likedTicketmasterEvents.length === 0 ? (
                 <div className="mt-4">No favorites yet</div>
             ) : (
-                <div className="card-columns">
-                    {currentUser.likedEvents.map((eventId) => (
-                        <EventCardComponent key={eventId} event={eventDetails[eventId]} />
-                    ))}
-                </div>
+                <>
+                    {/* exclusive */}
+                    <div className="card-columns">
+                        {currentUser.likedEvents.map((eventId) => (
+                            <EventCardComponent
+                                key={eventId}
+                                event={exclusiveEventList[eventId]}
+                            />
+                        ))}
+                    </div>
+                    {/* Ticketmaster */}
+                    {
+                        !noEvent ? (
+                            <div className="card-columns">
+                                {currentUser.likedTicketmasterEvents.map((eventId) => (
+                                    <TicketMasterCardComponent
+                                        key={eventId}
+                                        event={ticketMasterEventList[eventId]}
+                                    />
+                                ))}
+                            </div>
+                        ) : (
+                            <div>
+                                <div>We can't load your favorite Ticketmaster event.</div>
+                                <div>Exceeded Ticketmaster API rate limit.</div>
+                                <div>Please wait and try again.</div>
+                            </div>
+                        )
+                    }
+
+                </>
             )}
-            {/*/!* ticket master *!/*/}
-            {/*{currentUser.likedTicketmasterEvents.length === 0 ? (*/}
-            {/*    <div className="mt-4">No favorites yet</div>*/}
-            {/*) : (*/}
-            {/*    <div className="card-columns">*/}
-            {/*        {currentUser.likedTicketmasterEvents.map((eventId) => (*/}
-            {/*            <EventCardComponent key={eventId} event={eventDetails[eventId]} />*/}
-            {/*        ))}*/}
-            {/*    </div>*/}
-            {/*)}*/}
         </div>
     );
 };
 
 export default UserFavoritesComponent;
+
+// });
+
+// fetch event details for all liked Ticketmaster events
+// const ticketMasterPromises = currentUser.likedTicketmasterEvents.map(
+//     (eventId) => {
+//         return dispatch(searchEventDetailThunk({ e_id: eventId }))
+//             .then((response) => {
+//                 return {
+//                     eventId,
+//                     eventDetails: response.payload,
+//                 };
+//             })
+//             .catch((error) => {
+//                 console.log(error);
+//             });
+//     }
+// );
