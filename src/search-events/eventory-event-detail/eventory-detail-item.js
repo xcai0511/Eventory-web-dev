@@ -8,9 +8,17 @@ import UserItem from "./user-item";
 const EventoryDetailItem = ({detail}) => {
     const [interested, setInterested] = useState(false);
 
-    const eventTime = new Date(detail.time);
-    const estD = new Date(eventTime.toLocaleString('en-US', { timeZone: 'America/New_York' }));
-    const estTime = estD.toLocaleString('en-US', { timeZone: 'America/New_York', minute: '2-digit', second: '2-digit' });
+    // const eventTime = new Date(detail.time);
+    // const estD = new Date(eventTime.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+    // const estTime = estD.toLocaleString('en-US', { timeZone: 'America/New_York', minute: '2-digit', second: '2-digit' });
+
+    const eventTime = new Date(detail?.time).toLocaleTimeString('en-US', {
+        timeZone: 'America/New_York', hour12: false, });
+    const eventTimeDisplay = eventTime?.split(":");
+    let localTime;
+    if (eventTimeDisplay) {
+        localTime = eventTimeDisplay[0] + ":" + eventTimeDisplay[1]
+    }
 
     const eventDate = new Date(detail.date);
     const estDate = eventDate.toLocaleDateString("en-US", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
@@ -75,7 +83,7 @@ const EventoryDetailItem = ({detail}) => {
                         </div>
                         <div className="col-10 mt-0">
                             <div className="fw-bold">Date and Time</div>
-                            <div>{estDate} {estTime}</div>
+                            <div>{estDate} {localTime} EST</div>
                         </div>
                     </div>
                     <div className="row mt-3">

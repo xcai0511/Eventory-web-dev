@@ -11,9 +11,17 @@ const EventoryResultItem = ({event}) => {
 
     // local time edge case
 
-    const eventTime = new Date(event.time);
-    const estD = new Date(eventTime.toLocaleString('en-US', { timeZone: 'America/New_York' }));
-    const estTime = estD.toLocaleString('en-US', { timeZone: 'America/New_York', minute: '2-digit', second: '2-digit' });
+    // const eventTime = new Date(event.time);
+    // const estD = new Date(eventTime.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+    // const estTime = estD.toLocaleString('en-US', { timeZone: 'America/New_York', minute: '2-digit', second: '2-digit' });
+
+    const eventTime = new Date(event?.time).toLocaleTimeString('en-US', {
+        timeZone: 'America/New_York', hour12: false, });
+    const eventTimeDisplay = eventTime?.split(":");
+    let localTime;
+    if (eventTimeDisplay) {
+        localTime = eventTimeDisplay[0] + ":" + eventTimeDisplay[1]
+    }
 
     const eventDate = new Date(event.date);
     const estDate = eventDate.toLocaleDateString("en-US", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
@@ -89,7 +97,7 @@ const EventoryResultItem = ({event}) => {
                         </div>
                         <small className="wd-exclusive">Exclusive Event</small>
                         <div className="fw-bold">
-                            {estDate} {estTime} EST
+                            {estDate} {localTime} EST
 
                         </div>
                         <div className="fw-bold card-title mb-1">
