@@ -17,8 +17,10 @@ const UsersHomeLikedEventComponent = ({eventoryEvent}) => {
 
     return (
         (eventoryEvent && (
-            <div className="col-12 col-md-6 col-lg-4 col-xxl-3 p-2" onClick={usersHomeLikedEventComponentOnClickHandler}>
-                <div className="card m-1">
+            <div className="col-12 col-md-6 col-lg-4 col-xxl-3 p-2"
+                 onClick={usersHomeLikedEventComponentOnClickHandler}
+                style={{cursor: "pointer"}}>
+                <div className="card m-1 pb-0">
                     <img className="card-img-top events-card-image" src="/images/eventory-exclusive-img.png"/>
                     <div className="card-body">
                         <h5 className="card-title fw-bold">
@@ -27,7 +29,7 @@ const UsersHomeLikedEventComponent = ({eventoryEvent}) => {
                                 : eventoryEvent.name}
                         </h5>
                         <p className="card-subtitle mb-2 text-muted">{formatDate(eventoryEvent.date)}</p>
-                        <h6 className="card-subtitle text-muted">{eventoryEvent.address}</h6>
+                        <p className="card-subtitle text-muted">{eventoryEvent.address}</p>
                     </div>
                 </div>
             </div>
