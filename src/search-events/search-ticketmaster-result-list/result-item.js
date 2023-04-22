@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import "./result.css";
 import {useNavigate} from "react-router-dom";
@@ -31,6 +31,13 @@ const ResultItem = ({result}) => {
 
     // interested button
     const [interested, setInterested] = useState(false);
+    useEffect(() => {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser) {
+            const likeEvents = currentUser.likedTicketmasterEvents;
+            setInterested(likeEvents.includes(result._id));
+        }
+    }, [result._id]);
 
     const navigate = useNavigate();
     const cardOnclickHandler = () => {
@@ -45,18 +52,27 @@ const ResultItem = ({result}) => {
         e.stopPropagation();
         let action;
         if (interested) {
-            action = 'dislike'
+            action = 'dislike';
         } else {
-            action = 'like'
+            action = 'like';
         }
         const { payload: { message } = {} } = await dispatch(likeTicketmasterThunk({eventId: result._id, action: action}));
         console.log(message);
         if (message === "Unauthorized.") {
             alert("Please log in or sign up to like an event!");
         } else {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            let newLikeEvents = [];
+            if (interested) {
+                newLikeEvents = currentUser.likedTicketmasterEvents.filter(id => id !== result._id);
+            } else {
+                newLikeEvents = currentUser.likedTicketmasterEvents.concat(result._id);
+            }
+            currentUser.likedTicketmasterEvents = newLikeEvents;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
             setInterested(!interested);
         }
-    }
+    };
 
     return (
         <div className="card mb-2" onClick={cardOnclickHandler}>

@@ -13,7 +13,7 @@ import eventoryEventReducer from "./reducers/eventory-event-reducer";
 import organizersReducer from "./reducers/organizers-reducer";
 import usersManagementReducer from "./reducers/usersManagement-reducer";
 import organizersManagementReducer from "./reducers/organizersManagement-reducer";
-
+import anonymousReducer from "./reducers/anonymous-reducer";
 
 
 const store = configureStore({
@@ -27,6 +27,7 @@ const store = configureStore({
         organizer: organizersReducer,
         usersManagement: usersManagementReducer,
         organizersManagement: organizersManagementReducer,
+        anonymous: anonymousReducer,
     }
 });
 

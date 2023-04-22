@@ -19,6 +19,7 @@ import OrganizerSignup from "./signup/organizer-signup";
 import FAQComponent from "./faq";
 import AdminManageUsersPage from "./admin-manage-users";
 import AdminManageOrganizersPage from "./admin-manage-organizers";
+import PublicProfilePages from "./public-profile-pages";
 
 function Eventory() {
 
@@ -69,6 +70,7 @@ function Eventory() {
                 <Route path="results/*" element={<SearchResult/>}/>
                 <Route path="manage-users" element={<AdminManageUsersPage/>}/>
                 <Route path="manage-organizers" element={<AdminManageOrganizersPage/>}/>
+                <Route path="public-profile/*" element={<PublicProfilePages/>}/>
             </Routes>
         </div>
     );

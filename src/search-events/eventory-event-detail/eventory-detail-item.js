@@ -1,12 +1,28 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./detail.css";
 import "../ticketmaster-event-detail/detail.css";
 import {likeEventoryThunk} from "../../services/users-thunk";
 import {useDispatch} from "react-redux";
 import UserItem from "./user-item";
+import {profileThunk} from "../../services/auth-thunks";
+import {eventIdThunk} from "../../services/eventory-thunks";
+import {findOrganizerByIdThunk} from "../../services/anonymous-thunks";
+import {useNavigate} from "react-router";
 
 const EventoryDetailItem = ({detail}) => {
+    // interested button
     const [interested, setInterested] = useState(false);
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser) {
+
+    }
+    useEffect(() => {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser) {
+            const likeEvents = currentUser.likedEvents;
+            setInterested(likeEvents.includes(detail._id));
+        }
+    }, []);
 
     // const eventTime = new Date(detail.time);
     // const estD = new Date(eventTime.toLocaleString('en-US', { timeZone: 'America/New_York' }));
@@ -23,25 +39,44 @@ const EventoryDetailItem = ({detail}) => {
     const eventDate = new Date(detail.date);
     const estDate = eventDate.toLocaleDateString("en-US", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
 
-    const intUser = detail.interestedUsers;
+    // let intUser = detail.interestedUsers;
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const likeButtonOnclickHandler = async (e) => {
         e.stopPropagation();
         let action;
         if (interested) {
-            action = 'dislike'
+            action = 'dislike';
         } else {
-            action = 'like'
+            action = 'like';
         }
         const { payload: { message } = {} } = await dispatch(likeEventoryThunk({eventId: detail._id, action: action}));
         console.log(message);
         if (message === "Unauthorized.") {
             alert("Please log in or sign up to like an event!");
         } else {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            let newLikeEvents = [];
+            if (interested) {
+                newLikeEvents = currentUser.likedEvents.filter(id => id !== detail._id);
+            } else {
+                newLikeEvents = currentUser.likedEvents.concat(detail._id);
+            }
+            currentUser.likedEvents = newLikeEvents;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
             setInterested(!interested);
         }
     };
+
+    const organizerPublicProfileOnClickHandler = async () => {
+        const queryParams = new URLSearchParams({
+            id: detail.organizer._id,
+        });
+        console.log("eventory-detail-item organizerPublicProfileOnClickHandler");
+        await dispatch(findOrganizerByIdThunk(detail.organizer._id));
+        navigate(`/public-profile/organizer/search?${queryParams.toString()}`);
+    }
 
     return(
 
@@ -97,7 +132,7 @@ const EventoryDetailItem = ({detail}) => {
                     </div>
                     {
                         detail.organizer ? (
-                            <div className="mt-3">
+                            <div className="mt-3" onClick={organizerPublicProfileOnClickHandler}>
                                 <h4 className="fw-bold">Organizer</h4>
                                 <div className="border rounded wd-organier">
                                     <div>{detail.organizer.name}</div>
@@ -111,12 +146,12 @@ const EventoryDetailItem = ({detail}) => {
                     <div>{detail.description}</div>
 
                     {
-                        intUser ? (
+                        detail.interestedUsers ? (
                             <div className="mt-3">
-                                <h4 className="fw-bold list-group-item wd-user-list">Liked Users</h4>
-                                <ul className="list-group">
+                                <h4 className="fw-bold list-group-item">Liked Users</h4>
+                                <ul className="list-group wd-liked-user-list">
                                     <li className="list-group-item">
-                                        {intUser.map(user => {
+                                        {detail.interestedUsers.map(user => {
                                             return <UserItem
                                                 key={user._id}
                                                 user={user}/>

@@ -12,7 +12,7 @@ function ProfileContentComponent({ setIsEditingProfile, currentUser }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     // get only the current year, month and day
-    // const dateOfBirth = currentUser.dateOfBirth.slice(0, 10);
+    const dateOfBirth = currentUser.dateOfBirth.slice(0, 10);
 
     const editProfileHandler = () => {
         setIsEditingProfile(true);
@@ -32,16 +32,16 @@ function ProfileContentComponent({ setIsEditingProfile, currentUser }) {
                 <div className="d-flex justify-content-center">
                     <img
                         // TODO: change the image
-                        src={require(`../../images/background.jpg`)}
+                        src={require(`../../images/event1.jpg`)}
                         className="img-fluid profile-banner"
                         alt="banner"
                     />
-                    <img
-                        // TODO: change the image
-                        src={require(`../../images/default-profile-photo.jpg`)}
-                        className="position-absolute rounded-circle profile-avatar profile-avatar-location"
-                        alt="profile"
-                    />
+                    {/*<img*/}
+                    {/*    // TODO: change the image*/}
+                    {/*    src={require(`../../images/default-profile-photo.jpg`)}*/}
+                    {/*    className="position-absolute rounded-circle public-user-profile-avatar public-user-profile-avatar-location"*/}
+                    {/*    alt="profile"*/}
+                    {/*/>*/}
                 </div>
             </div>
             <div className="mx-auto">
@@ -67,32 +67,32 @@ function ProfileContentComponent({ setIsEditingProfile, currentUser }) {
                             <span className="ms-2">unknown</span>
                         )}
                     </div>
-                    {/*<div>*/}
-                    {/*    <FontAwesomeIcon*/}
-                    {/*        icon={icon({ name: 'cake-candles', style: 'solid' })}*/}
-                    {/*    />*/}
-                    {/*    <span className="ms-2 fw-bold">Birthday: </span>*/}
-                    {/*    <span className="ms-2"> Born {dateOfBirth}</span>*/}
-                    {/*</div>*/}
                     <div>
                         <FontAwesomeIcon
-                            icon={icon({
-                                name: 'calendar-days',
-                                style: 'regular',
-                            })}
+                            icon={icon({ name: 'cake-candles', style: 'solid' })}
                         />
-                        <span className="ms-2 fw-bold">Joined at: </span>
-                        <span className="ms-2">April 2009</span>
+                        <span className="ms-2 fw-bold">Birthday: </span>
+                        <span className="">{dateOfBirth}</span>
                     </div>
+                    {/*<div>*/}
+                    {/*    <FontAwesomeIcon*/}
+                    {/*        icon={icon({*/}
+                    {/*            name: 'calendar-days',*/}
+                    {/*            style: 'regular',*/}
+                    {/*        })}*/}
+                    {/*    />*/}
+                    {/*    <span className="ms-2 fw-bold">Joined at: </span>*/}
+                    {/*    <span className="ms-2">April 2009</span>*/}
+                    {/*</div>*/}
                     <div>
                         <FontAwesomeIcon
                             icon={icon({ name: 'circle-info', style: 'solid' })}
                         />
                         <span className="ms-2 fw-bold">Bio: </span>
                         {currentUser.bio ? (
-                            <span className="ms-2">{currentUser.bio}</span>
+                            <span className="">{currentUser.bio}</span>
                         ) : (
-                            <span className="ms-2">No bio</span>
+                            <span className="">No bio</span>
                         )}
                     </div>
                 </div>

@@ -11,17 +11,17 @@ import TicketmasterEventDetail from "./ticketmaster-event-detail";
 import EventoryEventDetail from "./eventory-event-detail";
 import usersReducer from "../reducers/users-reducer";
 
-const store = configureStore(
-    {reducer: {result: ticketmasterEventReducer, usersEvent: eventoryEventReducer, user: usersReducer}});
+// const store = configureStore(
+//     {reducer: {result: ticketmasterEventReducer, usersEvent: eventoryEventReducer, user: usersReducer}});
 function SearchResult() {
-    return (
-        <Provider store={store}>
+    return ( // TODO: XH - Do not put Provider store anywhere except App.js this mess everything up.
+        // <Provider store={store}>
             <Routes>
                 <Route path="/*" element={<SearchPage/>}/>
                 <Route path="/tm/detail/*" element={<TicketmasterEventDetail/>}/>
                 <Route path="/ev/detail/*" element={<EventoryEventDetail/>}/>
             </Routes>
-        </Provider>
+        // </Provider>
     )
 }
 export default SearchResult;

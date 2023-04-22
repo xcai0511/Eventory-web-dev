@@ -3,6 +3,11 @@
     padding: 10px;
 }
 
-.wd-user-list {
-    width: fit-content;
+.wd-liked-user-list {
+    max-width: 400px;
+}
+
+.wd-random-avatar {
+    height: 2rem;
+    width: 2rem;
 }

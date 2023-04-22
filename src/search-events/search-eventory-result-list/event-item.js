@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import React from "react";
 import {useDispatch} from "react-redux";
 import "./event.css";
@@ -26,15 +26,20 @@ const EventoryResultItem = ({event}) => {
     const eventDate = new Date(event.date);
     const estDate = eventDate.toLocaleDateString("en-US", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
 
-    // interested count
-    let intCount = 0;
-    if (event.interestedUsers) {
-        intCount = event.interestedUsers.length;
-    }
-
     // interested button
-    // TODO: link current event to current user
     const [interested, setInterested] = useState(false);
+    // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // const likeEvents = currentUser.likedEvents;
+    // useEffect(() => {
+    //     setInterested(likeEvents.includes(event._id));
+    // }, [likeEvents]);
+    useEffect(() => {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser) {
+            const likeEvents = currentUser.likedEvents;
+            setInterested(likeEvents.includes(event._id));
+        }
+    }, [event._id]);
 
     const dispatch = useDispatch();
 
@@ -53,16 +58,24 @@ const EventoryResultItem = ({event}) => {
         e.stopPropagation();
         let action;
         if (interested) {
-            action = 'dislike'
+            action = 'dislike';
         } else {
-            action = 'like'
+            action = 'like';
         }
-        console.log("before dispatch " + event._id);
         const { payload: { message } = {} } = await dispatch(likeEventoryThunk({eventId: event._id, action: action}));
         console.log(message);
         if (message === "Unauthorized.") {
             alert("Please log in or sign up to like an event!");
         } else {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            let newLikeEvents = [];
+            if (interested) {
+                newLikeEvents = currentUser.likedEvents.filter(id => id !== event._id);
+            } else {
+                newLikeEvents = currentUser.likedEvents.concat(event._id);
+            }
+            currentUser.likedEvents = newLikeEvents;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
             setInterested(!interested);
         }
     };
@@ -107,9 +120,9 @@ const EventoryResultItem = ({event}) => {
                         <div className="d-inline text-muted fw-bold">
                             {event.address}
                         </div>
-                        <div className="text-muted">
-                            {intCount} interested
-                        </div>
+                        {/*<div className="text-muted">*/}
+                        {/*    {intCount} interested*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </div>

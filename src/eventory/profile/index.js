@@ -10,7 +10,7 @@ import AccountSecurityComponent from './account-security';
 const Profile = () => {
     return (
         // <Provider store={store}>
-        <div className=" mx-auto ">
+        <div className=" mx-auto container ">
             <div className="row mt-3">
                 <div className="col-3 d-flex flex-column align-items-center justify-content-top ">
                     <NavSidebar active="profile" />
