@@ -28,8 +28,10 @@ const EventoryResultItem = ({event}) => {
     // }, [likeEvents]);
     useEffect(() => {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        const likeEvents = currentUser.likedEvents;
-        setInterested(likeEvents.includes(event._id));
+        if (currentUser) {
+            const likeEvents = currentUser.likedEvents;
+            setInterested(likeEvents.includes(event._id));
+        }
     }, [event._id]);
 
     const dispatch = useDispatch();
