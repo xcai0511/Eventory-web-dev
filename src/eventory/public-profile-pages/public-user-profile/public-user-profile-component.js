@@ -1,6 +1,7 @@
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
+import "./public-user-profile.css"
 
 // TODO: XH -> XC this parameter should not be called currentUser. It is public profile for anonymous user.
 const PublicUserProfileComponent = ({ currentUser }) => {
@@ -29,7 +30,7 @@ const PublicUserProfileComponent = ({ currentUser }) => {
                     <img
                         // TODO: change the image
                         src={require(`../../images/default-profile-photo.jpg`)}
-                        className="position-absolute rounded-circle profile-avatar profile-avatar-location"
+                        className="position-absolute rounded-circle public-user-profile-avatar public-user-profile-avatar-location"
                         alt="profile"
                     />
                 </div>
