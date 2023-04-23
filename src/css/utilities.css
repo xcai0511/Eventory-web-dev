@@ -116,17 +116,19 @@
     border: 1px solid var(--beige-primary);
     border-radius: 5px;
     padding: 10px;
-    margin: 10px;
+    width: 100%;
 }
 
 .error-card h5 {
     color: #721c24;
     font-weight: bold;
     margin-bottom: 5px;
+    padding: 10px 0 0 20px;
 }
 
 .error-card p {
     color: black;
+    padding: 0 20px 0 20px;
 }
 
 .card-custom {

@@ -1,23 +1,28 @@
-
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
-import "./public-user-profile.css"
-import {eventIdThunk} from "../../../services/eventory-thunks";
-import {searchEventDetailThunk} from "../../../services/ticketmaster-thunks";
-import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
-import EventCardComponent from "../../profile/user-favorites/fav-exclusive-card";
-import TicketMasterCardComponent from "../../profile/user-favorites/fav-ticketmaster-card";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
+import './public-user-profile.css';
+import { profileThunk } from '../../../services/auth-thunks';
+import { eventIdThunk } from '../../../services/eventory-thunks';
+import { searchEventDetailThunk } from '../../../services/ticketmaster-thunks';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import EventCardComponent from '../../profile/user-favorites/fav-exclusive-card';
+import TicketMasterCardComponent from '../../profile/user-favorites/fav-ticketmaster-card';
 
 const PublicUserProfileComponent = ({ userProfile }) => {
-    console.log("PublicUserProfileComponent");
+    console.log('PublicUserProfileComponent');
     console.log(JSON.stringify(userProfile));
 
     const [exclusiveEventList, setExclusiveEventList] = useState({});
     const [ticketMasterEventList, setTicketMasterEventList] = useState({});
-    const [noEvent, setNoEvent] = useState(false);
+    const [errorEvents, setErrorEvents] = useState(new Set());
     const dispatch = useDispatch();
+
     useEffect(() => {
+        console.log(
+            'PublicUserProfileComponent---- use Effect' + JSON.stringify(userProfile)
+        );
+        dispatch(profileThunk());
 
         // fetch event details for all liked events
         const fetchEventDetails = async () => {
@@ -34,16 +39,17 @@ const PublicUserProfileComponent = ({ userProfile }) => {
             setExclusiveEventList(newExclusiveEventList);
             // ticket master events
             const newTicketMasterEventList = {};
-
             for (const eventId of userProfile.likedTicketmasterEvents) {
                 try {
                     const res = await dispatch(searchEventDetailThunk({ e_id: eventId }));
-                    if (res.payload.message === "Exceeded Ticketmaster API rate limit. Please wait and try again.") {
-                        setNoEvent(true);
+                    if (
+                        res.payload.message ===
+                        'Exceeded Ticketmaster API rate limit. Please wait and try again.'
+                    ) {
+                        setErrorEvents(new Set(errorEvents.add(eventId)));
                     } else {
                         newTicketMasterEventList[eventId] = res.payload;
                     }
-
                 } catch (error) {
                     console.log(error);
                 }
@@ -51,14 +57,10 @@ const PublicUserProfileComponent = ({ userProfile }) => {
             setTicketMasterEventList(newTicketMasterEventList);
         };
         fetchEventDetails();
-    }, []);
+    }, [dispatch]);
 
     if (!userProfile) {
-        return (
-            <div className="container">
-                NO USER FOUND. CATCH FOR EDGE CASE.
-            </div>
-        )
+        return <div className="container">No user found.</div>;
     }
 
     return (
@@ -67,13 +69,17 @@ const PublicUserProfileComponent = ({ userProfile }) => {
                 {/*User Info Component*/}
                 <div className="col-12 col-lg-3 rounded-1 pb-3">
                     <div className="d-flex justify-content-center mt-3">
-                        <img src="../../images/user-avatar-1.png" alt="temp-avatar" className="rounded-pill public-user-profile-avatar"/>
+                        <img
+                            src="../../images/user-avatar-1.png"
+                            alt="temp-avatar"
+                            className="rounded-pill public-user-profile-avatar"
+                        />
                     </div>
                     <div className="h4 fw-bold mt-3 justify-content-center d-flex">
                         {userProfile.firstName} {userProfile.lastName}
                     </div>
                     <div className="mt-1 border-top">
-                        <div className="mt-2 row">
+                        <div className="mt-2 row ms-3">
                             <div className="col-1">
                                 <FontAwesomeIcon
                                     icon={icon({ name: 'location-dot', style: 'solid' })}
@@ -88,7 +94,7 @@ const PublicUserProfileComponent = ({ userProfile }) => {
                                 )}
                             </div>
                         </div>
-                        <div className="mt-2 row">
+                        <div className="mt-2 row ms-3">
                             <div className="col-1">
                                 <FontAwesomeIcon
                                     icon={icon({ name: 'circle-info', style: 'solid' })}
@@ -127,30 +133,34 @@ const PublicUserProfileComponent = ({ userProfile }) => {
                                 ))}
                             </div>
                             {/* Ticketmaster */}
-                            {
-                                !noEvent ? (
-                                    <div className="card-columns">
-                                        {userProfile.likedTicketmasterEvents.map((eventId) => (
-                                            <TicketMasterCardComponent
-                                                key={eventId}
-                                                event={ticketMasterEventList[eventId]}
-                                            />
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <div className="text-muted">
-                                        <div>We can't load user's favorite Ticketmaster event.</div>
-                                        <div>Exceeded Ticketmaster API rate limit.</div>
-                                        <div>Please wait and try again.</div>
-                                    </div>
-                                )
-                            }
 
+                            <div className="card-columns">
+                                {userProfile.likedTicketmasterEvents
+                                    .filter((eventId) => !errorEvents.has(eventId))
+                                    .map((eventId) => (
+                                        <TicketMasterCardComponent
+                                            key={eventId}
+                                            event={ticketMasterEventList[eventId]}
+                                        />
+                                    ))}
+                            </div>
+                            {errorEvents.size > 0 && (
+                                <div className="error-card ps-2 pe-2">
+                                    <h5>
+                                        Oops! Some of the liked events couldn't be
+                                        displayed right now due to API limits.
+                                    </h5>
+                                    <p>
+                                        Please try again later or refresh the page to see
+                                        if they show up. Thank you for your patience!
+                                    </p>
+                                </div>
+                            )}
                         </>
                     )}
                 </div>
             </div>
         </div>
     );
-}
+};
 export default PublicUserProfileComponent;
