@@ -41,7 +41,6 @@ const eventsSlice = createSlice({
             .addCase(deleteEventByEventIdThunk.fulfilled, (state, action) => {
                 console.log("deleteEventByEventIdThunk.fulfilled")
                 state.status = 'fulfilled';
-                // state.events = null; // TODO
                 state.error = null;
             })
             .addCase(deleteEventByEventIdThunk.rejected, (state, action) => {

@@ -26,7 +26,6 @@ const OrganizerProfileDetails = () => {
 
     const handleSaveClick = async (event) => {
         // Save changes and update currentUser object in localStorage
-        // TODO: update user details in database
         event.preventDefault();
         let updates = {
             name: name,
