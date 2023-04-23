@@ -1,33 +1,32 @@
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import PublicUserProfileComponent from "./public-user-profile-component";
-import {useLocation} from "react-router";
-import {findUserByIdThunk} from "../../../services/anonymous-thunks";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import PublicUserProfileComponent from './public-user-profile-component';
+import { useLocation } from 'react-router';
+import { findUserByIdThunk } from '../../../services/anonymous-thunks';
 
 const PublicUserProfile = () => {
     // const currentUser = useSelector((state) => state.auth.currentUser);
     // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const dispatch = useDispatch();
     const data = useSelector((state) => state.anonymous.data);
-    console.log(data);
+    console.log('---- the state.anonymous.data' + data);
 
     const link = useLocation();
 
-
-
     useEffect(() => {
         const queryParams = new URLSearchParams(link.search);
-        const userId = queryParams.get("id");
-        console.log("user id for public user profile " + userId);
-        dispatch(findUserByIdThunk(userId));
-        console.log("public user profile")
-    }, []);
-
-
+        const userId = queryParams.get('id');
+        console.log('user id for public user profile ' + userId);
+        const findUser = async () => {
+            await dispatch(findUserByIdThunk(userId));
+        };
+        findUser();
+        console.log('public user profile');
+    }, [dispatch]);
 
     return (
         <>
-            <PublicUserProfileComponent userProfile={data}/>
+            <PublicUserProfileComponent userProfile={data} />
         </>
     );
 };
