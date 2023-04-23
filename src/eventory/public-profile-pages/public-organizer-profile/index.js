@@ -19,7 +19,10 @@ const PublicOrganizerProfile = () => {
     }, []);
 
     return (
-        <PublicOrganizerProfileComponent organizerProfile={organizerData}/>
+        <>
+            <PublicOrganizerProfileComponent organizerProfile={organizerData}/>
+        </>
+
     );
 };
 

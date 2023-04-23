@@ -2,20 +2,19 @@ import React, {useEffect, useState} from "react";
 import "./detail.css";
 import {likeTicketmasterThunk} from "../../services/users-thunk";
 import {useDispatch} from "react-redux";
+import UserItem from "../eventory-event-detail/user-item";
 
 const TicketmasterDetailItem = ({detail}) => {
     // interested button
     const [interested, setInterested] = useState(false);
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser) {
-
-    }
+    // let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     useEffect(() => {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser) {
             const likeEvents = currentUser.likedTicketmasterEvents;
             setInterested(likeEvents.includes(detail._id));
         }
+        console.log("INTERESTED USERS: " + typeof(detail.interestedUsers));
     }, []);
 
     const resultTime = detail.time;
@@ -128,8 +127,32 @@ const TicketmasterDetailItem = ({detail}) => {
                         </div>
                     </div>
 
-                    <h4 className="fw-bold mt-4">Description</h4>
-                    <div>{detail.description}</div>
+                    {
+                        detail.description ? (
+                            <div>
+                                <h4 className="fw-bold mt-4">Description</h4>
+                                <div>{detail.description}</div>
+                            </div>
+                        ) : null
+                    }
+
+                    {
+                        detail.interestedUsers ? (
+                            <div className="mt-3">
+                                <h4 className="fw-bold list-group-item">Liked Users</h4>
+                                <ul className="list-group wd-liked-user-list">
+                                    <li className="list-group-item event-detail-hover">
+                                        {detail.interestedUsers.map(user => {
+                                            return <UserItem
+                                                key={user._id}
+                                                user={user}/>
+                                        })}
+                                    </li>
+                                </ul>
+                            </div>
+
+                        ) : null
+                    }
 
 
                 </div>

@@ -27,7 +27,7 @@ const PublicUserProfile = () => {
 
     return (
         <>
-            <PublicUserProfileComponent currentUser={data}/>
+            <PublicUserProfileComponent userProfile={data}/>
         </>
     );
 };
