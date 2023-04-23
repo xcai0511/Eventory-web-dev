@@ -105,7 +105,7 @@ const AccountSecurityComponent = () => {
             </div>
 
             {/* enter current password */}
-            <div className="card mt-4 border">
+            <div className="card mt-4 border bg-white">
                 <div className="card-body">
                     <label
                         htmlFor="current password"
@@ -123,7 +123,7 @@ const AccountSecurityComponent = () => {
                 </div>
             </div>
             {/* enter new password */}
-            <div className="card mt-4 border">
+            <div className="card mt-4 border bg-white">
                 <div className="card-body">
                     <label
                         htmlFor="new password"
@@ -140,7 +140,7 @@ const AccountSecurityComponent = () => {
                 </div>
             </div>
             {/* <!-- change bio --> */}
-            <div className="card mt-4 border">
+            <div className="card mt-4 border bg-white">
                 <div className="card-body">
                     <label
                         htmlFor="confirm new password"

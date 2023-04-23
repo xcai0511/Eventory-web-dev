@@ -67,36 +67,10 @@ function EditProfileComponent({ setIsEditingProfile, currentUser }) {
             <div className="position-relative">
                 <div className="d-flex justify-content-center">
                     <img
-                        // TODO: change the image
-                        src={require(`../../images/background.jpg`)}
+                        src={require(`../../images/event2.jpg`)}
                         className="img-fluid profile-banner"
                         alt="banner"
                     />
-                    <img
-                        src={require(`../../images/black.jpg`)}
-                        className="img-fluid opacity-50 profile-banner position-absolute top-0 left-0 right-0 bottom-0"
-                        alt="black overlay"
-                    />
-                    <img
-                        // TODO: change the image
-                        src={require(`../../images/default-profile-photo.jpg`)}
-                        className="position-absolute rounded-circle profile-avatar profile-avatar-location"
-                        alt="profile"
-                    />
-                    <img
-                        src={require(`../../images/black.jpg`)}
-                        className="opacity-25 position-absolute translate-middle-x icon-150px rounded-circle profile-avatar profile-avatar-location"
-                        alt="black overlay for avatar"
-                    />
-                    <div
-                        className="position-absolute translate-middle-x rounded-circle profile-avatar-location"
-                        style={{ marginBottom: '60px' }}>
-                        <FontAwesomeIcon
-                            icon={icon({ name: 'camera', style: 'solid' })}
-                            size="3x"
-                            style={{ color: '#e3e3e3' }}
-                        />
-                    </div>
                 </div>
             </div>
             {/* <!-- change name --> */}

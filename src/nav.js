@@ -54,6 +54,7 @@ function Nav() {
 
     return (
         <nav className="navbar navbar-expand-lg">
+            {/* style={{ marginLeft: '-25px', marginRight: '-25px' }} */}
             <div className="container">
                 <NavLink to="home">
                     <a className="navbar-brand" href="/">
@@ -77,17 +78,17 @@ function Nav() {
                 <div className="collapse navbar-collapse" id="navigation-bar">
                     <ul className="navbar-nav mx-auto">
                         <li className="nav-item">
-                            <NavLink to="home" className="nav-link">
+                            <NavLink to="home" className="nav-link fw-bold">
                                 Home
                             </NavLink>
                         </li>
                         <li className="nav-item ms-2">
-                            <NavLink to="about" className="nav-link">
+                            <NavLink to="about" className="nav-link fw-bold">
                                 About
                             </NavLink>
                         </li>
                         <li className="nav-item ms-2">
-                            <NavLink to="faq" className="nav-link">
+                            <NavLink to="faq" className="nav-link fw-bold">
                                 FAQ
                             </NavLink>
                         </li>

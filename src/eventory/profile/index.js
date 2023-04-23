@@ -8,7 +8,8 @@ import UserFavoritesComponent from './user-favorites';
 import AccountSecurityComponent from './account-security';
 
 const Profile = () => {
-    const currentUser = useSelector((state) => state.auth.currentUser);
+    // const currentUser = useSelector((state) => state.auth.currentUser);
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const navigate = useNavigate();
 
     useEffect(() => {

@@ -24,7 +24,6 @@
     height: auto;
     max-height: 230px;
     object-fit: cover;
-    opacity: 70%;
 }
 
 .profile-avatar {
@@ -128,4 +127,8 @@
 
 .error-card p {
     color: black;
+}
+
+.card-custom {
+    background-color: white;
 }
