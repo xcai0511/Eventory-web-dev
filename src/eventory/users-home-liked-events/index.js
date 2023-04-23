@@ -9,7 +9,6 @@ import {profileThunk} from "../../services/auth-thunks";
 const UsersHomeLikedEvents = () => {
 
     const currentUser = useSelector((state) => state.auth.currentUser);
-    isCurrentUserRoleUser(currentUser);
 
     const [likedEventoryEventList, setLikedEventoryEventList] = useState({});
 
@@ -32,7 +31,7 @@ const UsersHomeLikedEvents = () => {
         fetchLikedEventoryEvents();
     }, []);
 
-    if (currentUser.likedEvents.length === 0) {
+    if (currentUser.role === "user" && currentUser.likedEvents.length === 0) {
         return (
             <>
                 <h3 className="fw-bold ms-2 mt-4 mb-3">Your Liked Eventory Events</h3>
@@ -41,18 +40,20 @@ const UsersHomeLikedEvents = () => {
         )
     }
 
-    return(
-        <>
-            <h3 className="fw-bold ms-2 mt-4 mb-3">Your Liked Eventory Events</h3>
-            <div className="row">
-                {currentUser.likedEvents.map((eventoryEvent) => (
-                    <UsersHomeLikedEventComponent
-                        key={eventoryEvent}
-                        eventoryEvent={likedEventoryEventList[eventoryEvent]} />
-                ))}
-            </div>
-        </>
-    )
+    if (currentUser.role === "user" && currentUser.likedEvents.length > 0) {
+        return(
+            <>
+                <h3 className="fw-bold ms-2 mt-4 mb-3">Your Liked Eventory Events</h3>
+                <div className="row">
+                    {currentUser.likedEvents.map((eventoryEvent) => (
+                        <UsersHomeLikedEventComponent
+                            key={eventoryEvent}
+                            eventoryEvent={likedEventoryEventList[eventoryEvent]} />
+                    ))}
+                </div>
+            </>
+        )
+    }
 };
 
 export default UsersHomeLikedEvents;
