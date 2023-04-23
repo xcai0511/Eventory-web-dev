@@ -107,8 +107,7 @@ function EditProfileComponent({ setIsEditingProfile, currentUser }) {
                     <label htmlFor="location" className="form-label ">
                         <div className="profile-label-font">Location</div>
                         <div className="text-muted fs-14px">
-                            Where do you explore for events? Let us know and we'll
-                            personalize your recommendations.
+                            Share your location with other users
                         </div>
                     </label>
                     <textarea
