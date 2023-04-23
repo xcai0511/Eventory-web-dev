@@ -9,16 +9,15 @@ const EventoryEventDetail = () => {
     const link = useLocation();
     const queryParams = new URLSearchParams(link.search);
     const eventId = queryParams.get("id");
-    console.log(`eventory event detail id: ${eventId}`);
+
     useEffect(() => {
-        console.log(`use effect event id: ${eventId}`)
         dispatch(eventIdThunk({eventId}))
     }, []);
 
     let {detail, result, loading} = useSelector((state) => state.usersEvent);
-    console.log(detail);
     let detailArray = [];
     detailArray[0] = detail;
+
     return(
         <>
             {

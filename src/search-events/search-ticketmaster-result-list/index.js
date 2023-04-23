@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ResultItem from './result-item';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchFilterThunk, searchThunk } from '../../services/ticketmaster-thunks';
+import { searchFilterThunk } from '../../services/ticketmaster-thunks';
 import { useLocation } from 'react-router';
 
 const ResultList = () => {
@@ -10,14 +10,12 @@ const ResultList = () => {
         loading = !loading;
     }
     const dispatch = useDispatch();
-
     const link = useLocation();
     const queryParams = new URLSearchParams(link.search);
     const location = queryParams.get('city');
     const keyword = queryParams.get('keyword');
 
     const type = queryParams.get('type');
-
     if (type === 'Exclusive Events') {
         result = [];
     }

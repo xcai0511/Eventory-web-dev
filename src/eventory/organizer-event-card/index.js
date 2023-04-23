@@ -12,13 +12,9 @@ const OrganizerEventsList = ({ organizerId }) => {
     const dispatch = useDispatch();
     const events = useSelector((state) => state.organizersEvents.events);
     const status = useSelector((state) => state.organizersEvents.status);
-    console.log("OrganizerEventsList");
-    console.log(events);
-    console.log(status);
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log("OrganizerEventsList" + organizerId);
         dispatch(fetchEventsByOrganizerIdThunk(organizerId));
     }, [dispatch, organizerId]);
 

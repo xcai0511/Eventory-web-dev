@@ -60,7 +60,6 @@ const ticketmasterEventSlice = createSlice({
         [searchEventDetailThunk.rejected]:
             (state, action) => {
                 state.loading = false
-                console.log(action)
                 state.detail = action.payload.message
             }
     },

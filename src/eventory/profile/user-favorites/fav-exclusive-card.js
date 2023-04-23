@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { eventIdThunk } from '../../../services/eventory-thunks';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { icon, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const ExclusiveEventCardComponent = ({ event }) => {
     const eventDate = new Date(event?.date);
@@ -27,10 +27,8 @@ const ExclusiveEventCardComponent = ({ event }) => {
         const queryParams = new URLSearchParams({
             id: event._id,
         });
-        console.log(`card on click ${event._id}`);
         dispatch(eventIdThunk(event._id));
         navigate(`/results/ev/detail/search?${queryParams.toString()}`);
-        // dispatch(eventIdThunk(event._id));
     };
 
     return (

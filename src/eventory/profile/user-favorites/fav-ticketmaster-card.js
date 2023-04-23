@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { icon, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { searchEventDetailThunk } from '../../../services/ticketmaster-thunks';
 
 const TicketMasterCardComponent = ({ event }) => {
@@ -39,7 +39,6 @@ const TicketMasterCardComponent = ({ event }) => {
         const queryParams = new URLSearchParams({
             id: event?._id,
         });
-        console.log('card on click id:' + event?._id);
         navigate(`/results/tm/detail/search?${queryParams.toString()}`);
         dispatch(searchEventDetailThunk({ e_id: event?._id }));
     };

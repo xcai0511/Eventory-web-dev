@@ -8,13 +8,10 @@ const PublicOrganizerProfile = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const organizerData = useSelector((state) => state.anonymous.data);
-    console.log("PublicOrganizerProfile organizerData");
-    console.log(organizerData);
 
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
         const organizerId = queryParams.get("id");
-        console.log("PublicOrganizerProfile useEffect organizerId " + organizerId);
         dispatch(findOrganizerByIdThunk(organizerId));
     }, []);
 

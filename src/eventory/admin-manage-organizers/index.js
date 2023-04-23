@@ -1,5 +1,4 @@
 import {useDispatch, useSelector} from "react-redux";
-import {isCurrentUserRoleAdmin} from "../../utils/utils";
 import {deleteOrganizerByIdThunk, getAllOrganizersThunk} from "../../services/organizersManagement-thunks";
 import React, {useEffect} from "react";
 
@@ -29,16 +28,6 @@ const AdminManageOrganizersPage = () => {
         )
     }
 
-    // if () {
-    //     return (
-    //         <div className="container mt-4">
-    //             <div>
-    //                 <h4>Unauthorized</h4>
-    //             </div>
-    //         </div>
-    //     )
-    // }
-
     if (organizersStatus === "pending") {
         return (
             <div className="container mt-4">
@@ -49,7 +38,6 @@ const AdminManageOrganizersPage = () => {
             </div>
         )
     } else if (organizersStatus === "rejected") {
-        console.log("AdminManageOrganizersPage " + organizersError);
         return (
             <div className="container mt-4">
                 <div>
@@ -71,7 +59,6 @@ const AdminManageOrganizersPage = () => {
 
     return (
         <div>
-            {/*{(currentUser.role !== "admin") ? <h3 className="mt-4 ms-4">Unauthorized.</h3> :*/}
             <div className="container mt-4">
                 <div>
                     <h3>Organizers Management</h3>
@@ -99,7 +86,6 @@ const AdminManageOrganizersPage = () => {
                     }
                 </div>
             </div>
-            }
         </div>
     );
 };

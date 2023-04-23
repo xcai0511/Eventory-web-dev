@@ -1,14 +1,14 @@
-.card-border-radius {
-    border-radius: 15px;
-}
+/*.card-border-radius {*/
+/*    border-radius: 15px;*/
+/*}*/
 
-.shadow-hover:hover {
-    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15) !important;
-}
+/*.shadow-hover:hover {*/
+/*    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15) !important;*/
+/*}*/
 
-.rounded-image {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    object-fit: cover;
-}
+/*.rounded-image {*/
+/*    width: 70px;*/
+/*    height: 70px;*/
+/*    border-radius: 50%;*/
+/*    object-fit: cover;*/
+/*}*/

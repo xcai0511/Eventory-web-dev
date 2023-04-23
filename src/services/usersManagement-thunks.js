@@ -13,7 +13,6 @@ export const deleteUserByIdThunk = createAsyncThunk(
     "admin/usersManagement/deleteUser",
     async (userId, { rejectWithValue }) => {
         try {
-            console.log("here deleteUserByIdThunk");
             const deleteUserResult = await service.deleteUserById(userId);
             return deleteUserResult;
         } catch (error) {

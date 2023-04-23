@@ -1,18 +1,12 @@
-
-
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
 import "../public-user-profile/public-user-profile.css"
-import EventCardComponent from "../../profile/user-favorites/fav-exclusive-card";
-import TicketMasterCardComponent from "../../profile/user-favorites/fav-ticketmaster-card";
 import React from "react";
 import {eventIdThunk} from "../../../services/eventory-thunks";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
 const PublicOrganizerProfileComponent = ({ organizerProfile }) => {
-    console.log("PublicOrganizerProfileComponent organizerProfile");
-    console.log(organizerProfile);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -26,11 +20,9 @@ const PublicOrganizerProfileComponent = ({ organizerProfile }) => {
         const queryParams = new URLSearchParams({
             id: eventId,
         });
-        console.log(`card on click ${eventId}`);
         dispatch(eventIdThunk(eventId));
         navigate(`/results/ev/detail/search?${queryParams.toString()}`);
     }
-
 
     if (!organizerProfile) {
         return (
@@ -59,7 +51,6 @@ const PublicOrganizerProfileComponent = ({ organizerProfile }) => {
                                     />
                                 </div>
                                 <div className="col-9">
-                                    {/*<span className="fw-bold d-none d-xl-inline">Location: </span>*/}
                                     {organizerProfile.username ? (
                                         <span className="">{organizerProfile.username}</span>
                                     ) : (
@@ -74,7 +65,6 @@ const PublicOrganizerProfileComponent = ({ organizerProfile }) => {
                                     />
                                 </div>
                                 <div className="col-8">
-                                    {/*<span className="fw-bold d-none d-xl-block">Bio: </span>*/}
                                     {organizerProfile.bio ? (
                                         <span className="">{organizerProfile.bio}</span>
                                     ) : (

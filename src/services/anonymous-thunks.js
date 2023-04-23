@@ -5,9 +5,7 @@ export const findUserByIdThunk = createAsyncThunk(
     'anonymous/findUserById',
     async (userId,{rejectWithValue}) => {
         try {
-            console.log("findUserByIdThunk " + userId);
             const findUserResult = await service.findUserById(userId);
-            console.log(JSON.stringify(findUserResult));
             return findUserResult;
         } catch (error) {
             if (!error.response) {
@@ -15,10 +13,6 @@ export const findUserByIdThunk = createAsyncThunk(
             }
             return rejectWithValue(error.response.data);
         }
-        // console.log("findUserByIdThunk " + userId);
-        // const findUserResult = await service.findUserById(userId);
-        // console.log(JSON.stringify(findUserResult));
-        // return findUserResult;
     }
 );
 

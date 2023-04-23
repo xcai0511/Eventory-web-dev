@@ -39,7 +39,6 @@ const FAQComponent = () => {
             </div>
         </>
     )
-
-}
+};
 
 export default FAQComponent;

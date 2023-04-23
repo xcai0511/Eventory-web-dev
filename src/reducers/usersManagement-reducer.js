@@ -27,21 +27,16 @@ const usersManagementSlice = createSlice({
                 state.status = 'rejected';
                 state.error = action.payload;
                 state.data = null;
-                console.log("getAllUsersThunk.rejected: " + JSON.stringify(state.error));
             })
             .addCase(deleteUserByIdThunk.pending, (state) => {
-                console.log("deleteUserByIdThunk.pending");
                 state.status = 'pending';
                 state.error = null;
             })
             .addCase(deleteUserByIdThunk.fulfilled, (state, action ) => {
-                console.log("deleteUserByIdThunk.fulfilled");
                 state.status = 'fulfilled';
                 state.error = null;
-
             })
             .addCase(deleteUserByIdThunk.rejected, (state, action) => {
-                console.log("deleteUserByIdThunk.rejected");
                 state.status = 'rejected';
                 state.error = action.payload;
             })
@@ -49,4 +44,3 @@ const usersManagementSlice = createSlice({
 });
 
 export default usersManagementSlice.reducer;
-

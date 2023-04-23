@@ -1,5 +1,4 @@
 import React from "react";
-
 import PublicUserProfile from "./public-user-profile";
 import {Route, Routes} from "react-router-dom";
 import PublicOrganizerProfile from "./public-organizer-profile";

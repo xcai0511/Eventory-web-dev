@@ -1,7 +1,6 @@
 import React from 'react';
 import SearchBar from '../search-bar';
 import ResultList from '../search-ticketmaster-result-list';
-import Nav from '../../nav';
 import EventoryResultList from '../search-eventory-result-list';
 
 function SearchPage() {

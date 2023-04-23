@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
-import {isCurrentUser} from "../../../utils/utils";
 
 const NavSidebar = () => {
     const { pathname } = useLocation();
@@ -75,7 +74,6 @@ const NavSidebar = () => {
             </div>
         );
     }
-
 };
 
 export default NavSidebar;

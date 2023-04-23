@@ -7,8 +7,6 @@ import {likeTicketmasterThunk} from "../../services/users-thunk";
 
 const ResultItem = ({result}) => {
     const dispatch = useDispatch();
-    console.log("ResltItem");
-    console.log(result)
 
     // local time edge case
     const resultTime = result.time;
@@ -57,7 +55,6 @@ const ResultItem = ({result}) => {
             action = 'like';
         }
         const { payload: { message } = {} } = await dispatch(likeTicketmasterThunk({eventId: result._id, action: action}));
-        console.log(message);
         if (message === "Unauthorized.") {
             alert("Please log in or sign up to like an event!");
         } else {

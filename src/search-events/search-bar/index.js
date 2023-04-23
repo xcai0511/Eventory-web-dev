@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import '../header-search-bar/header.css';
 import './searchbar.css';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -43,7 +43,6 @@ const SearchBar = () => {
             keyword: keyword,
             type: type.type,
         });
-        console.log(type);
         navigate(`/results/search?${queryParams.toString()}`);
     };
 
@@ -154,4 +153,5 @@ const SearchBar = () => {
         </div>
     );
 };
+
 export default SearchBar;

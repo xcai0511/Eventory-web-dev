@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import TicketmasterDetailItem from "./ticketmaster-detail-item";
 import {useLocation} from "react-router";
 import {searchEventDetailThunk} from "../../services/ticketmaster-thunks";
 import "./detail.css";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const TicketmasterEventDetail = () => {
@@ -17,14 +16,11 @@ const TicketmasterEventDetail = () => {
     }, []);
 
     let {detail,result, loading} = useSelector((state) => state.result);
-    console.log("ticket master event detail: " + detail);
     let resultArray = [];
     if (detail === "Exceeded Ticketmaster API rate limit. Please wait and try again.") {
         loading = !loading
     }
     resultArray[0] = detail;
-    console.log(resultArray);
-
 
     return (
         <>
@@ -41,8 +37,6 @@ const TicketmasterEventDetail = () => {
             }
         </>
     );
-
 };
 
 export default TicketmasterEventDetail;
-

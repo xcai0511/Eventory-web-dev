@@ -8,13 +8,6 @@ import {eventIdThunk} from "../../services/eventory-thunks";
 import {likeEventoryThunk} from "../../services/users-thunk";
 
 const EventoryResultItem = ({event}) => {
-
-    // local time edge case
-
-    // const eventTime = new Date(event.time);
-    // const estD = new Date(eventTime.toLocaleString('en-US', { timeZone: 'America/New_York' }));
-    // const estTime = estD.toLocaleString('en-US', { timeZone: 'America/New_York', minute: '2-digit', second: '2-digit' });
-
     const eventTime = new Date(event?.time).toLocaleTimeString('en-US', {
         timeZone: 'America/New_York', hour12: false, });
     const eventTimeDisplay = eventTime?.split(":");
@@ -28,11 +21,6 @@ const EventoryResultItem = ({event}) => {
 
     // interested button
     const [interested, setInterested] = useState(false);
-    // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // const likeEvents = currentUser.likedEvents;
-    // useEffect(() => {
-    //     setInterested(likeEvents.includes(event._id));
-    // }, [likeEvents]);
     useEffect(() => {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser) {
@@ -42,16 +30,14 @@ const EventoryResultItem = ({event}) => {
     }, [event._id]);
 
     const dispatch = useDispatch();
-
     const navigate = useNavigate();
+
     const cardOnclickHandler = () => {
         const queryParams = new URLSearchParams({
             id: event._id,
         });
-        console.log(`card on click ${event._id}`)
         dispatch(eventIdThunk(event._id));
         navigate(`/results/ev/detail/search?${queryParams.toString()}`);
-        // dispatch(eventIdThunk(event._id));
     };
 
     const likeButtonOnclickHandler = async (e) => {
@@ -63,7 +49,6 @@ const EventoryResultItem = ({event}) => {
             action = 'like';
         }
         const { payload: { message } = {} } = await dispatch(likeEventoryThunk({eventId: event._id, action: action}));
-        console.log(message);
         if (message === "Unauthorized.") {
             alert("Please log in or sign up to like an event!");
         } else {
@@ -120,9 +105,6 @@ const EventoryResultItem = ({event}) => {
                         <div className="d-inline text-muted fw-bold">
                             {event.address}
                         </div>
-                        {/*<div className="text-muted">*/}
-                        {/*    {intCount} interested*/}
-                        {/*</div>*/}
                     </div>
                 </div>
             </div>

@@ -77,6 +77,6 @@ function OrganizerSignup() {
             </div>
         </form>
     );
-};
+}
 
 export default OrganizerSignup;

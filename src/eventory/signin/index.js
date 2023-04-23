@@ -18,15 +18,8 @@ function Signin() {
     const dispatch = useDispatch();
     // Automatically nagivate to the Home screen if signInStatus is 'fulfilled'.
     useEffect(() => {
-
-    //     if (signInStatus === 'fulfilled') {
-    //         navigate("/home");
-    //     }
-    // }, [signInStatus, navigate]);
-
         if (currentUser) {
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            console.log(currentUser);
         }
         if (signInStatus === 'fulfilled') {
             navigate('/home');

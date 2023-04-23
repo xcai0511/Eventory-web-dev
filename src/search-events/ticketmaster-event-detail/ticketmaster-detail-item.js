@@ -10,14 +10,12 @@ const TicketmasterDetailItem = ({detail}) => {
 
     const currentUser = useSelector((state) => state.auth.currentUser);
 
-    // let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     useEffect(() => {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser) {
             const likeEvents = currentUser.likedTicketmasterEvents;
             setInterested(likeEvents.includes(detail._id));
         }
-        console.log("INTERESTED USERS: " + typeof(detail.interestedUsers));
     }, []);
 
     const resultTime = detail.time;
@@ -51,7 +49,7 @@ const TicketmasterDetailItem = ({detail}) => {
             action = 'like'
         }
         const { payload: { message } = {} } = await dispatch(likeTicketmasterThunk({eventId: detail._id, action: action}));
-        console.log(message);
+
         if (message === "Unauthorized.") {
             alert("Please log in or sign up to like an event!");
         } else {
@@ -68,11 +66,7 @@ const TicketmasterDetailItem = ({detail}) => {
         }
     };
 
-
-
-
     return(
-
         <div className="wd-detail-page mt-3">
             <div className="wd-poster-container">
                 <img className="wd-poster-frame" src={detail.image}/>
@@ -163,7 +157,6 @@ const TicketmasterDetailItem = ({detail}) => {
                             </ul>
                         </div>
                     }
-
 
                 </div>
                 <div className="d-none d-md-block col-md-3 mt-4">

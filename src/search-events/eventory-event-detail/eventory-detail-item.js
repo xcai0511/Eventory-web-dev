@@ -4,8 +4,6 @@ import "../ticketmaster-event-detail/detail.css";
 import {likeEventoryThunk} from "../../services/users-thunk";
 import {useDispatch, useSelector} from "react-redux";
 import UserItem from "./user-item";
-import {profileThunk} from "../../services/auth-thunks";
-import {eventIdThunk} from "../../services/eventory-thunks";
 import {findOrganizerByIdThunk} from "../../services/anonymous-thunks";
 import {useNavigate} from "react-router";
 import Footer from "../../eventory/footer";
@@ -13,10 +11,8 @@ import Footer from "../../eventory/footer";
 const EventoryDetailItem = ({detail}) => {
     // interested button
     const [interested, setInterested] = useState(false);
-    // let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     useEffect(() => {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        console.log("useEffect " + typeof(detail.interestedUsers) + JSON.stringify(detail.interestedUsers))
         if (currentUser) {
             const likeEvents = currentUser.likedEvents;
             setInterested(likeEvents.includes(detail._id));
@@ -24,10 +20,6 @@ const EventoryDetailItem = ({detail}) => {
     }, []);
 
     const currentUser = useSelector((state) => state.auth.currentUser);
-
-    // const eventTime = new Date(detail.time);
-    // const estD = new Date(eventTime.toLocaleString('en-US', { timeZone: 'America/New_York' }));
-    // const estTime = estD.toLocaleString('en-US', { timeZone: 'America/New_York', minute: '2-digit', second: '2-digit' });
 
     const eventTime = new Date(detail?.time).toLocaleTimeString('en-US', {
         timeZone: 'America/New_York', hour12: false, });
@@ -40,10 +32,9 @@ const EventoryDetailItem = ({detail}) => {
     const eventDate = new Date(detail.date);
     const estDate = eventDate.toLocaleDateString("en-US", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
 
-    // let intUser = detail.interestedUsers;
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const likeButtonOnclickHandler = async (e) => {
         e.stopPropagation();
         let action;
@@ -53,7 +44,6 @@ const EventoryDetailItem = ({detail}) => {
             action = 'like';
         }
         const { payload: { message } = {} } = await dispatch(likeEventoryThunk({eventId: detail._id, action: action}));
-        console.log(message);
         if (message === "Unauthorized.") {
             alert("Please log in or sign up to like an event!");
         } else {
@@ -74,13 +64,11 @@ const EventoryDetailItem = ({detail}) => {
         const queryParams = new URLSearchParams({
             id: detail.organizer._id,
         });
-        console.log("eventory-detail-item organizerPublicProfileOnClickHandler");
         await dispatch(findOrganizerByIdThunk(detail.organizer._id));
         navigate(`/public-profile/organizer/search?${queryParams.toString()}`);
     }
 
     return(
-
         <>
         <div className="wd-detail-page mt-3 mb-4">
             <div className="wd-poster-container">

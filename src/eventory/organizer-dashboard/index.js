@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect} from "react";
+import { useDispatch } from 'react-redux';
 import OrganizerEventsList from "../organizer-event-card";
 import {fetchEventsByOrganizerIdThunk} from "../../services/organizerEvent-thunks";
 import {Link} from "react-router-dom";
@@ -10,7 +10,6 @@ import Footer from "../footer";
 const OrganizerDashboard = () => {
 
     const dispatch = useDispatch();
-    //const currentUser = useSelector((state) => state.auth.currentUser);
     const currentUser = JSON.parse(localStorage.getItem('currentUser'))
 
     let organizerId = '';
@@ -25,8 +24,7 @@ const OrganizerDashboard = () => {
     return (
         <>
             <div className="container mt-4">
-
-                <h4 className="mb-4">Welcome, {currentUser.name}</h4>
+                <h4 className="mb-4">Welcome, {currentUser.name}!</h4>
                 <h5>Your Profile Information</h5>
 
                 <OrganizerProfileDetails />
@@ -45,11 +43,9 @@ const OrganizerDashboard = () => {
                     </div>
                     {organizerId && <OrganizerEventsList organizerId={organizerId}/>}
                 </div>
-
             </div>
             <Footer />
         </>
-
     );
 };
 

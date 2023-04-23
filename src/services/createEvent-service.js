@@ -1,8 +1,9 @@
 import axios from "axios";
 import { currentUserProfile } from "./auth-service";
 
+const API_BASE = process.env.REACT_APP_EVENTORY_API_BASE;
 const api = axios.create({
-    baseURL: "http://localhost:4000/api",
+    baseURL: API_BASE,
     withCredentials: true,
 });
 

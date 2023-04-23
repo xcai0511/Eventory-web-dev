@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 
 function HomeComponent() {
     const currentUser = useSelector((state) => state.auth.currentUser);
-    console.log("home/index.js " + JSON.stringify(currentUser));
     return (
         <div>
             <HeaderSearchBar />

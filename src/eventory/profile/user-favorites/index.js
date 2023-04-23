@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { profileThunk } from '../../../services/auth-thunks';
@@ -30,7 +30,7 @@ const UserFavoritesComponent = () => {
                     const response = await dispatch(eventIdThunk({ eventId }));
                     newExclusiveEventList[eventId] = response.payload;
                 } catch (error) {
-                    console.log(error);
+                    alert(error.message);
                 }
             }
             setExclusiveEventList(newExclusiveEventList);
@@ -49,7 +49,7 @@ const UserFavoritesComponent = () => {
                         newTicketMasterEventList[eventId] = res.payload;
                     }
                 } catch (error) {
-                    console.log(error);
+                    alert(error.message);
                 }
             }
             setTicketMasterEventList(newTicketMasterEventList);
@@ -119,26 +119,6 @@ const UserFavoritesComponent = () => {
                             </p>
                         </div>
                     )}
-
-                    {/*{*/}
-                    {/*    !noEvent ? (*/}
-                    {/*        <div className="card-columns">*/}
-                    {/*            {currentUser.likedTicketmasterEvents.map((eventId) => (*/}
-                    {/*                <TicketMasterCardComponent*/}
-                    {/*                    key={eventId}*/}
-                    {/*                    event={ticketMasterEventList[eventId]}*/}
-                    {/*                />*/}
-                    {/*            ))}*/}
-                    {/*        </div>*/}
-                    {/*    ) : (*/}
-                    {/*        <div className="text-muted">*/}
-                    {/*            <div>We can't load your favorite Ticketmaster event.</div>*/}
-                    {/*            <div>Exceeded Ticketmaster API rate limit.</div>*/}
-                    {/*            <div>Please wait and try again.</div>*/}
-                    {/*        </div>*/}
-                    {/*    )*/}
-                    {/*}*/}
-
                 </>
             )}
         </div>

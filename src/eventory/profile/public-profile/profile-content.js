@@ -1,13 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { logOutThunk } from '../../../services/auth-thunks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 function ProfileContentComponent({ setIsEditingProfile, currentUser }) {
-    // console.log('Profile Content: ------ ' + JSON.stringify(currentUser));
-
-    // console.log(JSON.stringify(currentUser));
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -67,16 +64,6 @@ function ProfileContentComponent({ setIsEditingProfile, currentUser }) {
                         <span className="ms-2 fw-bold">Birthday: </span>
                         <span className="">{dateOfBirth}</span>
                     </div>
-                    {/*<div>*/}
-                    {/*    <FontAwesomeIcon*/}
-                    {/*        icon={icon({*/}
-                    {/*            name: 'calendar-days',*/}
-                    {/*            style: 'regular',*/}
-                    {/*        })}*/}
-                    {/*    />*/}
-                    {/*    <span className="ms-2 fw-bold">Joined at: </span>*/}
-                    {/*    <span className="ms-2">April 2009</span>*/}
-                    {/*</div>*/}
                     <div>
                         <FontAwesomeIcon
                             icon={icon({ name: 'circle-info', style: 'solid' })}

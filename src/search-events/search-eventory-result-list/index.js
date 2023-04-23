@@ -7,8 +7,6 @@ import {eventFilterThunk} from "../../services/eventory-thunks";
 const EventoryResultList = () => {
 
     let {result, detail, loading} = useSelector(state => state.usersEvent)
-    console.log(result);
-    console.log(detail);
     const dispatch = useDispatch();
     const link = useLocation();
     const queryParams = new URLSearchParams(link.search);
@@ -19,7 +17,6 @@ const EventoryResultList = () => {
     }, []);
 
     const type = queryParams.get("type");
-
     if (type === "General Events") {
         result = [];
     }

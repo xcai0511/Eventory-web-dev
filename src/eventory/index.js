@@ -1,5 +1,5 @@
 import Nav from '../nav';
-import { Provider, useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Signup from './signup';
 import Signin from './signin';
@@ -7,7 +7,6 @@ import OrganizerDashboard from './organizer-dashboard';
 import React, { useEffect } from 'react';
 import { profileThunk } from '../services/auth-thunks';
 import CreateEventForm from './organizer-create-event';
-// import HomeComponent from "./user-home-page";
 import HomeComponent from './home';
 import EditEventForm from './organizer-edit-event';
 import AboutComponent from './about';
@@ -24,7 +23,6 @@ import PublicProfilePages from './public-profile-pages';
 function Eventory() {
     const dispatch = useDispatch();
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // const currentUser = useSelector((state) => state.auth.currentUser);
 
     useEffect(() => {
         try {
@@ -71,7 +69,6 @@ function Eventory() {
                 <Route path="manage-organizers" element={<AdminManageOrganizersPage />} />
                 <Route path="public-profile/*" element={<PublicProfilePages />} />
             </Routes>
-
         </div>
     );
 }

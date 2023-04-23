@@ -6,7 +6,6 @@ export const updateUserProfileThunk = createAsyncThunk(
     async ({ userId, updatedUser }, { rejectWithValue }) => {
         try {
             const response = await service.updateUser(userId, updatedUser);
-            console.log(response);
             return response;
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -31,23 +30,21 @@ export const likeEventoryThunk = createAsyncThunk(
     async ({eventId, action}, { rejectWithValue }) => {
         try {
             const response = await service.likeOrDislikeEventoryEvent(eventId, action);
-            console.log(response);
             return response;
         } catch (error) {
             return rejectWithValue(error.response.data);
         }
     }
-)
+);
 
 export const likeTicketmasterThunk = createAsyncThunk(
         'users/likeTicketmaster',
     async ({eventId, action}, { rejectWithValue }) => {
             try {
                 const response = await service.likeOrDislikeTicketmasterEvent(eventId, action);
-                console.log(response);
                 return response;
             } catch (error) {
                 return rejectWithValue(error.response.data);
             }
     }
-)
+);

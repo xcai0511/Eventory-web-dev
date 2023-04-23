@@ -27,7 +27,6 @@ const OrganizerProfileDetails = () => {
             name: name,
             bio: bio
         };
-        console.log('handleSaveClick ' + updates);
         await dispatch(updateOrganizerByOrganizerIdThunk({
             organizerId: currentUser._id, updatedOrganizer: updates}))
             .then(() => {

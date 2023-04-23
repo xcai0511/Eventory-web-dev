@@ -6,8 +6,6 @@ import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 
 const HeaderSearchBar = () => {
-
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const [location, setLocation] = useState('');
@@ -28,7 +26,6 @@ const HeaderSearchBar = () => {
         });
         navigate(`/results/search?${queryParams.toString()}`);
     };
-
 
     return(
         <div className="wd-header">
@@ -73,4 +70,5 @@ const HeaderSearchBar = () => {
         </div>
     );
 };
+
 export default HeaderSearchBar;

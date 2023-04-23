@@ -44,8 +44,6 @@ const EditEventForm = () => {
             postalCode: postalCodeInput,
             description: descriptionInput
         }
-        console.log(JSON.stringify(updatedEvent));
-        console.log(eventId);
         await dispatch(updateEventByEventIdThunk({eventId, updatedEvent}));
         navigate("/home");
     };

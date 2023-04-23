@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { profileThunk } from '../../../services/auth-thunks';
 import { updateUserProfileThunk } from '../../../services/users-thunk';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 function EditProfileComponent({ setIsEditingProfile, currentUser }) {
     const dispatch = useDispatch();
@@ -37,14 +35,10 @@ function EditProfileComponent({ setIsEditingProfile, currentUser }) {
             updateUserProfileThunk({ userId: currentUser._id, updatedUser: formData })
         ).then(() => {
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            console.log('old user');
-            console.log(currentUser);
             currentUser.firstName = firstName;
             currentUser.lastName = lastName;
             currentUser.bio = bio;
             currentUser.location = location;
-            console.log('new user');
-            console.log(currentUser);
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
             setIsEditingProfile(false); // close the edit profile form
@@ -145,7 +139,6 @@ function EditProfileComponent({ setIsEditingProfile, currentUser }) {
                 </div>
             </div>
 
-            {/* add more input fields here as needed */}
             <div className="row mt-3 mx-auto d-flex justify-content-between">
                 <button className="btn col-3" onClick={saveHandler}>
                     <span className="mx-3">Save</span>

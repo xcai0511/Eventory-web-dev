@@ -10,8 +10,6 @@ import EventCardComponent from '../../profile/user-favorites/fav-exclusive-card'
 import TicketMasterCardComponent from '../../profile/user-favorites/fav-ticketmaster-card';
 
 const PublicUserProfileComponent = ({ userProfile }) => {
-    console.log('PublicUserProfileComponent');
-    console.log(JSON.stringify(userProfile));
 
     const [exclusiveEventList, setExclusiveEventList] = useState({});
     const [ticketMasterEventList, setTicketMasterEventList] = useState({});
@@ -19,9 +17,6 @@ const PublicUserProfileComponent = ({ userProfile }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log(
-            'PublicUserProfileComponent---- use Effect' + JSON.stringify(userProfile)
-        );
         dispatch(profileThunk());
 
         // fetch event details for all liked events
@@ -33,7 +28,7 @@ const PublicUserProfileComponent = ({ userProfile }) => {
                     const response = await dispatch(eventIdThunk({ eventId }));
                     newExclusiveEventList[eventId] = response.payload;
                 } catch (error) {
-                    console.log(error);
+                    alert(error.message);
                 }
             }
             setExclusiveEventList(newExclusiveEventList);
@@ -51,7 +46,7 @@ const PublicUserProfileComponent = ({ userProfile }) => {
                         newTicketMasterEventList[eventId] = res.payload;
                     }
                 } catch (error) {
-                    console.log(error);
+                    alert(error.message);
                 }
             }
             setTicketMasterEventList(newTicketMasterEventList);

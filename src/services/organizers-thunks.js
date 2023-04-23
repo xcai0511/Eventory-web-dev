@@ -6,7 +6,6 @@ export const updateOrganizerByOrganizerIdThunk = createAsyncThunk(
     async ({ organizerId, updatedOrganizer }, { rejectWithValue }) => {
         try {
             const response = await service.updateOrganizerByOrganizerId(organizerId, updatedOrganizer);
-            console.log(response);
             return response;
         } catch (error) {
             if (!error.response) {

@@ -7,12 +7,12 @@ import {CardGroup} from "react-bootstrap";
 const AnonymousEventCard = () => {
     const {result, loading} = useSelector(state => state.result)
     const dispatch = useDispatch();
+
     useEffect(() => {
-        dispatch(searchThunk())
-        console.log("searching all events");
+        dispatch(searchThunk());
     }, []);
-    const resultArray = result.slice(0, 4);
-    console.log(resultArray);
+
+    const resultArray = result ? result.slice(0, 4) : [];
 
     if (resultArray) {
         return (
