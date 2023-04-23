@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import ProfileContentComponent from './profile-content';
 import EditProfileComponent from './edit-profile';
@@ -15,8 +15,6 @@ const PublicProfileComponent = () => {
     useEffect(() => {
         dispatch(profileThunk());
     }, [currentUser, dispatch]);
-
-    console.log('current user in the profile content:' + JSON.stringify(currentUser));
 
     return (
         <div>

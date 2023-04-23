@@ -31,7 +31,7 @@ function ProfileContentComponent({ setIsEditingProfile, currentUser }) {
             <div className="position-relative">
                 <div className="d-flex justify-content-center">
                     <img
-                        src={require(`../../images/event1.jpg`)}
+                        src={require(`../../images/event2.jpg`)}
                         className="img-fluid profile-banner"
                         alt="banner"
                     />
