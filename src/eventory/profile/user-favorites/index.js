@@ -7,13 +7,11 @@ import { eventIdThunk } from '../../../services/eventory-thunks';
 import EventCardComponent from './fav-exclusive-card';
 import { searchEventDetailThunk } from '../../../services/ticketmaster-thunks';
 import TicketMasterCardComponent from './fav-ticketmaster-card';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const UserFavoritesComponent = () => {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const [exclusiveEventList, setExclusiveEventList] = useState({});
     const [ticketMasterEventList, setTicketMasterEventList] = useState({});

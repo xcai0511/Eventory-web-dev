@@ -79,17 +79,17 @@ function Nav() {
                     <ul className="navbar-nav mx-auto">
                         <li className="nav-item">
                             <div onClick={homeOnClickHandler} className={`nav-link${location.pathname === '/home' || isHomeClicked ? ' active' : ''}`}
-                                 style={{ cursor: "pointer", fontWeight: 600}}>
+                                 style={{ cursor: "pointer", fontWeight: 300}}>
                                 Home
                             </div>
                         </li>
                         <li className="nav-item ms-2">
-                            <NavLink to="about" className="nav-link fw-bold">
+                            <NavLink to="about" className="nav-link" style={{fontWeight: 300}}>
                                 About
                             </NavLink>
                         </li>
                         <li className="nav-item ms-2">
-                            <NavLink to="faq" className="nav-link fw-bold">
+                            <NavLink to="faq" className="nav-link" style={{fontWeight: 300}}>
                                 FAQ
                             </NavLink>
                         </li>
@@ -97,12 +97,12 @@ function Nav() {
                     {!currentUser && (
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item">
-                                <NavLink to="signin" className="nav-link">
+                                <NavLink to="signin" className="nav-link" style={{fontWeight: 300}}>
                                     Log in
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="signup" className="nav-link">
+                                <NavLink to="signup" className="nav-link" style={{fontWeight: 300}}>
                                     Sign up
                                 </NavLink>
                             </li>
