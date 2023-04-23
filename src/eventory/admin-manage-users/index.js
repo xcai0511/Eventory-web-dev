@@ -37,7 +37,6 @@ const AdminManageUsersPage = () => {
             </div>
         )
     } else if (usersStatus === "rejected") {
-        console.log("AdminManageUsersPage " + usersError);
         return (
             <div className="container mt-4">
                 <div>
