@@ -113,7 +113,7 @@ const AccountSecurityComponent = () => {
                         Current Password
                     </label>
                     <input
-                        // type="password"
+                        type="password"
                         className="form-control border-0 p-0 profile-textarea"
                         id="current password"
                         rows="2"
@@ -131,6 +131,7 @@ const AccountSecurityComponent = () => {
                         New Password
                     </label>
                     <input
+                        type="password"
                         className="form-control border-0 p-0 profile-textarea"
                         id="new password"
                         rows="2"
@@ -148,6 +149,7 @@ const AccountSecurityComponent = () => {
                         Confirm New Password
                     </label>
                     <input
+                        type="password"
                         className="form-control border-0 p-0 profile-textarea"
                         id="bio"
                         rows="2"
