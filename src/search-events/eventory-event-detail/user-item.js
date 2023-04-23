@@ -8,6 +8,7 @@ import "./detail.css"
 const UserItem = ({user}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    console.log("UserItem " + JSON.stringify(user));
     const userOnclickHandler = async () => {
         const queryParams = new URLSearchParams({
             id: user._id,

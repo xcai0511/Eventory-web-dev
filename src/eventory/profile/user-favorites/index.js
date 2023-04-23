@@ -88,7 +88,7 @@ const UserFavoritesComponent = () => {
                                 ))}
                             </div>
                         ) : (
-                            <div>
+                            <div className="text-muted">
                                 <div>We can't load your favorite Ticketmaster event.</div>
                                 <div>Exceeded Ticketmaster API rate limit.</div>
                                 <div>Please wait and try again.</div>

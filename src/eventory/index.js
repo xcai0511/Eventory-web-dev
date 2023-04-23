@@ -72,6 +72,7 @@ function Eventory() {
                 <Route path="manage-organizers" element={<AdminManageOrganizersPage/>}/>
                 <Route path="public-profile/*" element={<PublicProfilePages/>}/>
             </Routes>
+
         </div>
     );
 }

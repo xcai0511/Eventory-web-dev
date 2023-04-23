@@ -13,12 +13,10 @@ import Footer from "../../eventory/footer";
 const EventoryDetailItem = ({detail}) => {
     // interested button
     const [interested, setInterested] = useState(false);
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser) {
-
-    }
+    // let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     useEffect(() => {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        console.log("useEffect " + typeof(detail.interestedUsers) + JSON.stringify(detail.interestedUsers))
         if (currentUser) {
             const likeEvents = currentUser.likedEvents;
             setInterested(likeEvents.includes(detail._id));
@@ -144,8 +142,14 @@ const EventoryDetailItem = ({detail}) => {
                         ) : null
                     }
 
-                    <h4 className="fw-bold mt-4">Description</h4>
-                    <div>{detail.description}</div>
+                    {
+                        detail.description ? (
+                            <div>
+                                <h4 className="fw-bold mt-4">Description</h4>
+                                <div>{detail.description}</div>
+                            </div>
+                        ) : null
+                    }
 
                     {
                         detail.interestedUsers ? (
@@ -164,11 +168,12 @@ const EventoryDetailItem = ({detail}) => {
 
                         ) : null
                     }
+
                 </div>
             </div>
         </div>
         <Footer />
-            </>
+        </>
     );
 };
 

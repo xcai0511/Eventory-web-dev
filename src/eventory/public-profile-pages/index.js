@@ -10,7 +10,7 @@ const PublicProfilePages = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                maxWidth: '800px',
+                maxWidth: '1000px',
                 margin: 'auto',
             }}>
                 <Routes>
