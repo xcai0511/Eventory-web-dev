@@ -79,7 +79,7 @@ const PublicUserProfileComponent = ({ userProfile }) => {
                         {userProfile.firstName} {userProfile.lastName}
                     </div>
                     <div className="mt-1 border-top">
-                        <div className="mt-2 row">
+                        <div className="mt-2 row ms-3">
                             <div className="col-1">
                                 <FontAwesomeIcon
                                     icon={icon({ name: 'location-dot', style: 'solid' })}
@@ -94,7 +94,7 @@ const PublicUserProfileComponent = ({ userProfile }) => {
                                 )}
                             </div>
                         </div>
-                        <div className="mt-2 row">
+                        <div className="mt-2 row ms-3">
                             <div className="col-1">
                                 <FontAwesomeIcon
                                     icon={icon({ name: 'circle-info', style: 'solid' })}
@@ -145,9 +145,9 @@ const PublicUserProfileComponent = ({ userProfile }) => {
                                     ))}
                             </div>
                             {errorEvents.size > 0 && (
-                                <div className="error-card py-3">
+                                <div className="error-card ps-2 pe-2">
                                     <h5>
-                                        Oops! Some of your liked events couldn't be
+                                        Oops! Some of the liked events couldn't be
                                         displayed right now due to API limits.
                                     </h5>
                                     <p>
