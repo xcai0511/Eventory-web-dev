@@ -19,6 +19,26 @@ const AdminManageOrganizersPage = () => {
 
     const numOrganizers = organizersData?.length ?? 0;
 
+    if (!currentUser || currentUser.role !== "admin") {
+        return (
+            <div className="container mt-4">
+                <div>
+                    <h4>Unauthorized</h4>
+                </div>
+            </div>
+        )
+    }
+
+    // if () {
+    //     return (
+    //         <div className="container mt-4">
+    //             <div>
+    //                 <h4>Unauthorized</h4>
+    //             </div>
+    //         </div>
+    //     )
+    // }
+
     if (organizersStatus === "pending") {
         return (
             <div className="container mt-4">
@@ -51,7 +71,7 @@ const AdminManageOrganizersPage = () => {
 
     return (
         <div>
-            {(currentUser.role !== "admin") ? <h3 className="mt-4 ms-4">Unauthorized.</h3> :
+            {/*{(currentUser.role !== "admin") ? <h3 className="mt-4 ms-4">Unauthorized.</h3> :*/}
             <div className="container mt-4">
                 <div>
                     <h3>Organizers Management</h3>
