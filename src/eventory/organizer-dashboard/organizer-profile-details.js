@@ -2,12 +2,13 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {updateOrganizerByOrganizerIdThunk} from "../../services/organizers-thunks";
 import {profileThunk} from "../../services/auth-thunks";
+import {isCurrentUserRoleOrganizer} from "../../utils/utils";
 
 const OrganizerProfileDetails = () => {
 
     const dispatch = useDispatch();
     const currentUser = useSelector((state) => state.auth.currentUser);
-    // const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+    isCurrentUserRoleOrganizer(currentUser);
 
     const [name, setName] = useState(currentUser.name);
     const [bio, setBio] = useState(currentUser.bio);
@@ -18,11 +19,6 @@ const OrganizerProfileDetails = () => {
         event.preventDefault();
         setEditable(true);
     };
-
-    // useEffect(() => {
-    //     dispatch(profileThunk());
-    //     set
-    // }, []);
 
     const handleSaveClick = async (event) => {
         // Save changes and update currentUser object in localStorage
@@ -58,17 +54,6 @@ const OrganizerProfileDetails = () => {
                     disabled={!editable}
                 />
             </div>
-            {/*<div className="form-group">*/}
-            {/*    <label htmlFor="email" className="mb-1">Email address</label>*/}
-            {/*    <input*/}
-            {/*        type="email"*/}
-            {/*        className="form-control mb-3"*/}
-            {/*        id="email"*/}
-            {/*        value={email}*/}
-            {/*        onChange={(e) => setEmail(e.target.value)}*/}
-            {/*        disabled={!editable}*/}
-            {/*    />*/}
-            {/*</div>*/}
             <div className="form-group">
                 <label htmlFor="bio" className="mb-1">Organization Description</label>
                 <input
