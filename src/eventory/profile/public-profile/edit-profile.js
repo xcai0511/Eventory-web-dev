@@ -49,6 +49,7 @@ function EditProfileComponent({ setIsEditingProfile, currentUser }) {
 
             setIsEditingProfile(false); // close the edit profile form
             profileThunk();
+            window.location.reload();
         });
     };
 

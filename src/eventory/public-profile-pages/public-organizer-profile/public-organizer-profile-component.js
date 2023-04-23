@@ -46,7 +46,7 @@ const PublicOrganizerProfileComponent = ({ organizerProfile }) => {
                     {/*User Info Component*/}
                     <div className="col-12 col-lg-3 rounded-1 pb-3">
                         <div className="d-flex justify-content-center mt-3">
-                            <img src="../../images/eventory-logo.png" alt="temp-avatar" className="rounded-pill public-user-profile-avatar"/>
+                            <img src="/images/organizer-avatar.png" alt="temp-avatar" className="rounded-pill public-user-profile-avatar me-3"/>
                         </div>
                         <div className="h4 fw-bold mt-3 justify-content-center d-flex">
                             {organizerProfile.name}
@@ -94,12 +94,12 @@ const PublicOrganizerProfileComponent = ({ organizerProfile }) => {
                             {organizerProfile.events.map((event) => (
                                 <div className="card mb-2" onClick={() => eventCardOnclickHandler(event._id)} >
                                     <div className="row">
-                                        <div className="col-3 mt-2">
+                                        <div className="col-3">
                                             <img className="card-img wd-poster" src="/images/eventory-exclusive-img.png" alt="poster" />
                                         </div>
                                         <div className="col-9 mt-1 mb-0">
                                             <div>
-                                                <h4 className="mt-2 fw-bold card-title mb-1">{event?.name}</h4>
+                                                <h4 className=" fw-bold card-title mb-1">{event?.name}</h4>
                                                 <div className="mt-3">
                                                     <div className="mb-1">
                                                         <FontAwesomeIcon

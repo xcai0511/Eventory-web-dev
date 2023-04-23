@@ -81,7 +81,7 @@ const SearchBar = () => {
                         </InputGroup>
                     </div>
                     <button
-                        className="btn wd-filter btn-dark"
+                        className="btn wd-filter btn-dark ps-3 pe-3"
                         onClick={() => setOpen(true)}>
                         <i className="bi bi-funnel me-2"></i>
                         <span>More Filters</span>
@@ -130,7 +130,7 @@ const SearchBar = () => {
                         Search
                     </button>
                     <button
-                        className="btn wd-filter btn-dark"
+                        className="btn wd-filter btn-dark ps-3 pe-3"
                         onClick={() => setOpen(!isOpen)}>
                         <i className="bi bi-funnel me-2"></i>
                         <span>More Filters</span>
@@ -149,7 +149,7 @@ const SearchBar = () => {
                     )}
                 </div>
             </div>
-            <h3 className="my-2 fw-bold">'{kw}'</h3>
+            <h3 className="mt-3 mb-2 fw-bold">'{kw}'</h3>
             <h5 className="text-secondary mt-1">Search Results</h5>
         </div>
     );

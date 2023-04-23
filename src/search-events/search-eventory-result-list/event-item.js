@@ -81,7 +81,7 @@ const EventoryResultItem = ({event}) => {
     };
 
     return (
-        <div className="card mb-2" onClick={cardOnclickHandler}>
+        <div className="card mb-2" onClick={cardOnclickHandler} style={{cursor:"pointer"}}>
             <div className="row">
                 <div className="col-3 mt-0">
                     <img className="card-img wd-poster" src="/images/eventory-exclusive-img.png" alt="poster"/>

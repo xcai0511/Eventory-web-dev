@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from "react";
 import "./detail.css";
 import {likeTicketmasterThunk} from "../../services/users-thunk";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import UserItem from "../eventory-event-detail/user-item";
 
 const TicketmasterDetailItem = ({detail}) => {
     // interested button
     const [interested, setInterested] = useState(false);
+
+    const currentUser = useSelector((state) => state.auth.currentUser);
+
     // let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     useEffect(() => {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -137,11 +140,11 @@ const TicketmasterDetailItem = ({detail}) => {
                     }
 
                     {
-                        detail.interestedUsers ? (
+                        currentUser && detail.interestedUsers ? (
                             <div className="mt-3">
-                                <h4 className="fw-bold list-group-item">Liked Users</h4>
+                                <h4 className="fw-bold list-group-item">Interested Users</h4>
                                 <ul className="list-group wd-liked-user-list">
-                                    <li className="list-group-item event-detail-hover">
+                                    <li className="list-group-item">
                                         {detail.interestedUsers.map(user => {
                                             return <UserItem
                                                 key={user._id}
@@ -151,7 +154,14 @@ const TicketmasterDetailItem = ({detail}) => {
                                 </ul>
                             </div>
 
-                        ) : null
+                        ) : <div>
+                            <h4 className="fw-bold list-group-item mt-4">Interested Users</h4>
+                            <ul className="list-group wd-liked-user-list ">
+                                <li className="list-group-item pt-3 pb-0">
+                                    <p>Please log in to view interested users.</p>
+                                </li>
+                            </ul>
+                        </div>
                     }
 
 

@@ -16,7 +16,7 @@ const NavSidebar = () => {
     if (currentUser) {
         return (
             <div className="profile-sidebar list-group">
-                <div className="h4 mb-4 fw-bold d-none d-md-block">Welcome {currentUser.firstName}</div>
+                <div className="h4 mb-4 fw-bold d-none d-md-block">Welcome, {currentUser.firstName}!</div>
                 <Link
                     to="/profile"
                     className={`list-group-item ${active === 'profile' ? 'active' : ''}`}>

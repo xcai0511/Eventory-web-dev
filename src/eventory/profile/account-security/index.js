@@ -117,7 +117,7 @@ const AccountSecurityComponent = () => {
                         className="form-control border-0 p-0 profile-textarea"
                         id="current password"
                         rows="2"
-                        placeholder="enter current password"
+                        placeholder="Enter current password"
                         onChange={currentPasswordChangeHandler}
                         style={{ boxShadow: 'none' }}></input>
                 </div>
@@ -135,7 +135,7 @@ const AccountSecurityComponent = () => {
                         className="form-control border-0 p-0 profile-textarea"
                         id="new password"
                         rows="2"
-                        placeholder="enter new password"
+                        placeholder="Enter new password"
                         onChange={newPasswordChangeHandler}
                         style={{ boxShadow: 'none' }}></input>
                 </div>
@@ -153,17 +153,17 @@ const AccountSecurityComponent = () => {
                         className="form-control border-0 p-0 profile-textarea"
                         id="bio"
                         rows="2"
-                        placeholder="confirm new password"
+                        placeholder="Confirm new password"
                         onChange={confirmPasswordChangeHandler}
                         style={{ boxShadow: 'none' }}></input>
                 </div>
             </div>
             <div className="row mt-3 mx-auto d-flex justify-content-between">
-                <button className="btn col-3" onClick={saveHandler}>
-                    <span className="mx-3">Save</span>
+                <button className="btn col-sm-4 col-md-3 mb-3" onClick={saveHandler}>
+                    <span className="">Save</span>
                 </button>
-                <button className="btn col-3" onClick={cancelHandler}>
-                    <span className="mx-3">Cancel</span>
+                <button className="btn col-sm-4 col-md-3 mb-3" onClick={cancelHandler}>
+                    <span className="">Cancel</span>
                 </button>
             </div>
         </div>

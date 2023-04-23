@@ -23,7 +23,7 @@ const Profile = () => {
     }
 
     return (
-        <div className=" mx-auto container ">
+        <div className=" mx-auto container mb-4">
             <div className="row mt-3">
                 <div className="col-3 d-flex flex-column align-items-center justify-content-top ">
                     <NavSidebar active="profile" />

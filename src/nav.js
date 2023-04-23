@@ -63,8 +63,7 @@ function Nav() {
     }
 
     return (
-        <nav className="navbar navbar-expand-lg">
-            {/* style={{ marginLeft: '-25px', marginRight: '-25px' }} */}
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
                 <div onClick={homeOnClickHandler} style={{ cursor: "pointer" }}>
                     <a className="navbar-brand">
@@ -79,7 +78,8 @@ function Nav() {
                 <div className="collapse navbar-collapse" id="navigation-bar">
                     <ul className="navbar-nav mx-auto">
                         <li className="nav-item">
-                            <div onClick={homeOnClickHandler} className={`nav-link${location.pathname === '/home' || isHomeClicked ? ' active' : ''}`} style={{ cursor: "pointer" }}>
+                            <div onClick={homeOnClickHandler} className={`nav-link${location.pathname === '/home' || isHomeClicked ? ' active' : ''}`}
+                                 style={{ cursor: "pointer", fontWeight: 600}}>
                                 Home
                             </div>
                         </li>
