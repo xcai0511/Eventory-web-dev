@@ -69,8 +69,8 @@ const OrganizerEventsList = ({ organizerId }) => {
                             <p className="card-subtitle mb-2 text-muted">{formatDate(event.date)}</p>
                             <h6 className="card-subtitle mb-2 text-muted">{event.address}</h6>
                             <p className="card-text">
-                                {event.description.length > 45
-                                    ? event.description.substring(0, 45) + "..."
+                                {event.description.length > 43
+                                    ? event.description.substring(0, 43) + "..."
                                     : event.description}
                             </p>
                             <div className="d-flex justify-content-between align-items-center">
